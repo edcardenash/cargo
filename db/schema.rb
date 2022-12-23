@@ -10,9 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_23_015831) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_23_170450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.bigint "region_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["region_id"], name: "index_cities_on_region_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "freights", force: :cascade do |t|
     t.float "start_latitude"
@@ -41,6 +55,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_015831) do
     t.datetime "updated_at", null: false
     t.index ["freight_id"], name: "index_quotes_on_freight_id"
     t.index ["vehicle_id"], name: "index_quotes_on_vehicle_id"
+  end
+
+  create_table "regions", force: :cascade do |t|
+    t.string "name"
+    t.bigint "country_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_regions_on_country_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -85,10 +107,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_015831) do
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
+  create_table "zones", force: :cascade do |t|
+    t.string "name"
+    t.bigint "city_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_zones_on_city_id"
+  end
+
+  add_foreign_key "cities", "regions"
   add_foreign_key "freights", "users"
   add_foreign_key "quotes", "freights"
   add_foreign_key "quotes", "vehicles"
+  add_foreign_key "regions", "countries"
   add_foreign_key "reviews", "quotes"
   add_foreign_key "reviews", "users"
   add_foreign_key "vehicles", "users"
+  add_foreign_key "zones", "cities"
 end
