@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_23_171650) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_12_24_201706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,7 +35,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_171650) do
     t.float "end_logitude"
     t.text "description"
     t.datetime "start_date"
-    t.datetime "end_date"
     t.text "receiver_name"
     t.text "receiver_phone"
     t.boolean "round_trip"
@@ -100,7 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_171650) do
     t.float "longitude"
     t.float "latitude"
     t.text "license_plate"
-    t.text "type"
+    t.text "vehicle_type"
     t.text "description"
     t.boolean "covered"
     t.float "load_capacity"
@@ -108,14 +106,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_171650) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_vehicles_on_user_id"
-  end
-
-  create_table "zones", force: :cascade do |t|
-    t.string "name"
-    t.bigint "city_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_zones_on_city_id"
   end
 
   add_foreign_key "cities", "regions"
@@ -127,5 +117,4 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_171650) do
   add_foreign_key "reviews", "users"
   add_foreign_key "users", "cities"
   add_foreign_key "vehicles", "users"
-  add_foreign_key "zones", "cities"
 end
