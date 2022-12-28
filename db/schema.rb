@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_24_201706) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_28_132220) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -108,6 +108,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_24_201706) do
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
+  create_table "zones", force: :cascade do |t|
+    t.bigint "city_id", null: false
+    t.bigint "vehicle_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["city_id"], name: "index_zones_on_city_id"
+    t.index ["vehicle_id"], name: "index_zones_on_vehicle_id"
+  end
+
   add_foreign_key "cities", "regions"
   add_foreign_key "freights", "users"
   add_foreign_key "quotes", "freights"
@@ -117,4 +126,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_24_201706) do
   add_foreign_key "reviews", "users"
   add_foreign_key "users", "cities"
   add_foreign_key "vehicles", "users"
+  add_foreign_key "zones", "cities"
+  add_foreign_key "zones", "vehicles"
 end
