@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resources :vehicles
   resources :zones
   resources :cities
+  resources :countries
 end
