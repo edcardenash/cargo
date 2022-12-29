@@ -15,7 +15,6 @@ Country.create!(name: "Chile")
 puts "Creating regions"
 
 Region.create!(name: "Metropolitana de Santiago", country_id: 1)
-Region.create!(name: "Valparaíso", country_id: 1)
 
 puts "Creating cities"
 
@@ -99,6 +98,35 @@ Vehicle.create!(address: "Los Nogales 804",
                 load_capacity: 1500,
                 user_id: 4)
 
+puts "Creating zones"
+
+Zone.create!(city_id: 35,
+             vehicle_id: 3)
+
+Zone.create!(city_id: 36,
+             vehicle_id: 3)
+
+Zone.create!(city_id: 26,
+             vehicle_id: 3)
+
+Zone.create!(city_id: 17,
+             vehicle_id: 2)
+
+Zone.create!(city_id: 3,
+             vehicle_id: 2)
+
+Zone.create!(city_id: 26,
+             vehicle_id: 2)
+
+Zone.create!(city_id: 20,
+             vehicle_id: 1)
+
+Zone.create!(city_id: 36,
+             vehicle_id: 1)
+
+Zone.create!(city_id: 14,
+             vehicle_id: 1)
+
 puts "Creating quotes"
 
 Quote.create!(status: 0,
@@ -107,4 +135,4 @@ Quote.create!(status: 0,
               vehicle_id: 3,
               freight_id: 1)
 
-puts "Proceso finalizado"
+puts "Process completed"
