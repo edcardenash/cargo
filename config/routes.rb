@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   resources :zones
   resources :cities
   resources :countries
+  resources :freights
 end
