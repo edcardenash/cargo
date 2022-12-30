@@ -1,4 +1,6 @@
 class FreightsController < ApplicationController
+  before_action :set_freight, only: [:show, :edit, :update, :destroy]
+
   def index
     @freights = Freight.all
   end

@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :cities
   resources :countries
   resources :freights
+  resources :quotes
 end
