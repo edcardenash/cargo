@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   resources :countries
   resources :freights
   resources :quotes
+  resources :reviews
 end
