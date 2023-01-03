@@ -1,0 +1,13 @@
+<%= simple_form_for([@parking, @rental]) do |f| %>
+  <div class="row mb-4">
+    <div class="col-6">
+      <%= f.label :start_date, "Inicio"%>
+    </div>
+    <div class="col-6">
+      <%= f.label :start_date, "Término"%>
+    </div>
+    <div class="col-6"><%= f.date_field :start_date, min_max: true, min: Date.today, input_html: { }, required: true, style: "width: 100%" %></div>
+    <div class="col-6"><%= f.date_field :end_date, min_max: true, input_html: {  }, required: true, style: "width: 100%" %></div>
+    <%= f.submit '¡Elige tus fechas!', class: 'btn btn-primary mt-4', id: 'paybutton' %>
+  </div>
+<% end %>

@@ -1,0 +1,8 @@
+<%= form_with(url: vehicles_path, method: :get, html: {class: "d-flex"})  do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Encuentra un transportista en tu ciudad"
+  %>
+  <%= submit_tag "Buscar", class: "btn btn-success" %>
+<% end %>
