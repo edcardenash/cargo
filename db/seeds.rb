@@ -6,6 +6,12 @@ cities_rm = ["Alhué", "Buin", "Calera de Tango", "Cerrillos", "Cerro Navia", "C
              "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Bernardo", "San Joaquín", "San José de Maipo",
              "San Miguel", "San Pedro", "San Ramón", "Santiago", "Talagante", "Tiltil", "Vitacura"]
 
+cities_valpo = ["Algarrobo", "Cabildo", "Calera", "Calle Larga", "Cartagena", "Casablanca", "Catemu", "Concón", "El Quisco",
+                "El Tabo", "Hijuelas", "Isla de Pascua", "Juan Fernández", "La Cruz", "La Ligua", "Limache", "Llaillay", "Los Andes",
+                "Nogales", "Olmué", "Panquehue", "Papudo", "Petorca", "Puchuncaví", "Putaendo", "Quillota", "Quilpué", "Quintero",
+                "Rinconada", "San Antonio", "San Esteban", "San Felipe", "Santa María", "Santo Domingo", "Valparaíso", "Villa Alemana",
+                "Viña del Mar", "Zapallar"]
+
 puts "We're creating some data for the DB"
 
 puts "Creating country"
@@ -15,11 +21,16 @@ Country.create!(name: "Chile")
 puts "Creating regions"
 
 Region.create!(name: "Metropolitana de Santiago", country_id: 1)
+Region.create!(name: "Valparaíso", country_id: 1)
 
 puts "Creating cities"
 
 cities_rm.each do |city|
   City.create!(name: "#{city}", region_id: 1)
+end
+
+cities_valpo.each do |city|
+  City.create!(name: "#{city}", region_id: 2)
 end
 
 puts "Creating users"
