@@ -1,0 +1,15 @@
+<div class="container">
+<div class="row">
+  <%= simple_form_for @regions.name do |f| %>
+    <%= f.input :regiones, collection: @regions, label_method: :name, value_method: :id, prompt: "Selecciona tu región" %>
+  <% end %>
+  </div>
+  <%= simple_form_for @zone do |f| %>
+    <div class="div_three_columns">
+      <%= f.collection_check_boxes :city_id, @cities, :id, :name, {:item_wrapper_class => 'checkbox_container'} %>
+    </div>
+    <div class="row">
+      <%= f.button :submit %>
+    </div>
+  <% end %>
+</div>
