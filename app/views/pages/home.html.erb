@@ -1,2 +1,34 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.wawanesa.com/resources/img/usa/blog-images/bigstock-The-Only-Vacant-vehicle-Space--262193803-min.jpg);">
+      <div class="container">
+        <%=  image_tag "", class: 'w-25'  %>
+        <p>Consigue tu transporte de manera fácil y segura.</p>
+        <%= link_to "Ver disponibles", vehicles_path, class: "btn btn-ghost" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <br>
+  <div class="row">
+    <h2>Últimos Transportistas</h2>
+    <div class="cards">
+      <% @vehicles.each do |vehicle| %>
+        <div class="card-trip" id="card-show">
+          <% if vehicle.photo.attached? %>
+            <%= cl_image_tag vehicle.photo.key %>
+          <% end %>
+          <div class="card-trip-infos">
+            <div>
+              <h5><%= vehicle.vehicle_type %></h5>
+              <p><%= vehicle.license_plate %></p>
+              <p><%= vehicle.address %></p>
+              <%= link_to 'Arrendar', vehicle, class: "btn btn-outline-success btn-sm mt-1"%>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

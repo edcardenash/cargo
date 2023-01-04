@@ -1,7 +1,22 @@
 // Import your components CSS files here.
 @import "alert";
+@import "button";
 @import "avatar";
 @import "form_legend_clear";
 @import "navbar";
+@import "card";
+@import "footer";
+@import "search";
+@import "cardgrid";
+@import "map";
+@import "banner";
+@import "datapicker";
+@import "card_product";
+
+.content-wrapper {
+  min-height: 100vh;
+  position: relative;
+}
 @import "div_three_columns";
 @import "checkbox_container";
+
