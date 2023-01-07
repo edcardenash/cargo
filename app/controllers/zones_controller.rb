@@ -10,8 +10,8 @@ class ZonesController < ApplicationController
 
   def create
     city_ids = params[:zone][:city_id]
+    @vehicle = Vehicle.where(user_id: current_user.id).last
     city_ids.each do |city_id|
-      @vehicle = Vehicle.last
       @zone = Zone.new(city_id: city_id, vehicle_id: @vehicle.id)
       @zone.save
     end
