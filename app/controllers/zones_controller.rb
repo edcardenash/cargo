@@ -10,8 +10,11 @@ class ZonesController < ApplicationController
 
   def create
     city_ids = params[:zone][:city_id]
+
     city_ids.each do |city_id|
-      @zone = Zone.new(zone_params)
+      @vehicle = Vehicle.last
+      @zone = Zone.new
+      @zone.city_id = city_id
       @zone.vehicle_id = params[:vehicle_id]
       @zone.save
     end
@@ -28,7 +31,7 @@ class ZonesController < ApplicationController
     @zone = Zone.find(params[:id])
   end
 
-  def zone_params
-    params.require(:zone).permit(:city_id)
-  end
+  # def zone_params
+  #   params.require(:zone).permit(:city_id)
+  # end
 end
