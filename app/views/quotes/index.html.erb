@@ -3,3 +3,5 @@
 <% @quotes.each do |quote| %>
   <% quote.comment  %>
 <% end  %>
+
+<%= link_to "New quote", new_quote_path if policy(Quote).new? %>

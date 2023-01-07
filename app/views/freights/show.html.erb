@@ -1,0 +1,5 @@
+<% if policy(@freight).edit? %>
+  <%= link_to "Edit this freight", edit_freight_path(@freight) %> |
+<% end %>
+<!-- [...] -->
+<%= button_to "Destroy this freight", @freight, method: :delete if policy(@freight).destroy? %>

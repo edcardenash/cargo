@@ -6,6 +6,10 @@ class ZonesController < ApplicationController
     @regions = Region.all
     @cities = City.all
     @zone = Zone.new
+
+  end
+
+  def show
   end
 
   def create

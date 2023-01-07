@@ -3,17 +3,21 @@ class FreightsController < ApplicationController
 
   def index
     @freights = Freight.all
+    # @freights = policy_scope(Freight)
   end
 
   def show
+    authorize @freight
   end
 
   def new
     @freights = Freight.new
+    authorize @freight
   end
 
   def create
     @freight = Freight.new(freights_params)
+    authorize @freight
     if @freight.save
       redirect_to freight_path(@freight), notice: 'Freight was successfully created'
     else
@@ -22,9 +26,11 @@ class FreightsController < ApplicationController
   end
 
   def edit
+    authorize @freight
   end
 
   def update
+    authorize @freight
     if @freight.update(freights_params)
       redirect_to @freight, notice: 'Freight has been updated'
     else
@@ -33,6 +39,7 @@ class FreightsController < ApplicationController
   end
 
   def destroy
+    authorize @freight
     @freight.destroy
     redirect_to freight_url, notice: 'Freight has been deleted'
   end
