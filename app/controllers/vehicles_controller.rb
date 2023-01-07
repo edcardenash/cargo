@@ -23,7 +23,7 @@ class VehiclesController < ApplicationController
     @vehicle.user = current_user
     @vehicle.user_id = current_user.id
     if @vehicle.save
-      redirect_to new_zone_path, notice: "Por favor continúa al siguiente paso."
+      redirect_to new_vehicle_zone_path(@vehicle), notice: "Por favor continúa al siguiente paso."
     else
       render :new, status: :unprocessable_entity
     end
