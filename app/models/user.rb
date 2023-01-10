@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   belongs_to :city
 
+  has_one_attached :photo
+
   has_many :vehicles, dependent: :destroy
   has_many :freights, dependent: :destroy
   has_many :reviews, dependent: :destroy
