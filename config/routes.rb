@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   resources :freights do
     resources :quotes
   end
-  resources :zones
+  # resources :zones
   resources :reviews
 end
