@@ -6,16 +6,12 @@ class ZonesController < ApplicationController
     @regions = Region.all
     @cities = City.all
     @zone = Zone.new
+    @vehicle = Vehicle.find(params[:vehicle_id])
   end
 
   def create
-    city_ids = params[:zone][:city_id]
-
-    city_ids.each do |city_id|
-      @vehicle = Vehicle.last
-      @zone = Zone.new
-      @zone.city_id = city_id
-      @zone.vehicle_id = params[:vehicle_id]
+    (params[:zone][:city_id]).each do |city_id|
+      @zone = Zone.new(city_id: city_id, vehicle_id: params[:vehicle_id])
       @zone.save
     end
     if @zone.save
@@ -30,8 +26,4 @@ class ZonesController < ApplicationController
   def set_zone
     @zone = Zone.find(params[:id])
   end
-
-  # def zone_params
-  #   params.require(:zone).permit(:city_id)
-  # end
 end
