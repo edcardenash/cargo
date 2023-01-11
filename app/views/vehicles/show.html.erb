@@ -1,0 +1,11 @@
+<div class="container">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Tipo de transporte: <%= @vehicle.vehicle_type %></li>
+    <li class="list-group-item">Capacidad de carga: <%= @vehicle.load_capacity %></li>
+    <li class="list-group-item">¿Está cubierto?: <%= @vehicle.covered ? "Si" : "No" %></li>
+    <li class="list-group-item">Descripción: <%= @vehicle.vehicle_type %></li>
+    <li class="list-group-item">Ciudad base de operaciones: <%= @vehicle.city.name  %></li>
+    <li class="list-group-item">Presta servicio en otras ciudades: <%= @vehicle.other_cities ? "Si" : "No"  %></li>
+    <li class="list-group-item">Presta servicio en otras regiones: <%= @vehicle.other_regions ? "Si" : "No"  %></li>
+  </ul>
+</div>
