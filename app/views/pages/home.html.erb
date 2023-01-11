@@ -1,12 +1,42 @@
-<div class="container">
-  <div class="row">
-    <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://www.wawanesa.com/resources/img/usa/blog-images/bigstock-The-Only-Vacant-vehicle-Space--262193803-min.jpg);">
-      <div class="container">
-        <%=  image_tag "", class: 'w-25'  %>
-        <p>Consigue tu transporte de manera fácil y segura.</p>
-        <%= link_to "Ver disponibles", vehicles_path, class: "btn btn-ghost" %>
+<div>
+  <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%# <img src="../images/banner/repartidor_sonriente_carGo.webp" class="d-block w-100" alt="repartidor1"> %>
+        <%= image_tag "banner/repartidor_sonriente_carGo.webp", class: "image_banner" %>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>CarGO</h5>
+          <p>Encontrá a tu transportista ideal</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag "banner/furgon_chico_carGo.jpg", class: "image_banner" %>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>El flete ideal para tu negocio</h5>
+          <p>Hacé crecer tu empresa ofreciendo envíos de calidad</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <%= image_tag "banner/repartidor_camioneta_carGo.webp", class: "image_banner" %>
+        <div class="carousel-caption d-none d-md-block">
+          <h5>Encontrá un CarGO para tu mudanza</h5>
+          <p>Contamos con un transportista a la medida de tus necesidades</p>
+        </div>
       </div>
     </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
 </div>
 <div class="container">
