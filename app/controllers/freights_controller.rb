@@ -7,6 +7,7 @@ class FreightsController < ApplicationController
   end
 
   def show
+    @freight = Freight.find(params[:id])
     authorize @freight
   end
 
