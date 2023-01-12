@@ -25,6 +25,7 @@ class VehiclesController < ApplicationController
     @vehicle.user = current_user
     @vehicle.user_id = current_user.id
     @vehicle.city_id = params[:vehicle][:city_id][1]
+    raise
     if @vehicle.save
       redirect_to new_vehicle_zone_path(@vehicle), notice: "Por favor continúa al siguiente paso."
     else
