@@ -19,6 +19,8 @@ class VehiclesController < ApplicationController
   def new
     @vehicle = Vehicle.new
     authorize @vehicle
+    @regions = Region.all
+    @cities = City.all
   end
 
   def create
@@ -26,6 +28,7 @@ class VehiclesController < ApplicationController
     @vehicle.user = current_user
     @vehicle.user_id = current_user.id
     authorize @vehicle
+    @vehicle.city_id = params[:vehicle][:city_id][1]
     if @vehicle.save
       redirect_to new_vehicle_zone_path(@vehicle), notice: "Por favor continúa al siguiente paso."
     else
@@ -52,6 +55,6 @@ class VehiclesController < ApplicationController
   end
 
   def vehicle_params
-    params.require(:vehicle).permit(:address, :longitude, :latitude, :license_plate, :vehicle_type, :description, :covered, :load_capacity, :photo)
+    params.require(:vehicle).permit(:longitude, :latitude, :license_plate, :vehicle_type, :description, :covered, :load_capacity, :city_id, :other_regions, :other_cities, :user_id, :photo)
   end
 end

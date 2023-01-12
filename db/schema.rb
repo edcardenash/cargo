@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2023_01_07_185407) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2023_01_11_002447) do
+>>>>>>> master
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -123,7 +127,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_185407) do
   end
 
   create_table "vehicles", force: :cascade do |t|
-    t.text "address"
     t.float "longitude"
     t.float "latitude"
     t.text "license_plate"
@@ -134,16 +137,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_185407) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_vehicles_on_user_id"
-  end
-
-  create_table "zones", force: :cascade do |t|
     t.bigint "city_id", null: false
-    t.bigint "vehicle_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_zones_on_city_id"
-    t.index ["vehicle_id"], name: "index_zones_on_vehicle_id"
+    t.boolean "other_regions"
+    t.boolean "other_cities"
+    t.index ["city_id"], name: "index_vehicles_on_city_id"
+    t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -156,7 +154,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_07_185407) do
   add_foreign_key "reviews", "quotes"
   add_foreign_key "reviews", "users"
   add_foreign_key "users", "cities"
+  add_foreign_key "vehicles", "cities"
   add_foreign_key "vehicles", "users"
-  add_foreign_key "zones", "cities"
-  add_foreign_key "zones", "vehicles"
 end
