@@ -13,7 +13,13 @@ class VehiclesController < ApplicationController
 
   def show
     @vehicle = Vehicle.find(params[:id])
+<<<<<<< HEAD
     authorize @vehicle
+=======
+    @cities = City.all
+    @city = @cities[@vehicle.city_id]
+    @city_name = @city.name
+>>>>>>> master
   end
 
   def new
@@ -37,6 +43,7 @@ class VehiclesController < ApplicationController
   end
 
   def edit
+<<<<<<< HEAD
     authorize @vehicle
   end
 
@@ -46,6 +53,22 @@ class VehiclesController < ApplicationController
 
   def destroy
     authorize @vehicle
+=======
+    @vehicle
+  end
+
+  def update
+    if @vehicle.update(parkings_params)
+      redirect_to @vehicle, notice: 'Vehicle was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @vehicle.destroy
+    redirect_to vehicle_path, notice: 'Vehicle was successfully destroyed.'
+>>>>>>> master
   end
 
   private
