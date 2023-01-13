@@ -1,5 +1,6 @@
 .search-form-control {
   position: relative;
+  margin-right: 20px;
 }
 
 .search-form-control .btn {
@@ -7,6 +8,7 @@
   top: 8px;
   bottom: 8px;
   left: 8px;
+  right: 50px;
 }
 
 .search-form-control .form-control {
@@ -19,8 +21,4 @@
   border: 1px solid rgb(0, 176, 89);
   outline: none !important;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-}
-
-.container-search {
-  width: 500px;
 }
