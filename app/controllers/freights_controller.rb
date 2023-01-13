@@ -12,7 +12,7 @@ class FreightsController < ApplicationController
   end
 
   def new
-    @freights = Freight.new
+    @freight = Freight.new
     authorize @freight
   end
 
