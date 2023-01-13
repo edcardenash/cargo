@@ -12,6 +12,9 @@ class VehiclesController < ApplicationController
 
   def show
     @vehicle = Vehicle.find(params[:id])
+    @cities = City.all
+    @city = @cities[@vehicle.city_id]
+    @city_name = @city.name
   end
 
   def new
@@ -30,6 +33,23 @@ class VehiclesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @vehicle
+  end
+
+  def update
+    if @vehicle.update(parkings_params)
+      redirect_to @vehicle, notice: 'Vehicle was successfully updated.'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @vehicle.destroy
+    redirect_to vehicle_path, notice: 'Vehicle was successfully destroyed.'
   end
 
   private
