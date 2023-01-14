@@ -2,7 +2,7 @@ class FreightsController < ApplicationController
   before_action :set_freight, only: [:show, :edit, :update, :destroy]
 
   def index
-    @freights = Freight.all
+   @freights = policy_scope(Freight)
   end
 
   def show
@@ -16,14 +16,22 @@ class FreightsController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { freight: @freight })
       }
     end
+    @freight = Freight.find(params[:id])
+    authorize @freight
   end
 
   def new
-    @freights = Freight.new
+    @freight = Freight.new
+    authorize @freight
+  end
+
+  def vehicle_request
+    # to do
   end
 
   def create
     @freight = Freight.new(freights_params)
+    authorize @freight
     if @freight.save
       redirect_to freight_path(@freight), notice: 'Freight was successfully created'
     else
@@ -32,9 +40,11 @@ class FreightsController < ApplicationController
   end
 
   def edit
+    authorize @freight
   end
 
   def update
+    authorize @freight
     if @freight.update(freights_params)
       redirect_to @freight, notice: 'Freight has been updated'
     else
@@ -43,6 +53,7 @@ class FreightsController < ApplicationController
   end
 
   def destroy
+    authorize @freight
     @freight.destroy
     redirect_to freight_url, notice: 'Freight has been deleted'
   end

@@ -1,23 +1,27 @@
+<!-- Navigation-->
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <%= link_to root_path, class: "navbar-brand" do %>
       <%= image_tag "logo-bn.png" %>
     <%end %>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
+
       <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <%= link_to "Inicio", root_path, class: "nav-link" %>
-          </li>
           <li class="nav-item">
             <%= link_to "Transportes disponibles", vehicles_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "¡Publica tu Solicitud!", new_freight_path, class: "nav-link" %>
+            <%= link_to "Solicita", new_freight_path, class: "nav-link" %>
+
+          </li>
+          <li class="nav-item">
+            <%= link_to "Conduce", new_vehicle_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Contactanos", root_path, class: "nav-link" %>
           </li>
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
@@ -27,7 +31,6 @@
             <% else %>
             <%=  image_tag 'default_avatar.png', class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false  %>
             <% end %>
-
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "¡Tus solicitudes!", freights_path, class: "dropdown-item" %>
               <%= link_to "¡Tus Vehiculos!", vehicles_path, class: "dropdown-item" %>

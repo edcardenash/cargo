@@ -1,3 +1,5 @@
+require 'open-uri'
+
 cities_rm = ["Alhué", "Buin", "Calera de Tango", "Cerrillos", "Cerro Navia", "Colina", "Conchalí", "Curacaví",
              "El Bosque", "El Monte", "Estación Central", "Huechuraba", "Independencia", "Isla de Maipo", "La Cisterna",
              "La Florida", "La Granja", "La Pintana", "La Reina", "Lampa", "Las Condes", "Lo Barnechea", "Lo Espejo",
@@ -94,41 +96,50 @@ Freight.create!(start_latitude: -33.444112169031214,
 
 puts "Creating vehicles"
 
-Vehicle.create!(longitude: -70.55537333505826,
-                latitude: -33.38695477391817,
-                license_plate: "AABB11",
-                vehicle_type: "Camion liviano",
-                description: "Fletes en la zona oriente de Santiago",
-                covered: false,
-                load_capacity: 1500,
-                user_id: 1,
-                city_id: 45,
-                other_regions: true,
-                other_cities: true)
+vehicle = Vehicle.create!(longitude: -70.55537333505826,
+                          latitude: -33.38695477391817,
+                          license_plate: "AABB11",
+                          vehicle_type: "Camion liviano",
+                          description: "Fletes en la zona oriente de Santiago",
+                          covered: false,
+                          load_capacity: 1500,
+                          user_id: 1,
+                          city_id: 45,
+                          other_regions: true,
+                          other_cities: true,
+                          active: true)
+vehicle.photo.attach(io: URI.open("https://res.cloudinary.com/dibhw3luk/image/upload/v1673703551/camion-liviano_gwszqr.jpg"), filename: 'camion-liviano.jpg', content_type: "image/png")
+vehicle.save
 
-Vehicle.create!(longitude: -70.642254030843,
-                latitude: -33.45153400632955,
-                license_plate: "CCDD22",
-                vehicle_type: "Camioneta pick up",
-                description: "Fletes económicos en todo Santiago",
-                covered: false,
-                load_capacity: 1000,
-                user_id: 3,
-                city_id: 23,
-                other_regions: false,
-                other_cities: false)
+vehicle = Vehicle.create!(longitude: -70.642254030843,
+                          latitude: -33.45153400632955,
+                          license_plate: "CCDD22",
+                          vehicle_type: "Camioneta pick up",
+                          description: "Fletes económicos en todo Santiago",
+                          covered: false,
+                          load_capacity: 1000,
+                          user_id: 3,
+                          city_id: 23,
+                          other_regions: false,
+                          other_cities: false,
+                          active: true)
+vehicle.photo.attach(io: URI.open("https://res.cloudinary.com/dibhw3luk/image/upload/v1673703551/pick-up_qwvbem.jpg"), filename: 'pick-up.jpg')
+vehicle.save
 
-Vehicle.create!(longitude: -70.60416478421571,
-                latitude: -33.42738778640234,
-                license_plate: "AABB11",
-                vehicle_type: "Camion liviano",
-                description: "Fletes en Providencia",
-                covered: true,
-                load_capacity: 1500,
-                user_id: 4,
-                city_id: 36,
-                other_regions: true,
-                other_cities: true)
+vehicle = Vehicle.create!(longitude: -70.60416478421571,
+                          latitude: -33.42738778640234,
+                          license_plate: "AQWB66",
+                          vehicle_type: "Camion liviano",
+                          description: "Fletes en Providencia",
+                          covered: true,
+                          load_capacity: 1500,
+                          user_id: 2,
+                          city_id: 36,
+                          other_regions: true,
+                          other_cities: true,
+                          active: true)
+vehicle.photo.attach(io: URI.open("https://res.cloudinary.com/dibhw3luk/image/upload/v1673703551/camion-liviano-cerrado_pntugb.jpg"), filename: 'camion-liviano-cerrado.jpg')
+vehicle.save
 
 Quote.create!(status: 0,
               amount: 15_000,
