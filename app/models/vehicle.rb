@@ -7,6 +7,7 @@ class Vehicle < ApplicationRecord
                                   using: { tsearch: { prefix: true } }
 
   belongs_to :user
+  belongs_to :city
 
   has_one_attached :photo
 end
