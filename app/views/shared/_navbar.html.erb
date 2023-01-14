@@ -8,16 +8,16 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      
+
       <ul class="navbar-nav me-auto">
-          <li class="nav-item">
-            <%= link_to "Inicio", root_path, class: "nav-link" %>
-          </li>
           <li class="nav-item">
             <%= link_to "Transportes disponibles", vehicles_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "¡Publica tu Solicitud!", new_freight_path, class: "nav-link" %>
+            <%= link_to "Solicita", new_freight_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Conduce", new_vehicle_path, class: "nav-link" %>
           </li>
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
