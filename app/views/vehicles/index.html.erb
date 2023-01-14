@@ -1,0 +1,35 @@
+
+<div class="row">
+    <div class="col-6">
+      <% @vehicles.each do |vehicle| %>
+        <% if user_signed_in? %>
+          <% if vehicle.user_id != current_user.id %>
+                  <div class="card-product m-4">
+                    <% if vehicle.photo.attached? %>
+                      <%= cl_image_tag vehicle.photo.key %>
+                    <% end %>
+                    <div class="card-product-infos">
+                      <h1><%= vehicle.vehicle_type %></h1>
+                      <%# <h3 class="mt-1"><i class="fa-solid fa-location-dot"></i> <%= vehicle.address %></h3>
+                      <h3 class="mt-1"><strong>$ <%= vehicle.load_capacity %></strong> Kg</h3>
+                      <p><%= vehicle.description.truncate(50) %></p>
+                      <%= link_to 'Contactar', vehicle, class: "btn btn-outline-success btn-sm mt-1"%>
+                    </div>
+                  </div>
+          <% end %>
+        <% else %>
+          <div class="card-product m-4">
+            <% if vehicle.photo.attached? %>
+              <%= cl_image_tag vehicle.photo.key %>
+            <% end %>
+            <div class="card-product-infos">
+              <h1><%= vehicle.vehicle_type %></h1>
+              <%# <h3 class="mt-1"><i class="fa-solid fa-location-dot"></i> <%= vehicle.address %></h3> %>
+                      <h3 class="mt-1"><strong>$ <%= vehicle.load_capacity %></strong> Kg</h3>
+                      <p><%= vehicle.description.truncate(50) %></p>
+                      <%= link_to 'Contactar', vehicle, class: "btn btn-outline-success btn-sm mt-1"%>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>

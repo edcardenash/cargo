@@ -6,6 +6,12 @@ cities_rm = ["Alhué", "Buin", "Calera de Tango", "Cerrillos", "Cerro Navia", "C
              "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Bernardo", "San Joaquín", "San José de Maipo",
              "San Miguel", "San Pedro", "San Ramón", "Santiago", "Talagante", "Tiltil", "Vitacura"]
 
+cities_valpo = ["Algarrobo", "Cabildo", "Calera", "Calle Larga", "Cartagena", "Casablanca", "Catemu", "Concón", "El Quisco",
+                "El Tabo", "Hijuelas", "Isla de Pascua", "Juan Fernández", "La Cruz", "La Ligua", "Limache", "Llaillay", "Los Andes",
+                "Nogales", "Olmué", "Panquehue", "Papudo", "Petorca", "Puchuncaví", "Putaendo", "Quillota", "Quilpué", "Quintero",
+                "Rinconada", "San Antonio", "San Esteban", "San Felipe", "Santa María", "Santo Domingo", "Valparaíso", "Villa Alemana",
+                "Viña del Mar", "Zapallar"]
+
 puts "We're creating some data for the DB"
 
 puts "Creating country"
@@ -21,6 +27,10 @@ puts "Creating cities"
 
 cities_rm.each do |city|
   City.create!(name: "#{city}", region_id: 1)
+end
+
+cities_valpo.each do |city|
+  City.create!(name: "#{city}", region_id: 2)
 end
 
 puts "Creating users"
@@ -60,46 +70,63 @@ Freight.create!(start_latitude: -33.444112169031214,
                 start_longitude: -70.61500992121303,
                 end_latitude: -33.38015931294505,
                 end_logitude: -70.54204622760442,
-                description: "Traslado de sofa y refrigerador desde Providencia a Vitacura",
+                start_address: "Ricardo Lyon 3600",
+                description: "Traslado de sofa y refrigerador desde ñuñoa a las condes",
                 start_date: DateTime.now + 15,
                 receiver_name: "Camilo Moreno",
                 receiver_phone: "962671728",
                 round_trip: false,
                 user_id: 2)
 
+Freight.create!(start_latitude: -33.444112169031214,
+                start_longitude: -70.61500992121303,
+                end_latitude: -33.38015931294505,
+                end_logitude: -70.54204622760442,
+                start_address: "Cabo de Hornos 0564",
+                description: "Traslado refrigerador dentro de punta arenas",
+                start_date: DateTime.now + 15,
+                receiver_name: "Alejandro Espina",
+                receiver_phone: "93342432",
+                round_trip: true,
+                user_id: 2)
+
 puts "Creating vehicles"
 
-Vehicle.create!(address: "Fidias 7959",
-                longitude: -70.55537333505826,
+Vehicle.create!(longitude: -70.55537333505826,
                 latitude: -33.38695477391817,
                 license_plate: "AABB11",
                 vehicle_type: "Camion liviano",
                 description: "Fletes en la zona oriente de Santiago",
                 covered: false,
                 load_capacity: 1500,
-                user_id: 1)
+                user_id: 1,
+                city_id: 45,
+                other_regions: true,
+                other_cities: true)
 
-Vehicle.create!(address: "San Isidro 614",
-                longitude: -70.642254030843,
+Vehicle.create!(longitude: -70.642254030843,
                 latitude: -33.45153400632955,
                 license_plate: "CCDD22",
                 vehicle_type: "Camioneta pick up",
                 description: "Fletes económicos en todo Santiago",
                 covered: false,
                 load_capacity: 1000,
-                user_id: 3)
+                user_id: 3,
+                city_id: 23,
+                other_regions: false,
+                other_cities: false)
 
-Vehicle.create!(address: "Los Nogales 804",
-                longitude: -70.60416478421571,
+Vehicle.create!(longitude: -70.60416478421571,
                 latitude: -33.42738778640234,
                 license_plate: "AABB11",
                 vehicle_type: "Camion liviano",
                 description: "Fletes en Providencia",
                 covered: true,
                 load_capacity: 1500,
-                user_id: 4)
-
-puts "Creating quotes"
+                user_id: 4,
+                city_id: 36,
+                other_regions: true,
+                other_cities: true)
 
 Quote.create!(status: 0,
               amount: 15_000,
@@ -107,4 +134,4 @@ Quote.create!(status: 0,
               vehicle_id: 3,
               freight_id: 1)
 
-puts "Proceso finalizado"
+puts "Process completed"

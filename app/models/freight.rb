@@ -1,5 +1,7 @@
 class Freight < ApplicationRecord
   belongs_to :user
 
-  validates :boolean_field_name, inclusion: { in: [true, false] }
+  geocoded_by :start_address
+  has_one_attached :photo
+  validates :start_address, presence: true
 end

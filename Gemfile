@@ -28,8 +28,12 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 gem "devise"
+gem "geocoder"
+gem "pundit"
+gem "cloudinary"
+gem "pg_search"
+# gem "select2-rails"
 
-gem "json"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

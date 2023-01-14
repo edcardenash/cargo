@@ -5,7 +5,7 @@ class CreateVehicles < ActiveRecord::Migration[7.0]
       t.float :longitude
       t.float :latitude
       t.text :license_plate
-      t.text :type
+      t.text :vehicle_type
       t.text :description
       t.boolean :covered
       t.float :load_capacity
