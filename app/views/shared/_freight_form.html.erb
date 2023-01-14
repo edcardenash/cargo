@@ -1,13 +1,24 @@
 <div class="row">
-  <%= simple_form_for @parking do |f| %>
-    <%= f.input :name, label: "Nombre de la publicación", class: "form-control"  %>
-    <%= f.input :address, label: "Dirección"  %>
-    <%= f.input :price_per_day, label: "Valor diario", as: :float  %>
-    <%= f.input :description, label: "Descripción", as: :text  %>
-    <%= f.input :covered, label: "¿Está cubierto?"  %>
-    <%= f.input :vehicle_type, collection: [['automovil', 'Automovil'], ['camioneta', 'Camioneta'], ['motocicleta', 'Motocicleta'], ['bicicleta', 'Bicicleta']], label_method: :second, value_method: :first, label: "¿Que tipo de vehículo es?" %>
-    <%= f.association :city, label: "Ciudad o Comuna"  %>
-    <%= f.input :photo, as: :file, label: "Sube una imágen" %>
-    <%= f.button :submit,"Publicar", class: "btn btn-success"%>
-  <% end %>
+  <div class="col-6">
+    <%= simple_form_for @freights do |f| %>
+      <%= f.input :description, label: "Descripción", as: :text  %>
+      <%= f.input :receiver_name, label: "Nombre del receptor" %>
+      <%= f.input :receiver_phone, label: "Telefono del receptor" %>
+      <%= f.label :start_date, "Fecha"%>
+      <%= f.date_field :start_date ,min_max: true, min: Date.today, input_html: {class: "mb-4" }, required: true, style: "width: 100%" %>
+      <%= f.input :round_trip, label: "¿Ida y vuelta?"  %>
+      <%= f.input :photo, as: :file, label: "Sube una imágen" %>
+      <%= f.button :submit,"Publicar", class: "btn btn-success"%>
+    <% end %>
+  </div>
+    <div class="col-6">
+      <div style="width: 100%; height: 550px;"
+        data-controller="map"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+      <div class="sidebar">
+        <h1>Reports</h1>
+        <div id="reports"></div>
+      </div>
+    </div>
 </div>
