@@ -39,12 +39,14 @@
     </button>
   </div>
 </div>
+
+<%# Ultimos transportistas %>
 <div class="container">
   <br>
   <%= render "shared/search", class: "nav-link barra-de-busqueda" %>
   <br>
-  <div class="row">
-    <h2>Últimos Transportistas</h2>
+  <div class="row text-center">
+    <h2 class="section-heading text-uppercase">Ultimos transportistas</h2>
     <div class="cards">
       <% @vehicles.each do |vehicle| %>
         <div class="card-trip" id="card-show">
@@ -63,46 +65,49 @@
     </div>
   </div>
 </div>
+<br>
 
-<!-- Services-->
+<!-- Servicios-->
 <section class="page-section" id="services">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase">Services</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-        </div>
-        <div class="row text-center">
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                    <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="my-3">E-Commerce</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                    <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="my-3">Responsive Design</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-            <div class="col-md-4">
-                <span class="fa-stack fa-4x">
-                    <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                    <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-                </span>
-                <h4 class="my-3">Web Security</h4>
-                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-            </div>
-        </div>
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-heading text-uppercase">Services</h2>
+      <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
     </div>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fas fa-circle fa-stack-2x text-primary"></i>
+          <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="my-3">E-Commerce</h4>
+        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+      </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fas fa-circle fa-stack-2x text-primary"></i>
+          <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="my-3">Responsive Design</h4>
+        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+      </div>
+      <div class="col-md-4">
+        <span class="fa-stack fa-4x">
+          <i class="fas fa-circle fa-stack-2x text-primary"></i>
+          <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+        </span>
+        <h4 class="my-3">Web Security</h4>
+        <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+      </div>
+    </div>
+  </div>
 </section>
+<br>
 
-<%# Contact %>
+<%# Contactanos %>
 <section class="page-section container p-1" id="contact">
   <div>
+    <br>
     <div class="text-center">
       <h2 class="section-heading text-uppercase">Contactanos</h2>
       <h3 class="section-subheading text-muted">Déjanos un mensaje</h3>
