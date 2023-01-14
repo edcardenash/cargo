@@ -1,3 +1,4 @@
+<%# <%= button_to "Destroy this vehicle", @vehicle, method: :delete if policy(@vehicle).destroy? %>
 <div class="container">
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Tipo de transporte: <%= @vehicle.vehicle_type %></li>
@@ -9,13 +10,14 @@
     <li class="list-group-item">Presta servicio en otras regiones: <%= @vehicle.other_regions ? "Si" : "No"  %></li>
   </ul>
   <div class="row">
-    <%# <% if policy(@vehicle).edit? %>
+   <% if policy(@vehicle).edit? %>
       <%= link_to "Editar", edit_vehicle_path(@vehicle), class: "btn btn-outline-warning mt-3" %>
-    <%# end %>
+  
   </div>
   <div class="row">
-    <%# <% if policy(@vehicle).edit? %>
+    <% policy(@vehicle).destroy? %>
       <%= link_to 'Eliminar', vehicle_path(@vehicle), class: "btn btn-outline-danger mt-3", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
-    <%# end %>
+    <% end %>
+
   </div>
 </div>
