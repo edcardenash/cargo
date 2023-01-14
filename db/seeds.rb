@@ -70,11 +70,24 @@ Freight.create!(start_latitude: -33.444112169031214,
                 start_longitude: -70.61500992121303,
                 end_latitude: -33.38015931294505,
                 end_logitude: -70.54204622760442,
-                description: "Traslado de sofa y refrigerador desde Providencia a Vitacura",
+                start_address: "Ricardo Lyon 3600",
+                description: "Traslado de sofa y refrigerador desde ñuñoa a las condes",
                 start_date: DateTime.now + 15,
                 receiver_name: "Camilo Moreno",
                 receiver_phone: "962671728",
                 round_trip: false,
+                user_id: 2)
+
+Freight.create!(start_latitude: -33.444112169031214,
+                start_longitude: -70.61500992121303,
+                end_latitude: -33.38015931294505,
+                end_logitude: -70.54204622760442,
+                start_address: "Cabo de Hornos 0564",
+                description: "Traslado refrigerador dentro de punta arenas",
+                start_date: DateTime.now + 15,
+                receiver_name: "Alejandro Espina",
+                receiver_phone: "93342432",
+                round_trip: true,
                 user_id: 2)
 
 puts "Creating vehicles"
