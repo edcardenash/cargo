@@ -63,3 +63,37 @@
     </div>
   </div>
 </div>
+<div class="form-carrier">
+  <h1>Contactenos</h1>
+  <div class="row">
+    <%= form_with(url: vehicles_path, method: :get, html: {class: "d-flex"})  do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Nombre y Apellido"
+    %>
+
+    <%= form_with(url: vehicles_path, method: :get, html: {class: "d-flex"})  do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "E-mail"
+    %>
+
+    <%= form_with(url: vehicles_path, method: :get, html: {class: "d-flex"})  do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Telefono"
+    %>
+  </div>
+  <div class="row">
+    <%= form_with(url: vehicles_path, method: :get, html: {class: "d-flex"})  do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Tu mensaje"
+    %>
+  </div>
+
+</div>
