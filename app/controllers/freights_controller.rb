@@ -25,6 +25,10 @@ class FreightsController < ApplicationController
     authorize @freight
   end
 
+  def vehicle_request
+    # to do
+  end
+
   def create
     @freight = Freight.new(freights_params)
     authorize @freight
