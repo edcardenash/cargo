@@ -2,11 +2,20 @@ class FreightsController < ApplicationController
   before_action :set_freight, only: [:show, :edit, :update, :destroy]
 
   def index
-    @freights = Freight.all
-    # @freights = policy_scope(Freight)
+   @freights = policy_scope(Freight)
   end
 
   def show
+    @quote = Quote.new
+    @markers = @freight.geocode.map do |freight|
+      {
+        start_latitude: @freight.start_latitude,
+        start_longitude: @freight.start_longitude,
+        end_latitude: @freight.end_latitude,
+        end_longitude: @freight.end_longitude,
+        info_window: render_to_string(partial: "info_window", locals: { freight: @freight })
+      }
+    end
     @freight = Freight.find(params[:id])
     authorize @freight
   end
@@ -52,6 +61,7 @@ class FreightsController < ApplicationController
   end
 
   def set_freight
-    @freight = Freight.find_by_id(params[:id])
+    @freight = Freight.find(params[:id])
   end
+
 end
