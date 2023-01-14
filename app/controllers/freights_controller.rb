@@ -6,6 +6,16 @@ class FreightsController < ApplicationController
   end
 
   def show
+    @quote = Quote.new
+    @markers = @freight.geocode.map do |freight|
+      {
+        start_latitude: @freight.start_latitude,
+        start_longitude: @freight.start_longitude,
+        end_latitude: @freight.end_latitude,
+        end_longitude: @freight.end_longitude,
+        info_window: render_to_string(partial: "info_window", locals: { freight: @freight })
+      }
+    end
   end
 
   def new
@@ -44,6 +54,7 @@ class FreightsController < ApplicationController
   end
 
   def set_freight
-    @freight = Freight.find_by_id(params[:id])
+    @freight = Freight.find(params[:id])
   end
+
 end
