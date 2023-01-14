@@ -39,7 +39,7 @@
     </button>
   </div>
 </div>
-<div class="container">
+<div>
   <br>
   <br>
   <br>
@@ -51,11 +51,13 @@
   <br>
 </div>
 <!-- Services-->
-<section class="page-section" id="services">
+<div class="page-section" id="services">
   <div class="container">
       <div class="text-center">
           <h2 class="section-heading text-uppercase">Servicios</h2>
+          <br>
           <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+          <br>
       </div>
       <div class="row text-center">
           <div class="col-md-4">
@@ -84,13 +86,16 @@
           </div>
       </div>
   </div>
-</section>
+</div>
 <br>
 <br>
 <br>
 <br>
- <div class="row background-home-grid">
+<%# Vehicles grid %>
+<div class="row background-home-grid">
     <h2 class="section-heading text-uppercase text-center">Últimos Transportistas</h2>
+    <br>
+    <br>
     <div class="cards">
       <% @vehicles.each do |vehicle| %>
         <div class="card-trip" id="card-show">
@@ -119,7 +124,7 @@
   <div>
     <div class="text-center">
     <br>
-      <h2 class="section-heading text-uppercase">Contactanos</h2>
+      <h2 class="section-heading text-uppercase">Contáctanos</h2>
       <h3 class="section-subheading text-muted">Déjanos un mensaje</h3>
     </div>
     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
@@ -128,13 +133,13 @@
             <div class="form-group">
                 <!-- Name input-->
                 <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
-                <div class="invalid-feedback" data-sb-feedback="name:required">Ingrese Nombre y Apellido</div>
+                <div class="invalid-feedback" data-sb-feedback="name:required">Ingrese su nombre y apellido</div>
             </div>
             <div class="form-group">
                 <!-- Email address input-->
                 <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
-                <div class="invalid-feedback" data-sb-feedback="email:required">Ingrese su E-MAIL</div>
-                <div class="invalid-feedback" data-sb-feedback="email:email">Email is not valid.</div>
+                <div class="invalid-feedback" data-sb-feedback="email:required">Ingrese su correo electrónico</div>
+                <div class="invalid-feedback" data-sb-feedback="email:email">Dirección de correo electrónico no válida.</div>
             </div>
             <div class="form-group mb-md-0">
                 <!-- Phone number input-->
@@ -146,27 +151,10 @@
           <div class="form-group form-group-textarea mb-md-0">
             <!-- Message input-->
             <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
-            <div class="invalid-feedback" data-sb-feedback="message:required">Ponga aqui su mensaje.</div>
+            <div class="invalid-feedback" data-sb-feedback="message:required">Ingrese aquí su mensaje.</div>
           </div>
         </div>
       </div>
-        <!-- Submit success message-->
-        <!---->
-        <!-- This is what your users will see when the form-->
-        <!-- has successfully submitted-->
-      <div class="d-none" id="submitSuccessMessage">
-        <div class="text-center text-white mb-3">
-            <div class="fw-bolder">Form submission successful!</div>
-            To activate this form, sign up at
-            <br />
-            <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-        </div>
-      </div>
-      <!-- Submit error message-->
-      <!---->
-      <!-- This is what your users will see when there is-->
-      <!-- an error submitting the form-->
-      <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
       <!-- Submit Button-->
       <div class="text-center"><button class="btn btn-warning btn-xl text-uppercase disabled mb-3" id="submitButton" type="submit">ENVÍANOS EL MENSAJE</button></div>
     </form>
