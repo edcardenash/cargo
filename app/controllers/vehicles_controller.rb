@@ -4,14 +4,21 @@ class VehiclesController < ApplicationController
 
   def index
     if params[:query].present?
-      @vehicles = Vehicle.global_search(params[:query])
+      @vehicles = policy_scope(Vehicle.global_search(params[:query]))
     else
-      @vehicles = Vehicle.all
+      @vehicles = policy_scope(Vehicle)
+    end
+
+    @vehicles.each do |vehicle|
+      @cities = City.all
+      @city = @cities[vehicle.city_id]
+      @city_name = @city.name
     end
   end
 
   def show
     @vehicle = Vehicle.find(params[:id])
+    authorize @vehicle
     @cities = City.all
     @city = @cities[@vehicle.city_id]
     @city_name = @city.name
@@ -19,6 +26,7 @@ class VehiclesController < ApplicationController
 
   def new
     @vehicle = Vehicle.new
+    authorize @vehicle
     @regions = Region.all
     @cities = City.all
   end
@@ -27,6 +35,7 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.new(vehicle_params)
     @vehicle.user = current_user
     @vehicle.user_id = current_user.id
+    authorize @vehicle
     @vehicle.city_id = params[:vehicle][:city_id][1]
     if @vehicle.save
       redirect_to new_vehicle_zone_path(@vehicle), notice: "Por favor continúa al siguiente paso."
@@ -36,11 +45,12 @@ class VehiclesController < ApplicationController
   end
 
   def edit
-    @vehicle
+    authorize @vehicle
   end
 
   def update
-    if @vehicle.update(parkings_params)
+    authorize @vehicle
+    if @vehicle.update(vehicle_params)
       redirect_to @vehicle, notice: 'Vehicle was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
@@ -48,6 +58,7 @@ class VehiclesController < ApplicationController
   end
 
   def destroy
+    authorize @vehicle
     @vehicle.destroy
     redirect_to vehicle_path, notice: 'Vehicle was successfully destroyed.'
   end
@@ -59,6 +70,6 @@ class VehiclesController < ApplicationController
   end
 
   def vehicle_params
-    params.require(:vehicle).permit(:longitude, :latitude, :license_plate, :vehicle_type, :description, :covered, :load_capacity, :city_id, :other_regions, :other_cities, :user_id, :photo)
+    params.require(:vehicle).permit(:longitude, :latitude, :license_plate, :vehicle_type, :description, :covered, :load_capacity, :city_id, :other_regions, :other_cities, :user_id, :active, :photo)
   end
 end

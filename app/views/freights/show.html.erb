@@ -1,3 +1,4 @@
+
 <h1>Este es el detalle del traslado <strong><%= @freight.start_date %></strong></h1>
 <div class="row mt-4 align-items-center">
   <div class="col-6">
@@ -50,3 +51,10 @@
     ]) %>
   </div>
 </div>
+
+<% if policy(@freight).edit? %>
+  <%= link_to "Edit this freight", edit_freight_path(@freight) %> |
+<% end %>
+<!-- [...] -->
+<%= button_to "Destroy this freight", @freight, method: :delete if policy(@freight).destroy? %>
+
