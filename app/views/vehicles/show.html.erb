@@ -21,9 +21,8 @@
     </div>
   </div>
   <div class="col-6 p-2">
-      <%= cl_image_tag(@vehicle.photo.key, class: 'w-100', crop: :fill, :transformation=>[
-        {:border=>"2px_solid_grey", :radius=>7}
-      ]) %>
-    </div>
+    <%= cl_image_tag @vehicle.photo.key, class: 'w-100', crop: :fill, :transformation=>[
+      {:border=>"2px_solid_grey", :radius=>7}
+    ] %>
   </div>
 </div>
