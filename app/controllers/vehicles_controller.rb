@@ -45,7 +45,7 @@ class VehiclesController < ApplicationController
 
   def update
     authorize @vehicle
-    if @vehicle.update(parkings_params)
+    if @vehicle.update(vehicle_params)
       redirect_to @vehicle, notice: 'Vehicle was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
