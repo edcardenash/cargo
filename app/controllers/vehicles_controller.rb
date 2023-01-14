@@ -3,11 +3,16 @@ class VehiclesController < ApplicationController
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
 
   def index
-    @vehicle = policy_scope(Vehicle)
     if params[:query].present?
-      @vehicles = Vehicle.global_search(params[:query])
+      @vehicles = policy_scope(Vehicle.global_search(params[:query]))
     else
-      @vehicles = Vehicle.all
+      @vehicles = policy_scope(Vehicle)
+    end
+
+    @vehicles.each do |vehicle|
+      @cities = City.all
+      @city = @cities[vehicle.city_id]
+      @city_name = @city.name
     end
   end
 
@@ -45,7 +50,7 @@ class VehiclesController < ApplicationController
 
   def update
     authorize @vehicle
-    if @vehicle.update(parkings_params)
+    if @vehicle.update(vehicle_params)
       redirect_to @vehicle, notice: 'Vehicle was successfully updated.'
     else
       render :edit, status: :unprocessable_entity

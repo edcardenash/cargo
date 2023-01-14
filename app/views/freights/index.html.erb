@@ -1,6 +1,13 @@
-<h1>Listado de Solicitudes de Carga</h1>
+<h1 class="mt-3">Listado de Solicitudes de Carga</h1>
 <% @freights.each do |freight| %>
-  <%= freight.description  %>
+  <div class="card-product mb-4">
+  <%= image_tag "logo-bn.png" %>
+    <div class="card-product-infos">
+      <h2><%= freight.start_date  %></h2>
+      <p><%= freight.description  %></p>
+      <%= link_to 'Ver detalles', freight, class: "btn btn-outline-success btn-sm mt-1"%>
+    </div>
+  </div>
 <% end %>
 
 <%= link_to "New freight", new_freight_path %>

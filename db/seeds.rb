@@ -124,18 +124,18 @@ vehicle = Vehicle.create!(longitude: -70.642254030843,
 vehicle.photo.attach(io: URI.open("https://res.cloudinary.com/dibhw3luk/image/upload/v1673703551/pick-up_qwvbem.jpg"), filename: 'pick-up.jpg')
 vehicle.save
 
-Vehicle.create!(longitude: -70.60416478421571,
-                latitude: -33.42738778640234,
-                license_plate: "AQWB66",
-                vehicle_type: "Camion liviano",
-                description: "Fletes en Providencia",
-                covered: true,
-                load_capacity: 1500,
-                user_id: 4,
-                city_id: 36,
-                other_regions: true,
-                other_cities: true,
-                active: true)
+vehicle = Vehicle.create!(longitude: -70.60416478421571,
+                          latitude: -33.42738778640234,
+                          license_plate: "AQWB66",
+                          vehicle_type: "Camion liviano",
+                          description: "Fletes en Providencia",
+                          covered: true,
+                          load_capacity: 1500,
+                          user_id: 2,
+                          city_id: 36,
+                          other_regions: true,
+                          other_cities: true,
+                          active: true)
 vehicle.photo.attach(io: URI.open("https://res.cloudinary.com/dibhw3luk/image/upload/v1673703551/camion-liviano-cerrado_pntugb.jpg"), filename: 'camion-liviano-cerrado.jpg')
 vehicle.save
 

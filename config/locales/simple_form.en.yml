@@ -29,3 +29,9 @@ en:
     # prompts:
     #   defaults:
     #     age: 'Select your age'
+
+  date:
+    order:
+      - :day
+      - :month
+      - :year
