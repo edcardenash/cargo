@@ -1,0 +1,21 @@
+<div class="container">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Tipo de transporte: <%= @vehicle.vehicle_type %></li>
+    <li class="list-group-item">Capacidad de carga: <%= @vehicle.load_capacity %></li>
+    <li class="list-group-item">¿Está cubierto?: <%= @vehicle.covered ? "Si" : "No" %></li>
+    <li class="list-group-item">Descripción: <%= @vehicle.vehicle_type %></li>
+    <li class="list-group-item">Ciudad base de operaciones: <%= @city_name  %></li>
+    <li class="list-group-item">Presta servicio en otras ciudades: <%= @vehicle.other_cities ? "Si" : "No"  %></li>
+    <li class="list-group-item">Presta servicio en otras regiones: <%= @vehicle.other_regions ? "Si" : "No"  %></li>
+  </ul>
+  <div class="row">
+    <%# <% if policy(@vehicle).edit? %>
+      <%= link_to "Editar", edit_vehicle_path(@vehicle), class: "btn btn-outline-warning mt-3" %>
+    <%# end %>
+  </div>
+  <div class="row">
+    <%# <% if policy(@vehicle).edit? %>
+      <%= link_to 'Eliminar', vehicle_path(@vehicle), class: "btn btn-outline-danger mt-3", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
+    <%# end %>
+  </div>
+</div>

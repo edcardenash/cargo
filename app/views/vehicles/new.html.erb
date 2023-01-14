@@ -1,12 +1,2 @@
-<div class="container">
-  <%= simple_form_for @vehicle do |f| %>
-    <%= f.input :vehicle_type, collection: [['automovil', 'Automovil'], ['camioneta', 'Camioneta'], ['mini camion', 'Mini camión'], ['camion liviano', 'Camión liviano'], ['camion', 'Camión']], label_method: :second, value_method: :first, label: "¿Que tipo de vehículo es?" %>
-    <%= f.input :address, label: "Dirección"  %>
-    <%#= f.association :city, label: "Ciudad o Comuna"  %>
-    <%= f.input :load_capacity, collection: [['500', '500 Kg'], ['1_000', '1.000 Kg'], ['1_500', '1.500 Kg'], ['2_500', '2.500 Kg'], ['3_500', '3.500 Kg'], ['5_000', '5.000 Kg']], label_method: :second, value_method: :first, label: "Capacidad de carga" %>
-    <%= f.input :license_plate, label: "Patente" %>
-    <%= f.input :covered, label: "¿Está cubierto?", as: :boolean  %>
-    <%= f.input :description, label: "Descripción", as: :text  %>
-    <%= f.button :submit,"Siguiente"%>
-  <% end %>
-</div>
+<h1 class="mt-4">Agrega tu transporte</h1>
+<%= render "shared/vehicle_form" %>
