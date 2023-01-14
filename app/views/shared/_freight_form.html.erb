@@ -9,17 +9,15 @@
 <div class="row">
   <h2>Detalles del trasporte</h2>
   <div class="col-6">
-    <%= simple_form_for @freights do |f| %>
+    <%= simple_form_for @freight do |f| %>
       <%= f.input :description, label: "Descripción", as: :text  %>
       <%= f.input :receiver_name, label: "Nombre del receptor" %>
       <%= f.input :receiver_phone, label: "Telefono del receptor" %>
       <%= f.label :start_date, "Fecha"%>
       <%= f.date_field :start_date ,min_max: true, min: Date.today, input_html: {class: "mb-4" }, required: true, style: "width: 100%" %>
       <%= f.input :round_trip, label: "¿Ida y vuelta?"  %>
-      <%= f.input :photo, as: :file, label: "Sube una imágen" %>
       <%= f.button :submit,"Publicar", class: "btn btn-success"%>
       <div id="geocoder"></div>
     <% end %>
   </div>
-
 </div>
