@@ -4,17 +4,19 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 export default class extends Controller {
   static values = {
     apiKey: String,
-    markers: Array
+    lat: Number,
+    lon: Number,
+    latend: Number,
+    lonend: Number
   };
 
   connect() {
-
     mapboxgl.accessToken = this.apiKeyValue;
 
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v12",
-      center: [-70.90266, -53.14267],
+      center: [this.latValue, this.lonValue],
       zoom: 15
     });
 
@@ -39,8 +41,16 @@ export default class extends Controller {
     })
 
     this.map.on('load',  function() {
-      directions.setOrigin([-70.90266, -53.14267]);
-      directions.setDestination([-70.91216, -53.16443]);
+      console.log(this.latValue, this.lonValue)
+      directions.setOrigin([this.latValue, this.lonValue]);
+      directions.setDestination([this.latendValue, this.lonendValue]);
+      let bounds = new mapboxgl.LngLatBounds();
+      bounds.extend([this.latValue, this.lonValue]);
+      bounds.extend([this.latendValue, this.lonendValue]);
+      this.map.fitBounds(bounds, {
+        padding: 90,
+        duration: 1000
+      });
      })
 
     this.map.addControl(directions);
