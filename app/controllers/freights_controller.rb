@@ -7,14 +7,6 @@ class FreightsController < ApplicationController
 
   def show
     @quote = Quote.new
-    @freight = Parking.find(params[:id])
-    @markers = @freight.geocode.map do |freight|
-      {
-        start_address: @freight.start_latitude,
-        end_address: @freight.start_longitude,
-        info_window: render_to_string(partial: "info_window", locals: { freight: @freight })
-      }
-    end
     @freight = Freight.find(params[:id])
     authorize @freight
   end
