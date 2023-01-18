@@ -26,4 +26,9 @@ class VehiclePolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def my_vehicles?
+    true
+  end
+
 end

@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  match "*path", to: "application#render_404", via: :all
+
   resources :vehicles do
-   # resources :freights, only: %i[vehicle_request]
+    collection do
+      get "my_vehicles"
+    end
   end
   resources :freights do
     resources :quotes
