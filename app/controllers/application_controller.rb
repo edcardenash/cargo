@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone, :city_id])
   end
 
+  def render404
+    render file: "#{Rails.root}/public/404", status: :not_found
+  end
+
   private
 
   def skip_pundit?
