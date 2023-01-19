@@ -6,9 +6,18 @@ class FreightsController < ApplicationController
   end
 
   def show
+    authorize @freight
     @quote = Quote.new
     @freight = Freight.find(params[:id])
-    authorize @freight
+
+    @markers = @freight.geocode.map do |freight|
+      {
+        lat: @freight.latitude,
+        lng: @freight.longitude,
+        info_window: render_to_string(partial: "shared/mapinfo", locals: { freight: @freight })
+        # image_url: helpers.asset_url("logo.png")
+      }
+    end
   end
 
   def new
@@ -54,7 +63,7 @@ class FreightsController < ApplicationController
   private
 
   def freights_params
-    params.require(:freight).permit(:start_address, :end_address, :description, :start_date, :receiver_name, :receiver_phone, :round_trip)
+    params.require(:freight).permit(:address, :description, :start_date, :receiver_name, :receiver_phone, :round_trip, :latitude, :longitude)
   end
 
   def set_freight
