@@ -6,6 +6,7 @@
       data-map-lon-value="<%= @freight.start_longitude %>"
       data-map-latend-value="<%= @freight.end_latitude %>"
       data-map-lonend-value="<%= @freight.end_logitude %>"
+      data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
     </div>
   </div>
@@ -21,7 +22,6 @@
       <%= f.date_field :start_date ,min_max: true, min: Date.today, input_html: {class: "mb-4" }, required: true, style: "width: 100%" %>
       <%= f.input :round_trip, label: "¿Ida y vuelta?"  %>
       <%= f.button :submit,"Publicar", class: "btn btn-success"%>
-      <div id="geocoder"></div>
     <% end %>
   </div>
 </div>
