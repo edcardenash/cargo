@@ -7,16 +7,15 @@ export default class extends Controller {
     markers: Array
   };
 
-  //parkings
-
   connect() {
-    console.log(this.markersValue[0]['lng'])
+    // console.log(this.markersValue[0]['lng'])
     mapboxgl.accessToken = this.apiKeyValue;
 
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v12",
       zoom: 15
+
     });
 
     const directions = new MapboxDirections({
