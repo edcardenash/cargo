@@ -12,8 +12,9 @@
     <br>
     <%= f.input :other_cities, label: "Trabajar otras ciudades", as: :boolean  %>
     <%= f.input :other_regions, label: "Trabajar otras regiones", as: :boolean  %>
+    <%= f.input :photo, as: :file, label: "Sube una imágen" %>
     <div class="row">
-    <%= f.button :submit,"Siguiente"%>
+    <%= f.button :submit,"Guardar"%>
     </div>
   <% end %>
 </div>

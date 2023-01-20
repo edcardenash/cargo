@@ -1,7 +1,20 @@
-<h1>Listado de comentarios</h1>
-
-<% @quotes.each do |quote| %>
-  <% quote.comment  %>
-<% end  %>
-
-<%= link_to "New quote", new_quote_path if policy(Quote).new? %>
+<div class="container">
+<h2>Listado de cotizaciones</h2>
+<br>
+  <% @quotes.each do |quote| %>
+    <div class="card-product m-4">
+      <div class="row">
+        <h5>Cotización Nº - <%= quote.id %></h5>
+      </div>
+      <% if quote.vehicle.photo.attached? %>
+        <%= cl_image_tag quote.vehicle.photo.key %>
+      <% end %>
+      <div class="card-product-infos">
+        <p>Monto ofertado: <strong>$<%= quote.amount.to_i %></strong></p>
+        <p>Tipo de vehículo: <%= quote.vehicle.vehicle_type %></p>
+        <p>Comentario: <%= quote.comment %></p>
+      </div>
+    </div>
+  <% end  %>
+    <%#= link_to "New quote", new_quote_path if policy(Quote).new? %>
+</div>

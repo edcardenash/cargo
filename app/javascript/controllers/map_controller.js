@@ -4,35 +4,66 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 export default class extends Controller {
   static values = {
     apiKey: String,
-    markers: Array,
+    markers: Array
   };
 
+  //parkings
+
   connect() {
+    console.log(this.markersValue[0]['lng'])
     mapboxgl.accessToken = this.apiKeyValue;
 
     this.map = new mapboxgl.Map({
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v12",
-      center: [-122.662323, 45.523751],
-      zoom: 12
+      zoom: 15
     });
-    this.#addMarkersToMap();
-    this.#fitMarkersToMap();
-    // this.map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken,
-    // mapboxgl: mapboxgl }))
+
+    const directions = new MapboxDirections({
+      accessToken: this.apiKeyValue,
+      unit: 'metric',
+      profile: 'mapbox/driving',
+      alternatives: false,
+      geometries: 'geojson',
+      controls: { instructions: true },
+      flyTo: false
+    });
+
+    const geoLocate = new mapboxgl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true
+        },
+        trackUserLocation: true,
+        showUserHeading: true
+    });
+
+    const ruta = (lat, lng)=>{
+      this.map.on('load', () => {
+        directions.setOrigin([lat, lng]);
+        directions.setDestination([-70.9169, -53.1629]);
+        let bounds = new mapboxgl.LngLatBounds();
+        bounds.extend([lat, lng]);
+        bounds.extend([-70.9169, -53.1629]);
+        this.map.fitBounds(bounds, {
+          padding: 90,
+          duration: 1000
+        });
+      })
+    };
+
+    ruta(this.markersValue[0]['lng'],this.markersValue[0]['lat']);
+    this.map.addControl(directions);
+    this.map.addControl(geoLocate);
+    this.#addMarkersToMap()
   }
+
   #addMarkersToMap() {
     this.markersValue.forEach((marker) => {
       const popup = new mapboxgl.Popup().setHTML(marker.info_window)
       new mapboxgl.Marker()
-      .setLngLat([marker.lng, marker.lat])
+      .setLngLat([marker.lat, marker.lng])
       .setPopup(popup)
       .addTo(this.map)
     })
   }
-  #fitMarkersToMap(){
-    const bounds = new mapboxgl.LngLatBounds();
-      this.markersValue.forEach(markers => bounds.extend([markers.lng, markers.lat]))
-      this.map.fitBounds(bounds, { padding: 70, maxZoom: 15, duration: 0 })}
-
 }

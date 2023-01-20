@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_14_135121) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_18_014438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,8 +57,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_135121) do
   end
 
   create_table "freights", force: :cascade do |t|
-    t.float "start_latitude"
-    t.float "start_longitude"
+    t.float "latitude"
+    t.float "longitude"
     t.float "end_latitude"
     t.float "end_logitude"
     t.text "description"
@@ -69,7 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_135121) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "start_address"
+    t.string "address"
+    t.string "end_address"
     t.index ["user_id"], name: "index_freights_on_user_id"
   end
 
@@ -117,6 +118,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_14_135121) do
     t.text "phone"
     t.text "address"
     t.bigint "city_id", null: false
+    t.boolean "admin"
     t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

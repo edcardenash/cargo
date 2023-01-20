@@ -1,12 +1,9 @@
 class QuotesController < ApplicationController
-  before_action :set_quote, only: [:show, :edit, :update, :destroy]
-  def index
-    @quotes = Quote.all
-    @quotes = policy_scope(Quote)
-  end
+  before_action :set_quote, only: [:edit, :update, :destroy]
+  before_action :set_freight, only:[:new, :create]
 
-  def show
-    authorize @quote
+  def index
+    @quotes = policy_scope(Quote)
   end
 
   def new
@@ -17,21 +14,22 @@ class QuotesController < ApplicationController
   def create
     @quote = Quote.new(quote_params)
     authorize @quote
+    @quote.freight = @freight
     if @quote.save
-      redirect_to quote_path(@quote), notice: 'Quote was successfully created'
+      redirect_to freight_quotes_path, notice: 'Quote was successfully created'
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def editing
+  def edit
     authorize @quote
   end
 
   def update
     authorize @quote
     if @quote.update(quote_params)
-      redirect_to @quote, notice: 'Quote was successfully updated'
+      redirect_to freight_quotes_path, notice: 'Quote was successfully updated'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -40,16 +38,20 @@ class QuotesController < ApplicationController
   def destroy
     authorize @quote
     @quote.destroy
-    redirect_to quotes_url, notice: 'Quote was successfully destroyed'
+    redirect_to freights_path, notice: 'Quote was successfully destroyed'
   end
 
   private
 
   def quote_params
-    params.require(:quote).permit(:status, :amount, :comment)
+    params.require(:quote).permit(:amount, :comment, :vehicle_id, :freight_id)
   end
 
   def set_quote
     @quote = Quote.find(params[:id])
+  end
+
+  def set_freight
+    @freight = Freight.find(params[:freight_id])
   end
 end

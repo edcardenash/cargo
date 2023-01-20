@@ -1,7 +1,7 @@
 class VehiclePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      user.admin? ? scope.all : scope.where(user: user)
+      scope.all
     end
     # NOTE: Be explicit about which records you allow access to!
     # def resolve
@@ -26,4 +26,9 @@ class VehiclePolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def my_vehicles?
+    true
+  end
+
 end

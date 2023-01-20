@@ -1,24 +1,27 @@
+  <div class="container-fluid">
+    <h3> Indique el inicio y destino</h3>
+    <div id="map" style="width: 100%; height: 400px;"
+      data-controller="map"
+      data-map-lat-value="<%= @freight.start_latitude %>"
+      data-map-lon-value="<%= @freight.start_longitude %>"
+      data-map-latend-value="<%= @freight.end_latitude %>"
+      data-map-lonend-value="<%= @freight.end_logitude %>"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+
 <div class="row">
+  <h2>Detalles del trasporte</h2>
   <div class="col-6">
-    <%= simple_form_for @freights do |f| %>
+    <%= simple_form_for @freight do |f| %>
       <%= f.input :description, label: "Descripción", as: :text  %>
       <%= f.input :receiver_name, label: "Nombre del receptor" %>
       <%= f.input :receiver_phone, label: "Telefono del receptor" %>
       <%= f.label :start_date, "Fecha"%>
       <%= f.date_field :start_date ,min_max: true, min: Date.today, input_html: {class: "mb-4" }, required: true, style: "width: 100%" %>
       <%= f.input :round_trip, label: "¿Ida y vuelta?"  %>
-      <%= f.input :photo, as: :file, label: "Sube una imágen" %>
       <%= f.button :submit,"Publicar", class: "btn btn-success"%>
     <% end %>
   </div>
-    <div class="col-6">
-      <div style="width: 100%; height: 550px;"
-        data-controller="map"
-        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-      </div>
-      <div class="sidebar">
-        <h1>Reports</h1>
-        <div id="reports"></div>
-      </div>
-    </div>
 </div>

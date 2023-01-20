@@ -67,12 +67,12 @@ User.create!(email: "rodriguezgon22@gmail.com",
              city_id: City.ids.sample)
 
 puts "Creating freights"
-
-Freight.create!(start_latitude: -33.444112169031214,
-                start_longitude: -70.61500992121303,
+Freight.create!(latitude: -33.444112169031214,
+                longitude: -70.61500992121303,
                 end_latitude: -33.38015931294505,
                 end_logitude: -70.54204622760442,
-                start_address: "Ricardo Lyon 3600",
+                address: "Ricardo Lyon 3600",
+                end_address: "Escandinavia 1233",
                 description: "Traslado de sofa y refrigerador desde ñuñoa a las condes",
                 start_date: DateTime.now + 15,
                 receiver_name: "Camilo Moreno",
@@ -80,11 +80,12 @@ Freight.create!(start_latitude: -33.444112169031214,
                 round_trip: false,
                 user_id: 2)
 
-Freight.create!(start_latitude: -33.444112169031214,
-                start_longitude: -70.61500992121303,
-                end_latitude: -33.38015931294505,
-                end_logitude: -70.54204622760442,
-                start_address: "Cabo de Hornos 0564",
+Freight.create!(latitude: -70.91123,
+                longitude: -53.15812,
+                end_latitude: -53.162935958687655,
+                end_logitude: -70.91691540483653,
+                address: "Cabo De Hornos 0564, Punta Arenas",
+                end_address: "Pasaje Balmaceda 383",
                 description: "Traslado refrigerador dentro de punta arenas",
                 start_date: DateTime.now + 15,
                 receiver_name: "Alejandro Espina",
@@ -124,18 +125,18 @@ vehicle = Vehicle.create!(longitude: -70.642254030843,
 vehicle.photo.attach(io: URI.open("https://res.cloudinary.com/dibhw3luk/image/upload/v1673703551/pick-up_qwvbem.jpg"), filename: 'pick-up.jpg')
 vehicle.save
 
-Vehicle.create!(longitude: -70.60416478421571,
-                latitude: -33.42738778640234,
-                license_plate: "AQWB66",
-                vehicle_type: "Camion liviano",
-                description: "Fletes en Providencia",
-                covered: true,
-                load_capacity: 1500,
-                user_id: 4,
-                city_id: 36,
-                other_regions: true,
-                other_cities: true,
-                active: true)
+vehicle = Vehicle.create!(longitude: -70.60416478421571,
+                          latitude: -33.42738778640234,
+                          license_plate: "AQWB66",
+                          vehicle_type: "Camion liviano",
+                          description: "Fletes en Providencia",
+                          covered: true,
+                          load_capacity: 1500,
+                          user_id: 2,
+                          city_id: 36,
+                          other_regions: true,
+                          other_cities: true,
+                          active: true)
 vehicle.photo.attach(io: URI.open("https://res.cloudinary.com/dibhw3luk/image/upload/v1673703551/camion-liviano-cerrado_pntugb.jpg"), filename: 'camion-liviano-cerrado.jpg')
 vehicle.save
 
