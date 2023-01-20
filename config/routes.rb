@@ -12,4 +12,7 @@ Rails.application.routes.draw do
   resources :reviews
   resources :quotes
   get 'vehicles/:id/freights/vehicle_request', to: 'vehicles#vehicle_request', as: 'vehicle_request'
+  resources :contacts, only: [:new, :create ]
+  get '/contacts', to: 'contacts#new', as: 'contact'
+  get 'contacts/sent'
 end
