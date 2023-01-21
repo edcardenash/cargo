@@ -22,6 +22,12 @@
       <%= f.button :submit,"Publicar", class: "btn btn-success"%>
     <% end %>
     <br>
-    <%= link_to "Cotizar", new_freight_quote_path(@freight), class: "btn btn-primary" %>
+    <% if user_signed_in? %>
+      <% if @freight.user_id != current_user.id %>
+        <%= link_to "Cotizar", new_freight_quote_path(@freight), class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "Ver cotizaciones", freight_quotes_path(@freight), class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
   </div>
 </div>
