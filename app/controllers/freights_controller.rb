@@ -14,6 +14,8 @@ class FreightsController < ApplicationController
       {
         lat: @freight.latitude,
         lng: @freight.longitude,
+        end_lat: @freight.end_latitude,
+        end_lng: @freight.end_logitude,
         info_window: render_to_string(partial: "shared/mapinfo", locals: { freight: @freight })
         # image_url: helpers.asset_url("logo.png")
       }
@@ -33,6 +35,9 @@ class FreightsController < ApplicationController
     @freight = Freight.new(freights_params)
     @freight.user = current_user
     authorize @freight
+    @destiny_coordenates = @freight.destiny_address(params[:freight][:end_address])
+    @freight.end_latitude = @destiny_coordenates.first.coordinates.first
+    @freight.end_logitude = @destiny_coordenates.first.coordinates.last
     @freight.user_id = current_user.id
     if @freight.save
       redirect_to @freight, notice: 'Freight was successfully created'
@@ -63,7 +68,7 @@ class FreightsController < ApplicationController
   private
 
   def freights_params
-    params.require(:freight).permit(:address, :description, :start_date, :receiver_name, :receiver_phone, :round_trip, :latitude, :longitude)
+    params.require(:freight).permit(:address, :description, :start_date, :receiver_name, :receiver_phone, :round_trip, :latitude, :longitude, :end_address, :end_latitude, :end_logitude)
   end
 
   def set_freight
