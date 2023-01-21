@@ -63,6 +63,11 @@ class VehiclesController < ApplicationController
     redirect_to vehicle_path, notice: 'Vehicle was successfully destroyed.'
   end
 
+  def my_vehicles
+    @vehicles = current_user.vehicles
+    authorize @vehicles
+  end
+
   private
 
   def set_vehicle

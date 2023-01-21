@@ -1,3 +1,15 @@
+  <div class="container-fluid">
+    <h3> Indique el inicio y destino</h3>
+    <div id="map" style="width: 100%; height: 400px;"
+      data-controller="map"data-map-lat-value="<%= @freight.latitude %>"
+      data-map-lon-value="<%= @freight.longitude %>"
+      data-map-latend-value="<%= @freight.end_latitude %>"
+      data-map-lonend-value="<%= @freight.end_logitude %>"
+      data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
+
 <div class="row">
   <h2>Detalles del trasporte</h2>
   <div class="col-6">

@@ -1,0 +1,13 @@
+<div class="container">
+<%# <h2>Indica tu oferta para la solicitud Nº<%= @freight.id %></h2>
+<br>
+<br>
+  <%= simple_form_for [@freight, @quote] do |f| %>
+    <%= f.input :vehicle_id, collection: current_user.vehicles, label_method: :vehicle_type, value_method: :id, prompt: "Selecciona tu transporte" %>
+    <%= f.input :amount, label: "Monto ofertado" %>
+    <%= f.input :comment, label: "Comentario", as: :text  %>
+    <div class="row">
+    <%= f.button :submit,"Guardar"%>
+    </div>
+  <% end %>
+</div>

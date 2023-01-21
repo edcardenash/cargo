@@ -10,5 +10,6 @@ class User < ApplicationRecord
   has_many :vehicles, dependent: :destroy
   has_many :freights, dependent: :destroy
   has_many :reviews, dependent: :destroy
+  has_many :quotes, dependent: :destroy
 
 end
