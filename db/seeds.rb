@@ -140,10 +140,13 @@ vehicle = Vehicle.create!(longitude: -70.60416478421571,
 vehicle.photo.attach(io: URI.open("https://res.cloudinary.com/dibhw3luk/image/upload/v1673703551/camion-liviano-cerrado_pntugb.jpg"), filename: 'camion-liviano-cerrado.jpg')
 vehicle.save
 
+puts "Creating quotes"
+
 Quote.create!(status: 0,
               amount: 15_000,
               comment: "Servicio garantizado",
               vehicle_id: 3,
-              freight_id: 1)
+              freight_id: 1,
+              user_id: 3)
 
 puts "Process completed"
