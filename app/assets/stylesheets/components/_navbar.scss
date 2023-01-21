@@ -1,6 +1,11 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: rgb(255, 255, 255);
+  background: rgb(47, 49, 49);
+  transition: 0.5s background-color ease;
+}
+
+.navbar-lewagon-white {
+  background-color: rgb(47, 49, 49);
 }
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
@@ -8,8 +13,10 @@
 .navbar-lewagon .navbar-brand img {
   width: 150px;
 }
-.barra-de-busqueda {
- width: 2000px;
+
+.nav-link {
+  color: rgb(255, 255, 255
+)
 }
 .boton-login{
   color: rgb(255, 255, 255);
