@@ -18,18 +18,6 @@
         <%= link_to "Editar", edit_quote_path(quote), class: "btn btn-outline-warning mt-3" %>
         <%= link_to 'Eliminar', quote_path(quote), class: "btn btn-outline-danger mt-3", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
       </div>
-
     <% end  %>
-    <div class="row">
-    <% if policy(quote).edit? %>
-        <%= link_to "Editar", edit_freight_quote_path(quote), class: "btn btn-outline-warning mt-3" %>
-    </div>
-    <div class="row">
-      <% policy(quote).destroy? %>
-
-      <% end %>
-    </div>
   <% end  %>
-
-    <%#= link_to "New quote", new_quote_path if policy(Quote).new? %>
 </div>

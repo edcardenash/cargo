@@ -24,13 +24,14 @@ class QuotesController < ApplicationController
   end
 
   def edit
+    @quote.freight = @freight
     authorize @quote
   end
 
   def update
     authorize @quote
     if @quote.update(quote_params)
-      redirect_to freight_quotes_path, notice: 'Quote was successfully updated'
+      redirect_to quotes_path, notice: 'Quote was successfully updated'
     else
       render :edit, status: :unprocessable_entity
     end

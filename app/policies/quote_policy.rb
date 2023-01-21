@@ -14,10 +14,10 @@ class QuotePolicy < ApplicationPolicy
   end
 
   def update?
-    record.user_id == user
+    record.user_id == user.id
   end
 
   def destroy?
-    record.user == user
+    record.user_id == user.id
   end
 end
