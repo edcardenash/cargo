@@ -32,7 +32,6 @@ gem "geocoder"
 gem "pundit"
 gem "cloudinary"
 gem "pg_search"
-gem "mail_form"
 # gem "select2-rails"
 
 
