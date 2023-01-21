@@ -2,7 +2,7 @@ class FreightsController < ApplicationController
   before_action :set_freight, only: [:show, :edit, :update, :destroy]
 
   def index
-   @freights = policy_scope(Freight)
+    @freights = policy_scope(Freight)
   end
 
   def show
@@ -70,5 +70,4 @@ class FreightsController < ApplicationController
   def set_freight
     @freight = Freight.find(params[:id])
   end
-
 end
