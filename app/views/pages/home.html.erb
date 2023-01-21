@@ -127,32 +127,31 @@
       <h2 class="section-heading text-uppercase">Contáctanos</h2>
       <h3 class="section-subheading text-muted">Déjanos un mensaje</h3>
     </div>
-  
-    <% end %>
+
     <form id="contactForm" data-sb-form-api-token="API_TOKEN">
       <div class="row align-items-stretch mb-5 centrar-contacto">
         <div class="col-md-5 contenedores-contacto">
             <div class="form-group">
                 <!-- Name input-->
-                <input class="form-control" id="name" type="text" placeholder="Your Name *" data-sb-validations="required" />
+                <input class="form-control" id="name" type="text" placeholder="Tu nombre *" data-sb-validations="required" />
                 <div class="invalid-feedback" data-sb-feedback="name:required">Ingrese su nombre y apellido</div>
             </div>
             <div class="form-group">
                 <!-- Email address input-->
-                <input class="form-control" id="email" type="email" placeholder="Your Email *" data-sb-validations="required,email" />
+                <input class="form-control" id="email" type="email" placeholder="Tu email *" data-sb-validations="required,email" />
                 <div class="invalid-feedback" data-sb-feedback="email:required">Ingrese su correo electrónico</div>
                 <div class="invalid-feedback" data-sb-feedback="email:email">Dirección de correo electrónico no válida.</div>
             </div>
             <div class="form-group mb-md-0">
                 <!-- Phone number input-->
-                <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" data-sb-validations="required" />
+                <input class="form-control" id="phone" type="tel" placeholder="Tu telefono *" data-sb-validations="required" />
                 <div class="invalid-feedback" data-sb-feedback="phone:required">Ingrese su número de contacto</div>
             </div>
         </div>
         <div class="col-md-5 contenedores-contacto">
           <div class="form-group form-group-textarea mb-md-0">
             <!-- Message input-->
-            <textarea class="form-control" id="message" placeholder="Your Message *" data-sb-validations="required"></textarea>
+            <textarea class="form-control" id="message" placeholder="Mensaje *" data-sb-validations="required"></textarea>
             <div class="invalid-feedback" data-sb-feedback="message:required">Ingrese aquí su mensaje.</div>
           </div>
         </div>
@@ -160,5 +159,6 @@
       <!-- Submit Button-->
       <div class="text-center"><button class="btn btn-warning btn-xl text-uppercase disabled mb-3" id="submitButton" type="submit">ENVÍANOS EL MENSAJE</button></div>
     </form>
+
   </div>
 </section>
