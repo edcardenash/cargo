@@ -2,7 +2,7 @@ class FreightsController < ApplicationController
   before_action :set_freight, only: [:show, :edit, :update, :destroy]
 
   def index
-   @freights = policy_scope(Freight)
+    @freights = policy_scope(Freight)
   end
 
   def show
@@ -10,14 +10,14 @@ class FreightsController < ApplicationController
     @quote = Quote.new
     @freight = Freight.find(params[:id])
 
-    @markers = @freight.geocode.map do |freight|
+    @markers = [
       {
         lat: @freight.latitude,
         lng: @freight.longitude,
         info_window: render_to_string(partial: "shared/mapinfo", locals: { freight: @freight })
         # image_url: helpers.asset_url("logo.png")
       }
-    end
+    ]
   end
 
   def new

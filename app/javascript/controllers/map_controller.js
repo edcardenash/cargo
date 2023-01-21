@@ -10,7 +10,8 @@ export default class extends Controller {
   //parkings
 
   connect() {
-    console.log(this.markersValue[0]['lng'])
+    /* console.log("hola") */
+    /* console.log(this.markersValue[0]['lng']) */
     mapboxgl.accessToken = this.apiKeyValue;
 
     this.map = new mapboxgl.Map({
