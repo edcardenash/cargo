@@ -1,4 +1,6 @@
-<div class="margin_top">
+
+<div class="margin_top banner-class">
+
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -39,60 +41,57 @@
     </button>
   </div>
 </div>
-<div>
-  <br>
-  <br>
+<div class="container">
   <br>
   <br>
   <%= render "shared/search", class: "nav-link barra-de-busqueda" %>
   <br>
   <br>
-  <br>
-  <br>
 </div>
+
 <!-- Services-->
-<div class="page-section" id="services">
+<div  class="container page-section service-card" id="services">
   <div class="container">
-      <div class="text-center">
-          <h2 class="section-heading text-uppercase">Servicios CarGO</h2>
-          <br>
-          <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-          <br>
+    <div class="text-center">
+      <h2 class="section-heading text-uppercase">Servicios CarGO</h2>
+      <br>
+    </div>
+    <div class="row text-center">
+      <div class="col-md-4">
+        <%# <span class="fa-stack fa-4x">
+          <i class="fas fa-circle fa-stack-2x text-primary"></i>
+          <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
+        </span> %>
+        <img class="service-icon" src="../images/services-logo/icono_servicios_seguridad.png" alt="security-logo">
+        <h4 class="my-3">SEGURIDAD</h4>
+        <p class="text-muted">Al registrarse en CarGO la base de datos almacena los datos del usuario para poder brindarle seguridad tanto a transportistas como a los que solicitan su servicio</p>
       </div>
-      <div class="row text-center">
-          <div class="col-md-4">
-              <span class="fa-stack fa-4x">
-                  <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                  <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-              </span>
-              <h4 class="my-3">E-Commerce</h4>
-              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-          </div>
-          <div class="col-md-4">
-              <span class="fa-stack fa-4x">
-                  <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                  <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-              </span>
-              <h4 class="my-3">Responsive Design</h4>
-              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-          </div>
-          <div class="col-md-4">
-              <span class="fa-stack fa-4x">
-                  <i class="fas fa-circle fa-stack-2x text-primary"></i>
-                  <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-              </span>
-              <h4 class="my-3">Web Security</h4>
-              <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
-          </div>
+      <div class="col-md-4">
+        <%# <span class="fa-stack fa-4x">
+          <i class="fas fa-circle fa-stack-2x text-primary"></i>
+          <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
+        </span> %>
+        <img class="service-icon" src="../images/services-logo/icono_servicios_gps1.png" alt="gps-logo">
+        <h4 class="my-3">GPS</h4>
+        <p class="text-muted">En CarGO te damos la posibilidad de rastrear y seguir tu encomienda en tiempo real.</p>
       </div>
+      <div class="col-md-4">
+        <%# <span class="fa-stack fa-4x">
+          <i class="fas fa-circle fa-stack-2x text-primary"></i>
+          <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
+        </span> %>
+        <img class="service-icon" src="../images/services-logo/icono_servicios_buenprecio.png" alt="precio-logo">
+        <h4 class="my-3">BUEN PRECIO</h4>
+        <p class="text-muted">CarGO trabaja para que puedas llevar lo que desees a destino al mejor precio del mercado.</p>
+      </div>
+    </div>
   </div>
 </div>
 <br>
-<br>
-<br>
-<br>
+
 <%# Vehicles grid %>
-<div class="row background-home-grid">
+<div class="container transportistas">
+  <div  class="row background-home-grid">
     <h2 class="section-heading text-uppercase text-center">Últimos Transportistas</h2>
     <br>
     <br>
@@ -118,45 +117,8 @@
 </div>
 <br>
 
-<!-- Servicios-->
-<section class="page-section" id="services">
-  <div class="container">
-    <div class="text-center">
-      <h2 class="section-heading text-uppercase">Servicios</h2>
-      <h3 class="section-subheading text-muted">¿Por que elegir CarGO?</h3>
-    </div>
-    <div class="row text-center">
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="my-3">Seguridad</h4>
-        <p class="text-muted">Al registrarse en CarGO la base de datos almacena los datos del usuario para poder brindarle seguridad tanto a transportistas como a los que solicitan su servicio</p>
-      </div>
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="my-3">GPS</h4>
-        <p class="text-muted">Podés rastrear y seguir tu encomienda en tiempo real.</p>
-      </div>
-      <div class="col-md-4">
-        <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-        </span>
-        <h4 class="my-3">Buen precio</h4>
-        <p class="text-muted">En CarGO trabajamos para que puedas llevar lo que desees a destino al mejor precio del mercado.</p>
-      </div>
-    </div>
-  </div>
-</section>
-<br>
-
 <%# Contactanos %>
-<section class="page-section container p-1" id="contact">
+<section  class="container page-section container p-1" id="contact">
   <div>
     <br>
     <div class="text-center">
@@ -187,7 +149,7 @@
         <div class="col-md-5 contenedores-contacto">
           <div class="form-group form-group-textarea mb-md-0">
             <!-- Message input-->
-            <textarea class="form-control" id="message" placeholder="Su mensaje *" data-sb-validations="required"></textarea>
+            <textarea class="form-control" id="message" placeholder="Tu mensaje *" data-sb-validations="required"></textarea>
             <div class="invalid-feedback" data-sb-feedback="message:required">Ingrese aquí su mensaje.</div>
           </div>
         </div>

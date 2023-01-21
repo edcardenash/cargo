@@ -1,24 +1,23 @@
-<div class="row">
+<div class="container">
   <div class="col-12">
     <% @vehicles.each do |vehicle| %>
       <% if user_signed_in? %>
-          <div class="card-product m-4">
-
-            <% if vehicle.photo.attached? %>
-              <%= cl_image_tag vehicle.photo.key %>
-            <% end %>
-            <div class="card-product-infos">
-              <h4><%= vehicle.vehicle_type %></h4>
-              <h6>Capacidad de carga: <strong><%= vehicle.load_capacity %></strong>Kg.</h6>
-              <h6>Ciudad base de operaciones: <%= @city_name %></strong> </h6>
-              <h6>Presta servicio en otras ciudades: <%= vehicle.other_cities ? "Si" : "No" %></h6>
-              <h6>Presta servicio en otras regiones: <%= vehicle.regions ? "Si" : "No" %></h6>
-              <h6>Cerrado: <%= vehicle.covered ? "Si" : "No" %></h6>
-              <p><%= vehicle.description.truncate(50) %></p>
-              <%= link_to 'Contactar', vehicle, class: "btn btn-outline-success btn-sm mt-1"%>
-            </div>
+        <div class="card-product col-4 m-4">
+          <% if vehicle.photo.attached? %>
+            <%= cl_image_tag vehicle.photo.key %>
+          <% end %>
+          <div class="card-product-infos col-4">
+            <h4><%= vehicle.vehicle_type %></h4>
+            <h6>Capacidad de carga: <strong><%= vehicle.load_capacity %></strong>Kg.</h6>
+            <h6>Ciudad base de operaciones: <%= @city_name %></strong> </h6>
+            <h6>Presta servicio en otras ciudades: <%= vehicle.other_cities ? "Si" : "No" %></h6>
+            <h6>Presta servicio en otras regiones: <%= vehicle.regions ? "Si" : "No" %></h6>
+            <h6>Cerrado: <%= vehicle.covered ? "Si" : "No" %></h6>
+            <p><%= vehicle.description.truncate(50) %></p>
+            <%= link_to 'Contactar', vehicle, class: "btn btn-outline-success btn-sm mt-1"%>
           </div>
-        <% end %>
+        </div>
       <% end %>
+    <% end %>
   </div>
 </div>
