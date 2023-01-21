@@ -54,16 +54,5 @@ export default class extends Controller {
     ruta(this.markersValue[0]['lng'], this.markersValue[0]['lat'],  this.markersValue[0]['end_lng'],this.markersValue[0]['end_lat']);
     this.map.addControl(directions);
     this.map.addControl(geoLocate);
-    this.#addMarkersToMap()
-  }
-
-  #addMarkersToMap() {
-    this.markersValue.forEach((marker) => {
-      const popup = new mapboxgl.Popup().setHTML(marker.info_window)
-      new mapboxgl.Marker()
-      .setLngLat([marker.lat, marker.lng])
-      .setPopup(popup)
-      .addTo(this.map)
-    })
   }
 }

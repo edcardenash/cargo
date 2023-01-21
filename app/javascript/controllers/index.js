@@ -7,5 +7,8 @@ import { application } from "./application"
 import MapController from "./map_controller"
 application.register("map", MapController)
 
+import MapshowController from "./mapshow_controller"
+application.register("mapshow", MapController)
+
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)

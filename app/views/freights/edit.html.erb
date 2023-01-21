@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="mt-4 text-center">Editar de transporte en <%=@freight.address%></h1>
+  <div class="row">
+    <div class="col-6">
+      <%= simple_form_for @freight do |f| %>
+        <%= f.input :description, label: "Descripción", as: :text  %>
+        <%= f.input :receiver_name, label: "Nombre del receptor" %>
+        <%= f.input :receiver_phone, label: "Telefono del receptor" %>
+        <%= f.input :address, label: "Direccion de origen" %>
+        <%= f.input :end_address, label: "Direccion de destino" %>
+        <%= f.label :start_date, "Fecha"%>
+        <%= f.date_field :start_date ,min_max: true, min: Date.today, input_html: {class: "mb-4" }, required: true, style: "width: 100%" %>
+        <%= f.input :round_trip, label: "¿Ida y vuelta?"  %>
+        <%= f.button :submit,"Publicar", class: "btn btn-success"%>
+      <% end %>
+      <% if user_signed_in? %>
+        <% if @freight.user_id != current_user.id %>
+          <%= link_to "Cotizar", new_freight_quote_path(@freight), class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "Ver cotizaciones", freight_quotes_path(@freight), class: "btn btn-primary" %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-6">
+        <div id="map" class="mt-4" style="width: 100%; height: 550px;"
+        data-controller="map"
+        data-map-markers-value="<%= @markers.to_json %>"
+        data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+  </div>
+</div>
