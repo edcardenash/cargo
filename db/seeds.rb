@@ -141,7 +141,7 @@ vehicle_1 = Vehicle.create!(longitude: -70.60416478421571,
                           covered: true,
                           load_capacity: 1500,
                           user_id: user_2.id,
-                          city: cities_array.sample,
+                          cityº: cities_array.sample,
                           other_regions: true,
                           other_cities: true,
                           active: true)
