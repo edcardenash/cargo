@@ -8,7 +8,6 @@ export default class extends Controller {
   };
 
   connect() {
-    // console.log(this.markersValue[0]['lng'])
     mapboxgl.accessToken = this.apiKeyValue;
 
     this.map = new mapboxgl.Map({
@@ -36,13 +35,13 @@ export default class extends Controller {
         showUserHeading: true
     });
 
-    const ruta = (lat, lng)=>{
+    const ruta = (lat, lng, end_lat, end_lng)=>{
       this.map.on('load', () => {
         directions.setOrigin([lat, lng]);
-        directions.setDestination([-70.9169, -53.1629]);
+        directions.setDestination([end_lat, end_lng]);
         let bounds = new mapboxgl.LngLatBounds();
         bounds.extend([lat, lng]);
-        bounds.extend([-70.9169, -53.1629]);
+        bounds.extend([end_lat, end_lng]);
         this.map.fitBounds(bounds, {
           padding: 90,
           duration: 1000
@@ -50,7 +49,8 @@ export default class extends Controller {
       })
     };
 
-    ruta(this.markersValue[0]['lng'],this.markersValue[0]['lat']);
+    console.log(this.markersValue[0]['end_lat'])
+    ruta(this.markersValue[0]['lng'], this.markersValue[0]['lat'],  this.markersValue[0]['end_lng'],this.markersValue[0]['end_lat']);
     this.map.addControl(directions);
     this.map.addControl(geoLocate);
     this.#addMarkersToMap()
