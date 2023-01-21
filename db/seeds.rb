@@ -33,8 +33,10 @@ valpo = Region.create!(name: "Valparaíso", country: country)
 
 puts "Creating cities"
 
-cities = cities_rm.each do |city|
-  City.create!(name: "#{city}", region_id: rm.id)
+cities_array = []
+
+cities_rm.each do |city|
+  cities_array << City.create!(name: "#{city}", region_id: rm.id)
 end
 
 cities_valpo.each do |city|
@@ -48,7 +50,7 @@ user_1 = User.create!(email: "enrique.altamiros@gmail.com",
              first_name: "Enrique",
              last_name: "Altamirano",
              phone: "912345678",
-             city: cities.sample)
+             city: cities_array.sample)
 
 user_2 = User.create!(email: "ecardenas@uc.cl",
              password: "123456",
@@ -56,21 +58,21 @@ user_2 = User.create!(email: "ecardenas@uc.cl",
              last_name: "Cardenas",
              address: "Dalmacia 1268",
              phone: "987654321",
-             city: cities.sample)
+             city: cities_array.sample)
 
 user_3 = User.create!(email: "kemack83@gmail.com",
              password: "123456",
              first_name: "Kevin",
              last_name: "Mackinlay",
              phone: "981827374",
-             city: cities.sample)
+             city: cities_array.sample)
 
 user_4 = User.create!(email: "rodriguezgon22@gmail.com",
              password: "123456",
              first_name: "Gonzalo",
              last_name: "Rodriguez",
              phone: "965748392",
-             city: cities.sample)
+             city: cities_array.sample)
 
 puts "Creating freights"
 Freight.create!(latitude: -33.444112169031214,
