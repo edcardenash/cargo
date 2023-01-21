@@ -21,5 +21,7 @@
       <%= f.input :round_trip, label: "¿Ida y vuelta?"  %>
       <%= f.button :submit,"Publicar", class: "btn btn-success"%>
     <% end %>
+    <br>
+    <%= link_to "Cotizar", new_freight_quote_path(@freight), class: "btn btn-primary" %>
   </div>
 </div>

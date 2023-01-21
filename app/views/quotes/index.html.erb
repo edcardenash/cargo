@@ -2,19 +2,32 @@
 <h2>Listado de cotizaciones</h2>
 <br>
   <% @quotes.each do |quote| %>
-    <div class="card-product m-4">
-      <div class="row">
-        <h5>Cotización Nº - <%= quote.id %></h5>
+    <% if user_signed_in? %>
+      <div class="card-product m-4">
+        <div class="row">
+          <h5>Cotización Nº - <%= quote.id %></h5>
+        </div>
+        <% if quote.vehicle.photo.attached? %>
+          <%= cl_image_tag quote.vehicle.photo.key %>
+        <% end %>
+        <div class="card-product-infos">
+          <p>Monto ofertado: <strong>$<%= quote.amount.to_i %></strong></p>
+          <p>Tipo de vehículo: <%= quote.vehicle.vehicle_type %></p>
+          <p>Comentario: <%= quote.comment %></p>
+        </div>
       </div>
-      <% if quote.vehicle.photo.attached? %>
-        <%= cl_image_tag quote.vehicle.photo.key %>
+
+    <% end  %>
+    <div class="row">
+    <% if policy(quote).edit? %>
+        <%= link_to "Editar", edit_freight_quote_path(quote), class: "btn btn-outline-warning mt-3" %>
+    </div>
+    <div class="row">
+      <% policy(quote).destroy? %>
+        <%= link_to 'Eliminar', freight_quote_path(quote), class: "btn btn-outline-danger mt-3", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
       <% end %>
-      <div class="card-product-infos">
-        <p>Monto ofertado: <strong>$<%= quote.amount.to_i %></strong></p>
-        <p>Tipo de vehículo: <%= quote.vehicle.vehicle_type %></p>
-        <p>Comentario: <%= quote.comment %></p>
-      </div>
     </div>
   <% end  %>
+
     <%#= link_to "New quote", new_quote_path if policy(Quote).new? %>
 </div>
