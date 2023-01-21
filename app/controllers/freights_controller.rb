@@ -10,7 +10,7 @@ class FreightsController < ApplicationController
     @quote = Quote.new
     @freight = Freight.find(params[:id])
 
-    @markers = @freight.geocode.map do |freight|
+    @markers = [
       {
         lat: @freight.latitude,
         lng: @freight.longitude,
@@ -19,7 +19,7 @@ class FreightsController < ApplicationController
         info_window: render_to_string(partial: "shared/mapinfo", locals: { freight: @freight })
         # image_url: helpers.asset_url("logo.png")
       }
-    end
+    ]
   end
 
   def new
