@@ -3,6 +3,9 @@ Quote.destroy_all
 Freight.destroy_all
 Vehicle.destroy_all
 User.destroy_all
+City.destroy_all
+Region.destroy_all
+Country.destroy_all
 cities_rm = ["Alhué", "Buin", "Calera de Tango", "Cerrillos", "Cerro Navia", "Colina", "Conchalí", "Curacaví",
              "El Bosque", "El Monte", "Estación Central", "Huechuraba", "Independencia", "Isla de Maipo", "La Cisterna",
              "La Florida", "La Granja", "La Pintana", "La Reina", "Lampa", "Las Condes", "Lo Barnechea", "Lo Espejo",
@@ -25,17 +28,17 @@ country = Country.create!(name: "Chile")
 
 puts "Creating regions"
 
-rm = Region.create!(name: "Metropolitana de Santiago", country_id: country)
-valpo = Region.create!(name: "Valparaíso", country_id: country)
+rm = Region.create!(name: "Metropolitana de Santiago", country: country)
+valpo = Region.create!(name: "Valparaíso", country: country)
 
 puts "Creating cities"
 
 cities_rm.each do |city|
-  City.create!(name: "#{city}", region_id: rm)
+  City.create!(name: "#{city}", region_id: rm.id)
 end
 
 cities_valpo.each do |city|
-  City.create!(name: "#{city}", region_id: valpo)
+  City.create!(name: "#{city}", region_id: valpo.id)
 end
 
 puts "Creating users"
@@ -45,7 +48,7 @@ user_1 = User.create!(email: "enrique.altamiros@gmail.com",
              first_name: "Enrique",
              last_name: "Altamirano",
              phone: "912345678",
-             city_id: cities_rm.sample)
+             city_id: cities_rm.sample.id)
 
 user_2 = User.create!(email: "ecardenas@uc.cl",
              password: "123456",
@@ -53,21 +56,21 @@ user_2 = User.create!(email: "ecardenas@uc.cl",
              last_name: "Cardenas",
              address: "Dalmacia 1268",
              phone: "987654321",
-             city_id: cities_rm.sample)
+             city_id: cities_rm.sample.id)
 
 user_3 = User.create!(email: "kemack83@gmail.com",
              password: "123456",
              first_name: "Kevin",
              last_name: "Mackinlay",
              phone: "981827374",
-             city_id: cities_rm.sample)
+             city_id: cities_rm.sample.id)
 
 user_4 = User.create!(email: "rodriguezgon22@gmail.com",
              password: "123456",
              first_name: "Gonzalo",
              last_name: "Rodriguez",
              phone: "965748392",
-             city_id: cities_rm.sample)
+             city_id: cities_rm.sample.id)
 
 puts "Creating freights"
 Freight.create!(latitude: -33.444112169031214,
@@ -81,7 +84,7 @@ Freight.create!(latitude: -33.444112169031214,
                 receiver_name: "Camilo Moreno",
                 receiver_phone: "962671728",
                 round_trip: false,
-                user_id: user_2)
+                user_id: user_2.id)
 
 freight = Freight.create!(latitude: -70.91123,
                 longitude: -53.15812,
@@ -94,7 +97,7 @@ freight = Freight.create!(latitude: -70.91123,
                 receiver_name: "Alejandro Espina",
                 receiver_phone: "93342432",
                 round_trip: true,
-                user_id: user_2)
+                user_id: user_2.id)
 
 puts "Creating vehicles"
 
@@ -105,8 +108,8 @@ vehicle = Vehicle.create!(longitude: -70.55537333505826,
                           description: "Fletes en la zona oriente de Santiago",
                           covered: false,
                           load_capacity: 1500,
-                          user_id: user_1,
-                          city_id: cities_rm.sample,
+                          user_id: user_1.id,
+                          city_id: cities_rm.sample.id,
                           other_regions: true,
                           other_cities: true,
                           active: true)
@@ -120,8 +123,8 @@ vehicle = Vehicle.create!(longitude: -70.642254030843,
                           description: "Fletes económicos en todo Santiago",
                           covered: false,
                           load_capacity: 1000,
-                          user_id: user_3,
-                          city_id: cities_rm.sample,
+                          user_id: user_3.id,
+                          city_id: cities_rm.sample.id,
                           other_regions: false,
                           other_cities: false,
                           active: true)
@@ -135,8 +138,8 @@ vehicle_1 = Vehicle.create!(longitude: -70.60416478421571,
                           description: "Fletes en Providencia",
                           covered: true,
                           load_capacity: 1500,
-                          user_id: user_2,
-                          city_id: cities_rm.sample,
+                          user_id: user_2.id,
+                          city_id: cities_rm.sample.id,
                           other_regions: true,
                           other_cities: true,
                           active: true)
@@ -148,8 +151,8 @@ puts "Creating quotes"
 Quote.create!(status: 0,
               amount: 15_000,
               comment: "Servicio garantizado",
-              vehicle_id: vehicle_1,
-              freight_id: freight,
-              user_id: user_3)
+              vehicle_id: vehicle_1.id,
+              freight_id: freight.id,
+              user_id: user_3.id)
 
 puts "Process completed"
