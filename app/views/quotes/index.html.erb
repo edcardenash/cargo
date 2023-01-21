@@ -2,7 +2,7 @@
 <h2>Listado de cotizaciones</h2>
 <br>
   <% @quotes.each do |quote| %>
-    <% if user_signed_in? %>
+    <% if current_user.id == quote.user_id %>
       <div class="card-product m-4">
         <div class="row">
           <h5>Cotización Nº - <%= quote.id %></h5>
@@ -15,6 +15,8 @@
           <p>Tipo de vehículo: <%= quote.vehicle.vehicle_type %></p>
           <p>Comentario: <%= quote.comment %></p>
         </div>
+        <%= link_to "Editar", edit_quote_path(quote), class: "btn btn-outline-warning mt-3" %>
+        <%= link_to 'Eliminar', quote_path(quote), class: "btn btn-outline-danger mt-3", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
       </div>
 
     <% end  %>
@@ -24,7 +26,7 @@
     </div>
     <div class="row">
       <% policy(quote).destroy? %>
-        <%= link_to 'Eliminar', freight_quote_path(quote), class: "btn btn-outline-danger mt-3", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
+
       <% end %>
     </div>
   <% end  %>
