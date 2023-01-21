@@ -48,7 +48,7 @@ user_1 = User.create!(email: "enrique.altamiros@gmail.com",
              first_name: "Enrique",
              last_name: "Altamirano",
              phone: "912345678",
-             city_id: cities_rm.sample.id)
+             city: cities_rm.sample)
 
 user_2 = User.create!(email: "ecardenas@uc.cl",
              password: "123456",
@@ -56,21 +56,21 @@ user_2 = User.create!(email: "ecardenas@uc.cl",
              last_name: "Cardenas",
              address: "Dalmacia 1268",
              phone: "987654321",
-             city_id: cities_rm.sample.id)
+             city: cities_rm.sample)
 
 user_3 = User.create!(email: "kemack83@gmail.com",
              password: "123456",
              first_name: "Kevin",
              last_name: "Mackinlay",
              phone: "981827374",
-             city_id: cities_rm.sample.id)
+             city: cities_rm.sample)
 
 user_4 = User.create!(email: "rodriguezgon22@gmail.com",
              password: "123456",
              first_name: "Gonzalo",
              last_name: "Rodriguez",
              phone: "965748392",
-             city_id: cities_rm.sample.id)
+             city: cities_rm.sample)
 
 puts "Creating freights"
 Freight.create!(latitude: -33.444112169031214,
