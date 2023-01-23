@@ -2,7 +2,12 @@ class FreightsController < ApplicationController
   before_action :set_freight, only: [:show, :edit, :update, :destroy]
 
   def index
-    @freights = policy_scope(Freight)
+    if params[:vehicle_id]
+      filtrado = Freight.where(user_id: current_user.id)
+      @freights = policy_scope(filtrado)
+    else
+      @freights = policy_scope(Freight)
+    end
   end
 
   def show

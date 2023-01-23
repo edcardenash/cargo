@@ -1,6 +1,5 @@
 
-<div class="margin_top banner-class">
-
+<div class="banner-class">
   <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -9,22 +8,28 @@
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
-        <%# <img src="../images/banner/repartidor_sonriente_carGo.webp" class="d-block w-100" alt="repartidor1"> %>
-        <%= image_tag "banner/repartidor_sonriente_carGo.webp", class: "image_banner" %>
+        <div class="overlay-image">
+          <%= image_tag "banner/furgon-reparto-cargo.jpg", class: "image_banner" %>
+        </div>
         <div class="carousel-caption d-none d-md-block">
-          <h5>CarGO</h5>
+          <%= image_tag "logo.png", class: 'w-25'  %>
+          <br>
           <p>Encontrá a tu transportista ideal</p>
         </div>
       </div>
       <div class="carousel-item">
-        <%= image_tag "banner/furgon_chico_carGo.jpg", class: "image_banner" %>
+        <div class="overlay-image">
+          <%= image_tag "banner/repartidor-ganando-dinero-porque-trabaja-con-cargo.jpg", class: "image_banner" %>
+        </div>
         <div class="carousel-caption d-none d-md-block">
           <h5>El flete ideal para tu negocio</h5>
           <p>Hacé crecer tu empresa ofreciendo envíos de calidad</p>
         </div>
       </div>
       <div class="carousel-item">
-        <%= image_tag "banner/repartidor_camioneta_carGo.webp", class: "image_banner" %>
+        <div class="overlay-image">
+          <%= image_tag "banner/pareja-empacando-feliz-porque-usan-cargo.jpg", class: "image_banner" %>
+        </div>
         <div class="carousel-caption d-none d-md-block">
           <h5>Encontrá un CarGO para tu mudanza</h5>
           <p>Contamos con un transportista a la medida de tus necesidades</p>
@@ -41,126 +46,70 @@
     </button>
   </div>
 </div>
+<!-- Search-bar-->
 <div class="container">
   <br>
   <br>
-  <%= render "shared/search", class: "nav-link barra-de-busqueda" %>
+  <%= render "shared/search", class: "nav-link" %>
   <br>
   <br>
 </div>
-
 <!-- Services-->
-<div  class="container page-section service-card" id="services">
+<div  class="service-card p-5" id="services">
   <div class="container">
     <div class="text-center">
-      <h2 class="section-heading text-uppercase">Servicios CarGO</h2>
+      <h2 class="section-heading text-uppercase">¿Cómo funciona?</h2>
       <br>
     </div>
     <div class="row text-center">
       <div class="col-md-4">
-        <%# <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-shopping-cart fa-stack-1x fa-inverse"></i>
-        </span> %>
-        <img class="service-icon" src="../images/services-logo/icono_servicios_seguridad.png" alt="security-logo">
-        <h4 class="my-3">SEGURIDAD</h4>
-        <p class="text-muted">Al registrarse en CarGO la base de datos almacena los datos del usuario para poder brindarle seguridad tanto a transportistas como a los que solicitan su servicio</p>
+        <%= image_tag "services_logo/notebook.png", class: "service-icon w-25" %>
+        <h4 class="my-3">SOLICITA</h4>
+        <p class="text-light">Envía una solicitud global o al transportista de tu preferencia, indicando el detalle de lo que quieres transportar, fotografías, fecha, dirección de inicio y dirección final.</p>
       </div>
       <div class="col-md-4">
-        <%# <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-laptop fa-stack-1x fa-inverse"></i>
-        </span> %>
-        <img class="service-icon" src="../images/services-logo/icono_servicios_gps1.png" alt="gps-logo">
-        <h4 class="my-3">GPS</h4>
-        <p class="text-muted">En CarGO te damos la posibilidad de rastrear y seguir tu encomienda en tiempo real.</p>
+        <%= image_tag "services_logo/wheel.png", class: "service-icon w-25" %>
+        <h4 class="my-3">ELIGE</h4>
+        <p class="text-light">Los transportistas evaluarán tu solicitud y enviarán las cotizaciones, para que tú puedas elegir la opción más conveniente a tu necesidad.</p>
       </div>
       <div class="col-md-4">
-        <%# <span class="fa-stack fa-4x">
-          <i class="fas fa-circle fa-stack-2x text-primary"></i>
-          <i class="fas fa-lock fa-stack-1x fa-inverse"></i>
-        </span> %>
-        <img class="service-icon" src="../images/services-logo/icono_servicios_buenprecio.png" alt="precio-logo">
-        <h4 class="my-3">BUEN PRECIO</h4>
-        <p class="text-muted">CarGO trabaja para que puedas llevar lo que desees a destino al mejor precio del mercado.</p>
+        <%= image_tag "services_logo/relax.png", class: "service-icon w-25" %>
+        <h4 class="my-3">DESPREOCÚPATE</h4>
+        <p class="text-light">Los transportistas seleccionados han sido evaluados cuidadosamente en cuanto a sus antecedentes y han demostrado ser confiables y capaces de brindar el mejor servicio posible para garantizar la seguridad y el bienestar de tus bienes.</p>
       </div>
     </div>
   </div>
 </div>
-<br>
-
 <%# Vehicles grid %>
-<div class="container transportistas">
-  <div  class="row background-home-grid">
-    <h2 class="section-heading text-uppercase text-center">Últimos Transportistas</h2>
-    <br>
-    <br>
-    <div class="cards">
-      <% @vehicles.each do |vehicle| %>
-        <div class="card-trip" id="card-show">
-          <% if vehicle.photo.attached? %>
-            <%= cl_image_tag vehicle.photo.key %>
-          <% end %>
-          <div class="card-trip-infos">
-            <div>
-              <h4><%= vehicle.vehicle_type %></h4>
-              <h6>Capacidad de carga: <strong><%= vehicle.load_capacity %></strong>Kg.</h6>
-              <h6>Cerrado: <%= vehicle.covered ? "Si" : "No" %></h6>
-              <p><%= vehicle.description.truncate(50) %></p>
-              <%= link_to 'Contactar', vehicle, class: "btn btn-outline-success btn-sm mt-1"%>
+<div class="p-5 carriers">
+  <div class="container">
+    <div  class="row">
+      <h2 class="section-heading text-uppercase text-center">top de transportistas</h2>
+        <div class="container p-2">
+        <div class="cards">
+          <% @vehicles.each do |vehicle| %>
+            <div class="card-trip" id="card-show">
+              <% if vehicle.photo.attached? %>
+                <%= cl_image_tag vehicle.photo.key %>
+              <% end %>
+              <div class="card-trip-infos carriers-info">
+                <div>
+                  <h4><%= vehicle.vehicle_type %></h4>
+                  <div class="pt-2">
+                    <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg.</h6>
+                    <h6>Rating:  <strong><%= vehicle.rating %></strong></h6>
+                    <h6>Cerrado: <strong><%= vehicle.covered ? "Si" : "No" %></strong></h6>
+                    <p><%= vehicle.description.truncate(50) %></p>
+                  </div>
+                  <div class="pt-2">
+                    <%= link_to 'Contactar', vehicle, class: "btn btn-success boton-login btn-sm mt-1"%>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>
-<br>
-
-<%# Contactanos %>
-<section  class="container page-section container p-1" id="contact">
-  <div>
-    <br>
-    <div class="text-center">
-    <br>
-      <h2 class="section-heading text-uppercase">Contáctanos</h2>
-      <h3 class="section-subheading text-muted">Déjanos un mensaje</h3>
-    </div>
-
-    <form id="contactForm" data-sb-form-api-token="API_TOKEN">
-      <div class="row align-items-stretch mb-5 centrar-contacto">
-        <div class="col-md-5 contenedores-contacto">
-            <div class="form-group">
-                <!-- Name input-->
-                <input class="form-control" id="name" type="text" placeholder="Tu nombre *" data-sb-validations="required" />
-                <div class="invalid-feedback" data-sb-feedback="name:required">Ingrese su nombre y apellido</div>
-            </div>
-            <div class="form-group">
-                <!-- Email address input-->
-
-                <input class="form-control" id="email" type="email" placeholder="Tu email *" data-sb-validations="required,email" />
-                <div class="invalid-feedback" data-sb-feedback="email:required">Ingrese su correo electrónico</div>
-                <div class="invalid-feedback" data-sb-feedback="email:email">Dirección de correo electrónico no válida.</div>
-            </div>
-            <div class="form-group mb-md-0">
-                <!-- Phone number input-->
-                <input class="form-control" id="phone" type="tel" placeholder="Tu telefono *" data-sb-validations="required" />
-                <div class="invalid-feedback" data-sb-feedback="phone:required">Ingrese su número de contacto</div>
-            </div>
-        </div>
-        <div class="col-md-5 contenedores-contacto">
-          <div class="form-group form-group-textarea mb-md-0">
-            <!-- Message input-->
-
-            <textarea class="form-control" id="message" placeholder="Mensaje *" data-sb-validations="required"></textarea>
-
-            <div class="invalid-feedback" data-sb-feedback="message:required">Ingrese aquí su mensaje.</div>
-          </div>
-        </div>
-      </div>
-      <!-- Submit Button-->
-      <div class="text-center"><button class="btn btn-warning btn-xl text-uppercase disabled mb-3" id="submitButton" type="submit">ENVÍANOS EL MENSAJE</button></div>
-    </form>
-
-  </div>
-</section>
