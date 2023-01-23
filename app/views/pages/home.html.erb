@@ -87,7 +87,7 @@
       <h2 class="section-heading text-uppercase text-center">top de transportistas</h2>
         <div class="container p-2">
         <div class="cards">
-          <% @vehicles.each do |vehicle| %>
+          <% @vehicles.sort_by { |vehicle| [-vehicle.rating] }.take(6).each do |vehicle| %>
             <div class="card-trip" id="card-show">
               <% if vehicle.photo.attached? %>
                 <%= cl_image_tag vehicle.photo.key %>
