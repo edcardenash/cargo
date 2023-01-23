@@ -18,6 +18,16 @@
   color: rgb(255, 255, 255
 )
 }
+
+.nav-link:hover {
+  color: rgb(249, 87, 50);
+}
+
 .boton-login{
+  border-radius: 5px;
   color: rgb(255, 255, 255);
+}
+
+.boton-login:hover{
+  color: rgb(47, 49, 49);
 }
