@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 
 <div class="domingo mg-navbar">
   <div class="card col-12">
+=======
+<div class="container">
+<div class="row">
+  <div class="col-12">
+>>>>>>> 106b62865757f02d2328b8c4ce09b5a80470e287
     <% @vehicles.each do |vehicle| %>
       <% if user_signed_in? %>
         <% if vehicle.user_id != current_user.id %>
@@ -39,4 +45,5 @@
       <% end %>
     <% end %>
   </div>
+</div>
 </div>
