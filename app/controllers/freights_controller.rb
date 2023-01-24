@@ -69,7 +69,7 @@ class FreightsController < ApplicationController
   private
 
   def freights_params
-    params.require(:freight).permit(:address, :description, :start_date, :receiver_name, :receiver_phone, :round_trip, :latitude, :longitude, :end_address, :end_latitude, :end_logitude)
+    params.require(:freight).permit(:address, :description, :start_date, :receiver_name, :receiver_phone, :round_trip, :latitude, :longitude, :end_address, :end_latitude, :end_logitude,  photos: [])
   end
 
   def set_freight
