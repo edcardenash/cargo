@@ -1,4 +1,4 @@
-<div class="container">
+    <div class="container">
   <h1 class="mt-4">Nueva solicitud de transporte</h1>
   <%= simple_form_for @freight do |f| %>
     <%= f.input :description, label: "Descripción", as: :text  %>
@@ -9,6 +9,7 @@
     <%= f.label :start_date, "Fecha"%>
     <%= f.date_field :start_date ,min_max: true, min: Date.today, input_html: {class: "mb-4" }, required: true, style: "width: 100%" %>
     <%= f.input :round_trip, label: "¿Ida y vuelta?"  %>
+     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit,"Publicar", class: "btn btn-success"%>
   <% end %>
 </div>
