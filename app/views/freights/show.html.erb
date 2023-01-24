@@ -10,6 +10,10 @@
         <li class="list-group-item">Origen: <%= @freight.address %></li>
         <li class="list-group-item">Destino: <%= @freight.end_address %></li>
         <li class="list-group-item">Fecha: <%= @freight.end_address %></li>
+
+        <% @freight.photos.each do |photo| %>
+          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+        <% end %>
       </ul>
 
       <% if user_signed_in? %>
