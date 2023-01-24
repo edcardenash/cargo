@@ -1,10 +1,10 @@
 
-<div class="row">
-  <div class="col-12">
+<div class="domingo mg-navbar">
+  <div class="card col-12">
     <% @vehicles.each do |vehicle| %>
       <% if user_signed_in? %>
         <% if vehicle.user_id != current_user.id %>
-          <div class="card-product m-4">
+          <div class="card-product col-5 m-4">
             <% if vehicle.photo.attached? %>
               <%= cl_image_tag vehicle.photo.key %>
             <% end %>
@@ -21,7 +21,7 @@
           </div>
         <% end %>
       <% else %>
-        <div class="card-product m-4">
+        <div class="card-product col-5 m-4">
           <% if vehicle.photo.attached? %>
             <%= cl_image_tag vehicle.photo.key %>
           <% end %>
