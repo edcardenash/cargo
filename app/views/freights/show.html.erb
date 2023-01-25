@@ -2,7 +2,15 @@
   <h1 class="mt-4 text-center">Detalle de transporte en <%=@freight.address%></h1>
   <div class="row">
     <div class="col-6">
-
+      <div class="mb-4">
+        <% if user_signed_in? %>
+          <% if @freight.user_id != current_user.id %>
+            <%= link_to "Cotizar", new_freight_quote_path(@freight), class: "btn btn-primary" %>
+          <% else %>
+            <%= link_to "Ver cotizaciones", freight_quotes_path(@freight), class: "btn btn-primary" %>
+          <% end %>
+        <% end %>
+      </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Descripción: <%= @freight.description %></li>
         <li class="list-group-item">Person que recepciona: <%= @freight.receiver_name %></li>
@@ -10,20 +18,12 @@
         <li class="list-group-item">Origen: <%= @freight.address %></li>
         <li class="list-group-item">Destino: <%= @freight.end_address %></li>
         <li class="list-group-item">Fecha: <%= @freight.end_address %></li>
-
-        <% @freight.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-        <% end %>
+        <div id="freight-gallery" data-controller="gallery" style="max-width:80%">
+          <% @freight.photos.each do |photo| %>
+            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill%>
+          <% end %>
+        </div>
       </ul>
-
-      <% if user_signed_in? %>
-        <% if @freight.user_id != current_user.id %>
-          <%= link_to "Cotizar", new_freight_quote_path(@freight), class: "btn btn-primary" %>
-        <% else %>
-          <%= link_to "Ver cotizaciones", freight_quotes_path(@freight), class: "btn btn-primary" %>
-        <% end %>
-      <% end %>
-
     </div>
     <div class="col-6">
       <div id="mapshow" class="mt-4" style="width: 100%; height: 550px;"
