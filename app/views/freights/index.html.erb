@@ -11,9 +11,12 @@
   <% @freights.each do |freight| %>
     <div class="card m-2 shadow-sm p-3 mb-5 bg-body rounded" style="width: 18rem;">
       <div class="row">
-        <%= image_tag "logo-bn.png", class: "card-img-top" %>
+            <%
+            puts "freight"
+            puts freight.photos.first %>
         <div class="card-body">
-          <h5 class="card-title"><%= freight.start_date  %></h5>
+          <h5 class="card-title"><%= freight.address%></h5>
+          <div><%= freight.start_date.strftime('%m/%d/%Y')  %></div>
           <p class="card-text"><%= freight.description  %></p>
         </div>
       </div>
