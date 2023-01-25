@@ -1,42 +1,56 @@
 <div class="container">
-  <div class="row mt-4 align-items-center">
-    <div class="col-6">
-      <h3 class="text-left"><strong><%= @vehicle.vehicle_type.capitalize %></strong></h3>
-    </div>
-    <div class="col-6">
-      <div class="row">
-        <div class="col-3">
-          <p><i class="fa-regular fa-comment-dots"></i> <%= @vehicle.rating %> reseñas</p>
-        </div>
-        <div class="col-3">
-          <p><i class="<%= @vehicle.rating == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i> <%= @vehicle.rating %></p>
-        </div>
-        <div class="col-6">
-          <p><i class="fa-solid fa-location-dot"></i> <%= @vehicle.city.name %></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <hr>
   <div class="row mt-2">
     <div class="col-6 p-2">
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">Tipo de transporte: <%= @vehicle.vehicle_type %></li>
-        <li class="list-group-item">Capacidad de carga: <%= @vehicle.load_capacity.to_i %> Kg</li>
-        <li class="list-group-item">¿Está cubierto?: <%= @vehicle.covered ? "Si" : "No" %></li>
-        <li class="list-group-item">Descripción: <%= @vehicle.vehicle_type %></li>
-        <li class="list-group-item">Ciudad base de operaciones: <%= @city_name  %></li>
-        <li class="list-group-item">Presta servicio en otras ciudades: <%= @vehicle.other_cities ? "Si" : "No"  %></li>
-        <li class="list-group-item">Presta servicio en otras regiones: <%= @vehicle.other_regions ? "Si" : "No"  %></li>
-      </ul>
-      <div class="row">
-      <% if policy(@vehicle).edit? %>
-          <%= link_to "Editar", edit_vehicle_path(@vehicle), class: "btn btn-outline-warning mt-3" %>
+      <div class="row align-items-center carrier-show radius-top mx-0 p-1">
+        <div class="col-6 p-3">
+          <h3 class="text-left">Estás viendo los detalles de <strong><%= @vehicle.alias %></strong></h3>
+        </div>
+        <div class="col-2"></div>
+        <div class="col-4 p-3">
+          <div class="row">
+            <p><i class="fa-regular fa-comment-dots"></i>&nbsp; <%= @vehicle.reviews.count %> reseñas</p>
+            <p><i class="<%= @vehicle.rating == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= @vehicle.rating %></p>
+            <p><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @vehicle.city.name %></p>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <% policy(@vehicle).destroy? %>
-          <%= link_to 'Eliminar', vehicle_path(@vehicle), class: "btn btn-outline-danger mt-3", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
-        <% end %>
+      <div class="row mx-0">
+        <% if policy(@vehicle).edit? %>
+            <%= link_to "Editar", edit_vehicle_path(@vehicle), class: "btn btn-outline-warning" %>
+        </div>
+        <div class="row mx-0">
+          <% policy(@vehicle).destroy? %>
+            <%= link_to 'Eliminar', vehicle_path(@vehicle), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
+          <% end %>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Alias:</strong> <%= @vehicle.alias %></li>
+        <li class="list-group-item"><strong>Tipo de transporte:</strong> <%= @vehicle.vehicle_type %></li>
+        <li class="list-group-item"><strong>Capacidad de carga:</strong> <%= @vehicle.load_capacity.to_i %> Kg</li>
+        <li class="list-group-item"><strong>¿Está cubierto?:</strong> <%= @vehicle.covered ? "Si" : "No" %></li>
+        <li class="list-group-item"><strong>Descripción:</strong> <%= @vehicle.description %></li>
+        <li class="list-group-item"><strong>Ciudad base de operaciones:</strong> <%= @vehicle.city.name %></li>
+        <li class="list-group-item"><strong>Presta servicio en otras ciudades:</strong> <%= @vehicle.other_cities ? "Si" : "No"  %></li>
+        <li class="list-group-item"><strong>Presta servicio en otras regiones:</strong> <%= @vehicle.other_regions ? "Si" : "No"  %></li>
+      </ul>
+      <div class="row mx-0 p-2 carrier-show radius-bottom">
+        <% unless @vehicle.reviews.count.zero? %>
+          <h4 class="mt-4">Reseñas</h4>
+          <% @vehicle.reviews.each do |review|%>
+            <figure>
+              <blockquote class="blockquote">
+                <p><%= review.comment %></p>
+              </blockquote>
+              <figcaption class="blockquote-footer">
+                <%= review.user.first_name%> <cite title="rating white">
+                <p><i class="<%= review.rating == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>
+                <%= review.rating %></p></cite>
+              </figcaption>
+            </figure>
+          <% end %>
+        <% else %>
+          <h4>Se el primero en reseñar, contáctalo y contrata sus servicios.</h4>
+        <%end%>
       </div>
     </div>
     <div class="col-6 p-2">
