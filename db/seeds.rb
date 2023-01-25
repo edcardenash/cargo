@@ -87,6 +87,7 @@ Freight.create!(latitude: -33.444112169031214,
                 start_date: DateTime.now + 15,
                 receiver_name: "Camilo Moreno",
                 receiver_phone: "962671728",
+                status: "active",
                 round_trip: false,
                 user_id: user2.id)
 
@@ -100,6 +101,7 @@ freight = Freight.create!(latitude: -70.91123,
                           start_date: DateTime.now + 15,
                           receiver_name: "Alejandro Espina",
                           receiver_phone: "93342432",
+                          status: "active",
                           round_trip: true,
                           user_id: user2.id)
 
