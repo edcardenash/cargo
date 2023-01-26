@@ -77,19 +77,19 @@ user4 = User.create!(email: "rodriguezgon22@gmail.com",
                      city: cities_array.sample)
 
 puts "Creating freights"
-Freight.create!(latitude: -33.444112169031214,
-                longitude: -70.61500992121303,
-                end_latitude: -33.38015931294505,
-                end_logitude: -70.54204622760442,
-                address: "Ricardo Lyon 3600",
-                end_address: "Escandinavia 1233",
-                description: "Traslado de sofa y refrigerador desde ñuñoa a las condes",
-                start_date: DateTime.now + 15,
-                receiver_name: "Camilo Moreno",
-                receiver_phone: "962671728",
-                status: "active",
-                round_trip: false,
-                user_id: user2.id)
+
+freight0 = Freight.create!(latitude: -33.444112169031214,
+                           longitude: -70.61500992121303,
+                           end_latitude: -33.38015931294505,
+                           end_logitude: -70.54204622760442,
+                           address: "Ricardo Lyon 3600",
+                           end_address: "Escandinavia 1233",
+                           description: "Traslado de sofa y refrigerador desde ñuñoa a las condes",
+                           start_date: DateTime.now + 15,
+                           receiver_name: "Camilo Moreno",
+                           receiver_phone: "962671728",
+                           round_trip: false,
+                           user_id: user2.id)
 
 freight = Freight.create!(latitude: -70.91123,
                           longitude: -53.15812,
@@ -103,7 +103,7 @@ freight = Freight.create!(latitude: -70.91123,
                           receiver_phone: "93342432",
                           status: "active",
                           round_trip: true,
-                          user_id: user2.id)
+                          user_id: user1.id)
 
 puts "Creating vehicles"
 
@@ -117,7 +117,8 @@ vehicle = Vehicle.create!(license_plate: "AABB11",
                           other_regions: true,
                           other_cities: true,
                           active: true,
-                          rating: 4.1)
+                          rating: 4.1,
+                          alias: "El Camello")
 vehicle.photo.attach(io: URI.open("https://res.cloudinary.com/dibhw3luk/image/upload/v1673703551/camion-liviano_gwszqr.jpg"), filename: 'camion-liviano.jpg', content_type: "image/png")
 vehicle.save
 
@@ -131,7 +132,8 @@ vehicle = Vehicle.create!(license_plate: "CCDD22",
                           other_regions: false,
                           other_cities: false,
                           active: true,
-                          rating: 4.7)
+                          rating: 4.7,
+                          alias: "La Llama")
 vehicle.photo.attach(io: URI.open("https://res.cloudinary.com/dibhw3luk/image/upload/v1673703551/pick-up_qwvbem.jpg"), filename: 'pick-up.jpg')
 vehicle.save
 
@@ -144,7 +146,8 @@ vehicle = Vehicle.create!(description: "Fletes baratos",
                           other_regions: true,
                           other_cities: true,
                           active: true,
-                          rating: 4.8)
+                          rating: 4.8,
+                          alias: "El Tanque")
 vehicle.photo.attach(io: URI.open("https://www.hino.cl/hino/site/artic/20210217/imag/foto_0000001820210217134541/XZU616_Galeria_1.jpg"), filename: 'camion.jpg')
 vehicle.save
 
@@ -158,7 +161,8 @@ vehicle = Vehicle.create!(license_plate: "AAWW70",
                           other_regions: true,
                           other_cities: true,
                           active: true,
-                          rating: 4.0)
+                          rating: 4.0,
+                          alias: "La Hormiga")
 vehicle.photo.attach(io: URI.open("https://latam-editorial.pxcrush.net/chileautos/general/editorial/corsa-8-d.jpg"), filename: 'automovil.jpg')
 vehicle.save
 
@@ -171,7 +175,8 @@ vehicle1 = Vehicle.create!(license_plate: "AQWB66",
                            city: cities_array.sample,
                            other_regions: true,
                            other_cities: true,
-                           rating: 5.0)
+                           rating: 5.0,
+                           alias: "El Bromas")
 vehicle1.photo.attach(io: URI.open("https://res.cloudinary.com/dibhw3luk/image/upload/v1673703551/camion-liviano-cerrado_pntugb.jpg"), filename: 'camion-liviano-cerrado.jpg')
 vehicle1.save
 
@@ -185,7 +190,8 @@ vehicle = Vehicle.create!(license_plate: "GTER43",
                           other_regions: false,
                           other_cities: true,
                           active: true,
-                          rating: 4.2)
+                          rating: 4.2,
+                          alias: "Zapato")
 vehicle.photo.attach(io: URI.open("https://s3-sa-east-1.amazonaws.com/amotor.images/images/vehiculos/WhatsApp%20Image%202022-01-08%20at%2019-54-38%20(5).jpeg"), filename: 'mini-camion-cerrado.jpg')
 vehicle.save
 
@@ -198,31 +204,54 @@ vehicle = Vehicle.create!(description: "Transporte a todas las regiones",
                           other_regions: true,
                           other_cities: true,
                           active: true,
-                          rating: 3.5)
+                          rating: 3.5,
+                          alias: "Optimus")
 vehicle.photo.attach(io: URI.open("https://www.hino.cl/hino/site/artic/20210218/imag/foto_0000001120210218112014/FD1121_Motor_potente_para_un_trabajo_continuo.jpg"), filename: 'camion-cerrado.jpg')
 vehicle.save
 
-vehicle = Vehicle.create!(license_plate: "CCDD22",
-                          vehicle_type: "Camioneta",
-                          description: "Fletes en todo Santiago",
-                          covered: true,
-                          load_capacity: 1000,
-                          user_id: user4.id,
-                          city: cities_array.sample,
-                          other_regions: false,
-                          other_cities: true,
-                          active: true,
-                          rating: 3.9)
-vehicle.photo.attach(io: URI.open("https://acnews.blob.core.windows.net/imgnews/medium/NAZ_11c6a504359c4419b6aa818f14246ada.jpg"), filename: 'pick-up.jpg')
-vehicle.save
+vehicle8 = Vehicle.create!(license_plate: "CCDD22",
+                           vehicle_type: "Camioneta",
+                           description: "Fletes en todo Santiago",
+                           covered: true,
+                           load_capacity: 1000,
+                           user_id: user4.id,
+                           city: cities_array.sample,
+                           other_regions: false,
+                           other_cities: true,
+                           active: true,
+                           rating: 3.9,
+                           alias: "Doña")
+vehicle8.photo.attach(io: URI.open("https://acnews.blob.core.windows.net/imgnews/medium/NAZ_11c6a504359c4419b6aa818f14246ada.jpg"), filename: 'pick-up.jpg')
+vehicle8.save
 
 puts "Creating quotes"
 
-Quote.create!(status: 0,
-              amount: 15_000,
-              comment: "Servicio garantizado",
-              vehicle_id: vehicle1.id,
-              freight_id: freight.id,
-              user_id: user3.id)
+quote1 = Quote.create!(status: 0,
+                       amount: 15_000,
+                       comment: "Servicio garantizado",
+                       vehicle_id: vehicle1.id,
+                       freight_id: freight.id,
+                       user_id: user3.id)
+
+quote2 = Quote.create!(status: 0,
+                       amount: 25_000,
+                       comment: "Te entregaremos todo a tiempo",
+                       vehicle_id: vehicle8.id,
+                       freight_id: freight0.id,
+                       user_id: user4.id)
+
+puts "Creating reviews"
+
+Review.create!(rating: 5.0,
+               quote_id: quote1.id,
+               user_id: user1.id,
+               vehicle_id: vehicle1.id,
+               comment: "Excelente servicio")
+
+Review.create!(rating: 3.5,
+               quote_id: quote2.id,
+               user_id: user2.id,
+               vehicle_id: vehicle8.id,
+               comment: "Todo bien")
 
 puts "Process completed"
