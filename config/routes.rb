@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root to: "pages#home"
   resources :vehicles do
     resources :freights
+    resources :reviews
     collection do
       get "my_vehicles"
     end
