@@ -55,9 +55,30 @@
     </div>
     <div class="col-6 p-2">
       <%= cl_image_tag @vehicle.photo.key, class: 'w-100 card-trip', crop: :fill %>
-      <div class="row pt-2 m-0">
-        <%= link_to 'Solicitar cotización', new_vehicle_freight_path(@vehicle), class: "btn btn-success boton-login btn-sm mt-1"%>
-      </div>
+      <% if user_signed_in? %>
+        <% if current_user.id != @vehicle.user_id %>
+          <div class="row pt-2 m-0">
+            <%= link_to 'Solicitar cotización', new_vehicle_freight_path(@vehicle), class: "btn btn-success boton-login btn-sm mt-1"%>
+          </div>
+          <% if @vehicle.quotes.any? %>
+            <% @freights.each do |freight| %>
+              <% freight.user_id %>
+              <% if current_user.id == freight.user_id %>
+                <div class="row mx-0 p-2 carrier-show radius-bottom">
+                    <h2>Agregar comentarios</h2>
+                    <%= simple_form_for([@vehicle, @review]) do |f| %>
+                    <%= f.input :comment %>
+                    <%= f.input :rating %>
+                    <%= f.submit "Agregar un review", class: "btn btn-primary" %>
+                    <% end %>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+
     </div>
   </div>
 </div>

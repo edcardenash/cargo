@@ -3,6 +3,7 @@ class Freight < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   has_many_attached :photos
+  has_many :quotes
 
   def destiny_address(destiny)
     Geocoder.search(destiny)
