@@ -5,7 +5,7 @@
 }
 
 .navbar-lewagon-white {
-  background-color: rgb(47, 49, 49);
+  background-color: rgba(47, 49, 49, .7);
 }
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
@@ -28,5 +28,6 @@
 }
 
 .boton-login:hover{
-  color: rgb(47, 49, 49);
+  color: white;
+  font-weight: bold;
 }

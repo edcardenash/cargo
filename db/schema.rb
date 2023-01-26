@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_23_003251) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_25_025005) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -97,14 +97,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_003251) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.text "commnent"
     t.float "rating"
     t.bigint "quote_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "vehicle_id", null: false
+    t.text "comment"
     t.index ["quote_id"], name: "index_reviews_on_quote_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+    t.index ["vehicle_id"], name: "index_reviews_on_vehicle_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -139,6 +141,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_003251) do
     t.boolean "other_cities"
     t.boolean "active"
     t.float "rating"
+    t.string "alias"
     t.index ["city_id"], name: "index_vehicles_on_city_id"
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
@@ -153,6 +156,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_23_003251) do
   add_foreign_key "regions", "countries"
   add_foreign_key "reviews", "quotes"
   add_foreign_key "reviews", "users"
+  add_foreign_key "reviews", "vehicles"
   add_foreign_key "users", "cities"
   add_foreign_key "vehicles", "cities"
   add_foreign_key "vehicles", "users"

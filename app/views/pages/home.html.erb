@@ -8,12 +8,12 @@
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="overlay-image">
-          <%= image_tag "banner/furgon-reparto-cargo.jpg", class: "image_banner" %>
+          <%= image_tag "banner/furgon-reparto-cargo.jpg", class: "image_banner img-fluid" %>
         </div>
-        <div class="carousel-caption d-none d-md-block">
+        <div class="carousel-caption logobanner d-none d-md-block">
           <%= image_tag "logo.png", class: 'w-25'  %>
           <br>
-          <p>Encontrá a tu transportista ideal</p>
+          <h5 class="mt-4">Encontrá a tu transportista ideal</h5>
         </div>
       </div>
       <div class="carousel-item">
@@ -21,8 +21,9 @@
           <%= image_tag "banner/repartidor-ganando-dinero-porque-trabaja-con-cargo.jpg", class: "image_banner" %>
         </div>
         <div class="carousel-caption d-none d-md-block">
-          <h5>El flete ideal para tu negocio</h5>
+          <h2>El flete ideal para tu negocio</h2>
           <p>Hacé crecer tu empresa ofreciendo envíos de calidad</p>
+            <%=link_to "Agrega tu transporte", new_vehicle_path, class:" btn btn-success boton-login" %>
         </div>
       </div>
       <div class="carousel-item">
@@ -30,8 +31,9 @@
           <%= image_tag "banner/pareja-empacando-feliz-porque-usan-cargo.jpg", class: "image_banner" %>
         </div>
         <div class="carousel-caption d-none d-md-block">
-          <h5>Encontrá un CarGO para tu mudanza</h5>
+          <h2>Encontrá un CarGO para tu mudanza</h2>
           <p>Contamos con un transportista a la medida de tus necesidades</p>
+           <%=link_to "Busca tu flete", new_freight_path, class:" btn btn-success boton-login" %>
         </div>
       </div>
     </div>

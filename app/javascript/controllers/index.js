@@ -12,3 +12,6 @@ application.register("mapshow", MapController)
 
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
+
+import GalleryController from "./gallery_controller"
+application.register("gallery", GalleryController)

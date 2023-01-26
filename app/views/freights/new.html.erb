@@ -9,6 +9,7 @@
     <%= f.label :start_date, "Fecha"%>
     <%= f.date_field :start_date ,min_max: true, min: Date.today, input_html: {class: "mb-4" }, required: true, style: "width: 100%" %>
     <%= f.input :round_trip, label: "¿Ida y vuelta?"  %>
+     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
     <%= f.button :submit,"Publicar", class: "btn btn-success"%>
   <% end %>
 </div>
