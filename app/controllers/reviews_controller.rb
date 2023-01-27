@@ -1,46 +1,35 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_review, only: [:destroy]
 
   def index
-    @reviews = Review.all
-  end
-
-  def show
-  end
-
-  def new
-    @review = Review.new
+    @reviews = policy_scope(Review)
   end
 
   def create
     @review = Review.new(review_params)
+    @vehicle = Vehicle.find(params[:vehicle_id])
+    @review.vehicle_id = @vehicle.id
+    @review.user_id = current_user.id
+    @vehicle.quotes.each do |quote|
+      if quote.freight.user_id == current_user.id
+        @freights_ids = []
+        @freights_ids << quote.freight_id
+      end
+    end
+    @freight = Freight.find(@freights_ids.last)
+    @review.quote_id = @freight.quotes.last.id
     if @review.save
-      redirect_to reviews_path, notice: 'Review was successfully created.'
+      redirect_to vehicle_path(@vehicle), notice: 'Review was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      redirect_to root_path, status: :unprocessable_entity
     end
-  end
-
-  def edit
-  end
-
-  def update
-    if @review.update(review_params)
-      redirect_to reviews_path, notice: 'Review was successfully updated.'
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    @review.destroy
-    redirect_to reviews_path, notice: 'Review was successfully destroyed.'
+    authorize @review
   end
 
   private
 
   def review_params
-    params.require(:review).permit(:title, :body, :rating)
+    params.require(:review).permit(:rating, :quote_id, :user_id, :vehicle_id, :comment)
   end
 
   def set_review
