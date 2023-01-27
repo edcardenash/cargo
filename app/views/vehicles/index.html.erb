@@ -11,10 +11,10 @@
                 <% end %>
                 <div class="card-trip-infos carriers-info">
                   <div>
-                    <h4><%= vehicle.vehicle_type %></h4>
+                    <h4><%= vehicle.alias %></h4>
                     <br>
                     <div class="pt-2">
-                      <h6>Capacidad de carga: <strong><%= vehicle.load_capacity %></strong>Kg.</h6>
+                      <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg.</h6>
                       <h6>Ciudad base de operaciones: <%= @city_name %></strong> </h6>
                       <h6>Presta servicio en otras ciudades: <%= vehicle.other_cities ? "Si" : "No" %></h6>
                       <h6>Presta servicio en otras regiones: <%= vehicle.regions ? "Si" : "No" %></h6>
@@ -36,10 +36,10 @@
               <% end %>
               <div class="card-trip-infos carriers-info">
                 <div>
-                  <h4><%= vehicle.vehicle_type %></h4>
+                  <h4><%= vehicle.alias %></h4>
                   <br>
                   <div class="pt-2">
-                    <h6>Capacidad de carga: <strong><%= vehicle.load_capacity %></strong>Kg.</h6>
+                    <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg.</h6>
                     <h6>Ciudad base de operaciones: <%= @city_name %></strong> </h6>
                     <h6>Presta servicio en otras ciudades: <%= vehicle.other_cities ? "Si" : "No" %></h6>
                     <h6>Presta servicio en otras regiones: <%= vehicle.regions ? "Si" : "No" %></h6>
