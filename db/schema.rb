@@ -142,6 +142,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_25_211019) do
     t.boolean "other_cities"
     t.boolean "active"
     t.float "rating"
+    t.string "alias"
     t.index ["city_id"], name: "index_vehicles_on_city_id"
     t.index ["user_id"], name: "index_vehicles_on_user_id"
   end
