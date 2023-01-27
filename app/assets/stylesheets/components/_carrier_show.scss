@@ -1,5 +1,7 @@
 .carrier-show{
   background-color: rgb(47, 49, 49);
+  margin: 0;
+  color: white;
 }
 
 .radius-top{
@@ -8,6 +10,10 @@
 
 .radius-bottom{
   border-radius: 0 0 10px 10px;
+}
+
+.radius{
+  border-radius: 10px 10px 10px 10px;
 }
 
 .carrier-show h2{
@@ -30,12 +36,12 @@
   font-weight: bold;
 }
 
-.carrier-show h6{
+.carrier-show h5{
   margin: 0;
   color: white;
 }
 
-.carrier-show p{
+.carrier-show h6{
   margin: 0;
   color: white;
 }
