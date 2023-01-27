@@ -18,10 +18,18 @@ class VehiclesController < ApplicationController
 
   def show
     @vehicle = Vehicle.find(params[:id])
+    @review = Review.new
+    if @vehicle.quotes.any?
+      @vehicle.quotes.each do |quote|
+        @freights_ids = []
+        @freights_ids << quote.freight_id
+      end
+      @freights_ids.each do |id|
+        @freights = []
+        @freights << Freight.find(id)
+      end
+    end
     authorize @vehicle
-    @cities = City.all
-    @city = @cities[@vehicle.city_id]
-    @city_name = @city.name
   end
 
   def new
