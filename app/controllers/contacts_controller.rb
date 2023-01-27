@@ -9,11 +9,13 @@ skip_before_action :authenticate_user!, only: [:new, :create]
   def create
       @contact = Contact.new(params[:contact])
       @contact.request = request
+        authorize @contact
       if @contact.deliver
-    redirect_to action: :sent
+         flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
+         redirect_to root_path
       else
-      flash.now[:error] = 'Could not send message'
-      render :new, status: :unprocessable_entity
+        flash.now[:error] = 'Could not send message'
+        render :new, status: :unprocessable_entity
       end
   end
 
