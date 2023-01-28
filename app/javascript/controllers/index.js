@@ -15,3 +15,6 @@ application.register("navbar", NavbarController)
 
 import GalleryController from "./gallery_controller"
 application.register("gallery", GalleryController)
+
+import RegionCitiesController from "./region_cities_controller"
+application.register('region-cities', RegionCitiesController)

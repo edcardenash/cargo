@@ -1,5 +1,6 @@
 require 'open-uri'
 
+Review.destroy_all
 Quote.destroy_all
 Freight.destroy_all
 Vehicle.destroy_all
@@ -16,11 +17,11 @@ cities_rm = ["Alhué", "Buin", "Calera de Tango", "Cerrillos", "Cerro Navia", "C
              "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Bernardo", "San Joaquín", "San José de Maipo",
              "San Miguel", "San Pedro", "San Ramón", "Santiago", "Talagante", "Tiltil", "Vitacura"]
 
-# cities_valpo = ["Algarrobo", "Cabildo", "Calera", "Calle Larga", "Cartagena", "Casablanca", "Catemu", "Concón", "El Quisco",
-                # "El Tabo", "Hijuelas", "Isla de Pascua", "Juan Fernández", "La Cruz", "La Ligua", "Limache", "Llaillay", "Los Andes",
-                # "Nogales", "Olmué", "Panquehue", "Papudo", "Petorca", "Puchuncaví", "Putaendo", "Quillota", "Quilpué", "Quintero",
-                # "Rinconada", "San Antonio", "San Esteban", "San Felipe", "Santa María", "Santo Domingo", "Valparaíso", "Villa Alemana",
-                # "Viña del Mar", "Zapallar"]
+cities_valpo = ["Algarrobo", "Cabildo", "Calera", "Calle Larga", "Cartagena", "Casablanca", "Catemu", "Concón", "El Quisco",
+                "El Tabo", "Hijuelas", "Isla de Pascua", "Juan Fernández", "La Cruz", "La Ligua", "Limache", "Llaillay", "Los Andes",
+                "Nogales", "Olmué", "Panquehue", "Papudo", "Petorca", "Puchuncaví", "Putaendo", "Quillota", "Quilpué", "Quintero",
+                "Rinconada", "San Antonio", "San Esteban", "San Felipe", "Santa María", "Santo Domingo", "Valparaíso", "Villa Alemana",
+                "Viña del Mar", "Zapallar"]
 
 puts "We're creating some data for the DB"
 
@@ -31,7 +32,7 @@ country = Country.create!(name: "Chile")
 puts "Creating regions"
 
 rm = Region.create!(name: "Metropolitana de Santiago", country: country)
-# valpo = Region.create!(name: "Valparaíso", country: country)
+valpo = Region.create!(name: "Valparaíso", country: country)
 
 puts "Creating cities"
 
@@ -41,9 +42,9 @@ cities_rm.each do |city|
   cities_array << City.create!(name: "#{city}", region_id: rm.id)
 end
 
-# cities_valpo.each do |city|
-#   City.create!(name: "#{city}", region_id: valpo.id)
-# end
+cities_valpo.each do |city|
+  City.create!(name: "#{city}", region_id: valpo.id)
+end
 
 puts "Creating users"
 
