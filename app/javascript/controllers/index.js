@@ -18,3 +18,10 @@ application.register("navbar", NavbarController)
 
 import SearchFreightsController from "./search_freights_controller"
 application.register("search-freights", SearchFreightsController)
+
+import GalleryController from "./gallery_controller"
+application.register("gallery", GalleryController)
+
+import RegionCitiesController from "./region_cities_controller"
+application.register('region-cities', RegionCitiesController)
+
