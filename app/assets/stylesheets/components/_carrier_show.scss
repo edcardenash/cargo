@@ -1,5 +1,7 @@
 .carrier-show{
   background-color: rgb(47, 49, 49);
+  margin: 0;
+  color: white;
 }
 
 .radius-top{
@@ -8,6 +10,10 @@
 
 .radius-bottom{
   border-radius: 0 0 10px 10px;
+}
+
+.radius{
+  border-radius: 10px 10px 10px 10px;
 }
 
 .carrier-show h2{
@@ -23,6 +29,13 @@
   font-size: 25px;
 }
 
+.carrier-show header{
+  margin: 0;
+  color: rgb(249, 87, 50);
+  font-size: 25px;
+  font-weight: bold;
+}
+
 .carrier-show h4{
   margin: 0;
   color: rgb(249, 87, 50);
@@ -30,12 +43,12 @@
   font-weight: bold;
 }
 
-.carrier-show h6{
+.carrier-show h5{
   margin: 0;
   color: white;
 }
 
-.carrier-show p{
+.carrier-show h6{
   margin: 0;
   color: white;
 }
@@ -48,4 +61,9 @@
 .carrier-show strong{
   margin: 0;
   color: rgb(249, 87, 50);
+}
+
+.border{
+  border-radius: 10px;
+  border-color: rgb(47, 49, 49) !important;
 }

@@ -2,7 +2,6 @@
 @import "alert";
 @import "button";
 @import "avatar";
-@import "form_legend_clear";
 @import "navbar";
 @import "card";
 @import "footer";
@@ -17,11 +16,5 @@
 @import "service";
 @import "carriers";
 @import "carrier_show";
-
-
-.content-wrapper {
-  min-height: 100vh;
-  position: relative;
-}
-@import "div_three_columns";
+@import "vehicles";
 @import "checkbox_container";

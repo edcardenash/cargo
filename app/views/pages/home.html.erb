@@ -95,8 +95,9 @@
               <% end %>
               <div class="card-trip-infos carriers-info">
                 <div>
-                  <h4><%= vehicle.vehicle_type %></h4>
+                  <h4><%= vehicle.alias %></h4>
                   <div class="pt-2">
+                    <h6>Tipo de trasnporte: <%= vehicle.vehicle_type %></h6>
                     <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg.</h6>
                     <h6>Rating:  <strong><%= vehicle.rating %></strong></h6>
                     <h6>Cerrado: <strong><%= vehicle.covered ? "Si" : "No" %></strong></h6>
