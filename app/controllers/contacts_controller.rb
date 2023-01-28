@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
 skip_before_action :authenticate_user!, only: [:new, :create]
+require "mail_form"
 
   def new
     @contact = Contact.new
@@ -11,7 +12,7 @@ skip_before_action :authenticate_user!, only: [:new, :create]
       @contact.request = request
         authorize @contact
       if @contact.deliver
-         flash.now[:notice] = 'Thank you for your message. We will contact you soon!'
+         flash[:notice] = 'Gracias por tu mensaje. Te contactaremos pronto!'
          redirect_to root_path
       else
         flash.now[:error] = 'Could not send message'
@@ -20,5 +21,6 @@ skip_before_action :authenticate_user!, only: [:new, :create]
   end
 
   def sent
+
   end
 end

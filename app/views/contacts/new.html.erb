@@ -1,61 +1,11 @@
-<section class="container page-section container mt-3 mb-3 p-1" id="contact">
-  <div class="bgc-contacts">
-    <br>
-    <div class="text-center">
-    <br>
-      <h2 class="section-heading text-uppercase">Contáctanos</h2>
-      <h3 class="section-subheading text-muted">Déjanos un mensaje</h3>
-    </div>
-
-     <%= simple_form_for @contact, :html => {:class => 'form-horizontal' } do |f| %>
-      <div class="row align-items-stretch mb-5 centrar-contacto">
-        <div class="col-md-5 contenedores-contacto">
-            <div class="form-group">
-                <!-- Name input-->
-                <%= f.input :name, :required => true %>
-                <input class="form-control" id="name" type="text" placeholder="Tu nombre *" data-sb-validations="required" />
-                <div class="invalid-feedback" data-sb-feedback="name:required">Ingrese su nombre y apellido</div>
-            </div>
-            <div class="form-group">
-                <!-- Email address input-->
-                <%= f.input :email, :required => true %>
-                <input class="form-control" id="email" type="email" placeholder="Tu email *" data-sb-validations="required,email" />
-                <div class="invalid-feedback" data-sb-feedback="email:required">Ingrese su correo electrónico</div>
-                <div class="invalid-feedback" data-sb-feedback="email:email">Dirección de correo electrónico no válida.</div>
-            </div>
-            <div class="form-group mb-md-0">
-                <!-- Phone number input-->
-                <%= f.input :phone, :hint => 'Leave this field blank!' %>
-                <input class="form-control" id="phone" type="tel" placeholder="Tu telefono *" data-sb-validations="required" />
-                <div class="invalid-feedback" data-sb-feedback="phone:required">Ingrese su número de contacto</div>
-            </div>
-        </div>
-        <div class="col-md-5 contenedores-contacto">
-          <div class="form-group form-group-textarea mb-md-0">
-            <!-- Message input-->
-            <%= f.input :message, :as => :text, :required => true %>
-            <textarea class="form-control" id="message" placeholder="Mensaje *" data-sb-validations="required"></textarea>
-
-            <div class="invalid-feedback" data-sb-feedback="message:required">Ingrese aquí su mensaje.</div>
-          </div>
-        </div>
-      </div>
-      <!-- Submit Button-->
-      <%= f.button :submit, 'Send message', :class=> "btn btn-primary" %>
-      <div class="text-center"><button class="btn btn-warning btn-xl text-uppercase  mb-3" id="submitButton" type="submit">ENVÍANOS EL MENSAJE</button></div>
- <% end %>
-
-  </div>
-
-    <%= f.input :name, :required => true %>
-    <%= f.input :email, :required => true %>
-    <%= f.input :message, :as => :text, :required => true %>
-    <div class= "hidden">
-      <%= f.input :nickname, :hint => 'Leave this field blank!' %>
-    </div>
-    <div>
-      </br>
-      <%# <%= f.button :submit, 'Send message', :class=> "btn btn-primary" %> %>
-    </div>
-
-</section>
+<div class="container my-3 border border-3 w-50 ">
+  <div class="row p-4 mx-3 my-2">
+<%= simple_form_for @contact, data:{turbo: false} do |f| %>
+  <strong><%= f.input :name, label: 'Tu nombre', error: 'Username is mandatory, please specify one' %></strong>
+ <strong> <%= f.input :email %></strong>
+ <strong> <%= f.input :message, label: 'Mensaje', as: :text %></strong>
+ <strong> <%= f.input :phone, label: 'Telefono' %></strong>
+  <%= f.button :submit, "Enviar", class: "btn btn-success boton-login btn-sm" %>
+<% end %>
+ </div>
+</div>
