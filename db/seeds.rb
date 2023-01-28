@@ -23,6 +23,34 @@ cities_valpo = ["Algarrobo", "Cabildo", "Calera", "Calle Larga", "Cartagena", "C
                 "Rinconada", "San Antonio", "San Esteban", "San Felipe", "Santa María", "Santo Domingo", "Valparaíso", "Villa Alemana",
                 "Viña del Mar", "Zapallar"]
 
+cities_rap = ["Arica", "Camarones", "General Lagos", "Putre"]
+
+cities_rt = ["Alto Hospicio", "Iquique", "Camiña", "Colchane", "Huara", "Pica", "Pozo Almonte"]
+
+cities_rant = ["Antofagasta", "Calama", "María Elena", "Mejillones", "Ollagüe", "San Pedro de Atacama", "Sierra Gorda", "Taltal", "Tocopilla"]
+
+cities_ra = ["Alto del Carmen", "Caldera", "Chañaral", "Copiapó", "Diego de Almagro", "Freirina", "Huasco", "Tierra Amarilla", "Vallenar"]
+
+cities_rc = ["Andacollo", "Canela", "Combarbalá", "Coquimbo", "Illapel", "La Higuera", "La Serena", "Los Vilos", "Monte Patria", "Ovalle", "Paiguano", "Punitaqui", "Río Hurtado", "Salamanca", "Vicuña"]
+
+cities_ro = ["Chimbarongo", "Chépica", "Codegua", "Coinco", "Coltauco", "Doñihue", "Graneros", "La Estrella", "Las Cabras", "Litueche", "Lolol", "Machalí", "Malloa", "Marchihue", "Nancagua", "Navidad", "Olivar", "Palmilla", "Paredones", "Peralillo", "Peumo", "Pichidegua", "Pichilemu", "Placilla", "Pumanque", "Quinta de Tilcoco", "Rancagua", "Rengo", "Requínoa", "San Fernando", "San Francisco de Mostazal", "San Vicente de Tagua Tagua", "Santa Cruz"]
+
+cities_rmau = ["Cauquenes", "Chanco", "Colbún", "Constitución", "Curepto", "Curicó", "Empedrado", "Hualañé", "Licantén", "Linares", "Longaví", "Maule", "Molina", "Parral", "Pelarco", "Pelluhue", "Pencahue", "Rauco", "Retiro", "Romeral", "Río Claro", "Sagrada Familia", "San Clemente", "San Javier de Loncomilla", "San Rafael", "Talca", "Teno", "Vichuquén", "Villa Alegre", "Yerbas Buenas"]
+
+cities_rnu = ["Bulnes", "Chillán Viejo", "Chillán", "Cobquecura", "Coelemu", "Coihueco", "El Carmen", "Ninhue", "Ñiquén", "Pemuco", "Pinto", "Portezuelo", "Quillón", "Quirihue", "Ránquil", "San Carlos", "San Fabián", "San Ignacio", "San Nicolás", "Treguaco", "Yungay"]
+
+cities_rb = ["Alto Biobío", "Antuco", "Arauco", "Cabrero", "Cañete", "Chiguayante", "Concepción", "Contulmo", "Coronel", "Curanilahue", "Florida", "Hualpén", "Hualqui", "Laja", "Lebu", "Los Álamos", "Los Ángeles", "Lota", "Mulchén", "Nacimiento", "Negrete", "Penco", "Quilaco", "Quilleco", "San Pedro de la Paz", "San Rosendo", "Santa Bárbara", "Santa Juana", "Talcahuano", "Tirúa", "Tomé", "Tucapel", "Yumbel"]
+
+cities_rarau = ["Angol", "Carahue", "Cholchol", "Collipulli", "Cunco", "Curacautín", "Curarrehue", "Ercilla", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Lonquimay", "Los Sauces", "Lumaco", "Melipeuco", "Nueva Imperial", "Padre las Casas", "Perquenco", "Pitrufquén", "Pucón", "Purén", "Renaico", "Saavedra", "Temuco", "Teodoro Schmidt", "Toltén", "Traiguén", "Victoria", "Vilcún", "Villarrica"]
+
+cities_rlr = ["Futrono", "La Unión", "Lago Ranco", "Lanco", "Los Lagos", "Mariquina", "Máfil", "Paillaco", "Panguipulli", "Río Bueno", "Valdivia"]
+
+cities_rll = ["Ancud", "Calbuco", "Castro", "Chaitén", "Chonchi", "Cochamó", "Curaco de Vélez", "Dalcahue", "Fresia", "Frutillar", "Futaleufú", "Hualaihué", "Llanquihue", "Los Muermos", "Maullín", "Osorno", "Palena", "Puerto Montt", "Puerto Octay", "Puerto Varas", "Puqueldón", "Purranque", "Puyehue", "Queilén", "Quellón", "Quemchi", "Quinchao", "Río Negro", "San Juan de la Costa", "San Pablo"]
+
+cities_ray = ["Aisén", "Chile Chico", "Cisnes", "Cochrane", "Coyhaique", "Guaitecas", "Lago Verde", "O’Higgins", "Río Ibáñez", "Tortel"]
+
+cities_rma = ["Antártica", "Cabo de Hornos", "Laguna Blanca", "Natales", "Porvenir", "Primavera", "Punta Arenas", "Río Verde", "San Gregorio", "Timaukel", "Torres del Paine"]
+
 puts "We're creating some data for the DB"
 
 puts "Creating country"
@@ -31,8 +59,22 @@ country = Country.create!(name: "Chile")
 
 puts "Creating regions"
 
-rm = Region.create!(name: "Metropolitana de Santiago", country: country)
+rap = Region.create!(name: "Arica y Parinacota", country: country)
+rt = Region.create!(name: "Tarapacáa", country: country)
+rant = Region.create!(name: "Antofagasta", country: country)
+ra = Region.create!(name: "Atacama", country: country)
+rc = Region.create!(name: "Coquimbo", country: country)
 valpo = Region.create!(name: "Valparaíso", country: country)
+rm = Region.create!(name: "Metropolitana de Santiago", country: country)
+ro = Region.create!(name: "O'Higgins", country: country)
+rmau = Region.create!(name: "Maule", country: country)
+rnu = Region.create!(name: "Ñuble", country: country)
+rb = Region.create!(name: "Biobío", country: country)
+rarau = Region.create!(name: "La Araucanía", country: country)
+rlr = Region.create!(name: "Los Ríos", country: country)
+rll = Region.create!(name: "Los Lagos", country: country)
+ray = Region.create!(name: "Aysén", country: country)
+rma = Region.create!(name: "Magallanes", country: country)
 
 puts "Creating cities"
 
@@ -44,6 +86,62 @@ end
 
 cities_valpo.each do |city|
   City.create!(name: "#{city}", region_id: valpo.id)
+end
+
+cities_rap.each do |city|
+  City.create!(name: "#{city}", region_id: rap.id)
+end
+
+cities_rt.each do |city|
+  City.create!(name: "#{city}", region_id: rt.id)
+end
+
+cities_rant.each do |city|
+  City.create!(name: "#{city}", region_id: rant.id)
+end
+
+cities_ra.each do |city|
+  City.create!(name: "#{city}", region_id: ra.id)
+end
+
+cities_rc.each do |city|
+  City.create!(name: "#{city}", region_id: rc.id)
+end
+
+cities_ro.each do |city|
+  City.create!(name: "#{city}", region_id: ro.id)
+end
+
+cities_rmau.each do |city|
+  City.create!(name: "#{city}", region_id: rmau.id)
+end
+
+cities_rnu.each do |city|
+  City.create!(name: "#{city}", region_id: rnu.id)
+end
+
+cities_rb.each do |city|
+  City.create!(name: "#{city}", region_id: rb.id)
+end
+
+cities_rarau.each do |city|
+  City.create!(name: "#{city}", region_id: rarau.id)
+end
+
+cities_rlr.each do |city|
+  City.create!(name: "#{city}", region_id: rlr.id)
+end
+
+cities_rll.each do |city|
+  City.create!(name: "#{city}", region_id: rll.id)
+end
+
+cities_ray.each do |city|
+  City.create!(name: "#{city}", region_id: ray.id)
+end
+
+cities_rma.each do |city|
+  City.create!(name: "#{city}", region_id: rma.id)
 end
 
 puts "Creating users"
