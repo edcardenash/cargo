@@ -8,12 +8,6 @@ class VehiclesController < ApplicationController
     else
       @vehicles = policy_scope(Vehicle)
     end
-
-    @vehicles.each do |vehicle|
-      @cities = City.all
-      @city = @cities[vehicle.city_id]
-      @city_name = @city.name
-    end
   end
 
   def show

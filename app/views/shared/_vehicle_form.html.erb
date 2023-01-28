@@ -1,23 +1,19 @@
-<div class="container mt-3 border border-3">
-<div class="row p-4">
-  <%= simple_form_for @vehicle do |f| %>
-    <strong><%= f.input :vehicle_type, collection: [['automovil', 'Automovil'], ['camioneta', 'Camioneta'], ['mini camion', 'Mini camión'], ['camion liviano', 'Camión liviano'], ['camion', 'Camión']], label_method: :second, value_method: :first, label: "¿Que tipo de vehículo es?" %></strong>
-    <strong><%= f.input :load_capacity, collection: [['500', '500 Kg'], ['1_000', '1.000 Kg'], ['1_500', '1.500 Kg'], ['2_500', '2.500 Kg'], ['3_500', '3.500 Kg'], ['5_000', '5.000 Kg']], label_method: :second, value_method: :first, label: "Capacidad de carga" %></strong>
-    <strong><%= f.input :license_plate, label: "Patente" %></strong>
-    <strong><%= f.input :covered, label: "¿Está cubierto?", as: :boolean  %></strong>
-    <strong><%= f.input :description, label: "Descripción", as: :text  %></strong>
-    <strong><p>Selecciona tu región y ciudad</p></strong>
-    <strong><%= f.input :regions, label: "Regiones", collection: @regions, label_method: :name, value_method: :id, prompt: "Regiones" %></strong>
-    <div class="div_three_columns">
-    <%= f.collection_check_boxes :city_id, City.all, :id, :name %>
-    </div>
-    <br>
-    <strong><%= f.input :other_cities, label: "¿Quieres trabajar en otras ciudades?", as: :boolean  %></strong>
-    <strong><%= f.input :other_regions, label: "¿Quieres trabajar en otras regiones?", as: :boolean  %></strong>
-    <strong><%= f.input :photo, as: :file, label: "Sube una imágen" %></strong>
-    <div class="row">
-    <%= f.button :submit,"Guardar", class: "btn btn-success boton-login btn-sm my-2" %>
-    </div>
-  <% end %>
+<div class="container my-3 border border-3">
+  <div class="row p-4 m-4">
+    <%= simple_form_for @vehicle do |f| %>
+      <strong><%= f.input :vehicle_type, collection: [['automovil', 'Automovil'], ['camioneta', 'Camioneta'], ['mini camion', 'Mini camión'], ['camion liviano', 'Camión liviano'], ['camion', 'Camión']], label_method: :second, value_method: :first, label: "¿Que tipo de vehículo es?" %></strong>
+      <strong><%= f.input :load_capacity, collection: [['500', '500 Kg'], ['1_000', '1.000 Kg'], ['1_500', '1.500 Kg'], ['2_500', '2.500 Kg'], ['3_500', '3.500 Kg'], ['5_000', '5.000 Kg']], label_method: :second, value_method: :first, label: "Capacidad de carga" %></strong>
+      <strong><%= f.input :license_plate, label: "Patente" %></strong>
+      <strong><%= f.input :covered, label: "¿Está cubierto?", as: :boolean  %></strong>
+      <strong><%= f.input :description, label: "Descripción", as: :text  %></strong>
+      <strong><%= f.input :regions, label: "Regiones", collection: @regions, label_method: :name, value_method: :id, prompt: "Regiones" %></strong>
+      <strong><%= f.input :city_id, label: "Ciudades", collection: City.all, label_method: :name, value_method: :id, prompt: "Ciudades" %></strong>
+      <strong><%= f.input :other_cities, label: "¿Quieres trabajar en otras ciudades?", as: :boolean  %></strong>
+      <strong><%= f.input :other_regions, label: "¿Quieres trabajar en otras regiones?", as: :boolean  %></strong>
+      <strong><%= f.input :photo, as: :file, label: "Sube una imágen" %></strong>
+      <div class="row m-0">
+      <%= f.button :submit,"Guardar", class: "btn btn-success boton-login btn-sm" %>
+      </div>
+    <% end %>
   </div>
 </div>
