@@ -15,7 +15,7 @@ require "mail_form"
          flash[:notice] = 'Gracias por tu mensaje. Te contactaremos pronto!'
          redirect_to root_path
       else
-        flash.now[:error] = 'Could not send message'
+        flash.now[:error] = 'No se pudo enviar el mensaje'
         render :new, status: :unprocessable_entity
       end
   end
