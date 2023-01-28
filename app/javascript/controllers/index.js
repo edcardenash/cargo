@@ -4,14 +4,17 @@
 
 import { application } from "./application"
 
+import GalleryController from "./gallery_controller"
+application.register("gallery", GalleryController)
+
 import MapController from "./map_controller"
 application.register("map", MapController)
 
 import MapshowController from "./mapshow_controller"
-application.register("mapshow", MapController)
+application.register("mapshow", MapshowController)
 
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 
-import GalleryController from "./gallery_controller"
-application.register("gallery", GalleryController)
+import SearchFreightsController from "./search_freights_controller"
+application.register("search-freights", SearchFreightsController)
