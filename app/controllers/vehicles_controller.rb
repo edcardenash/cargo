@@ -37,8 +37,8 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.new(vehicle_params)
     @vehicle.user = current_user
     @vehicle.user_id = current_user.id
+    @vehicle.rating = 5.0
     authorize @vehicle
-    # raise
     if @vehicle.save
       redirect_to vehicle_path(@vehicle), notice: "Vehículo agregado correctamente."
     else
