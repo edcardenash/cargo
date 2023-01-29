@@ -1,5 +1,7 @@
 require 'open-uri'
 
+puts "Cleaning the DB"
+
 Review.destroy_all
 Quote.destroy_all
 Freight.destroy_all
