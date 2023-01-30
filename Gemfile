@@ -33,6 +33,7 @@ gem "pundit"
 gem "cloudinary"
 gem "pg_search"
 gem "mail_form"
+gem "stripe"
 # gem "select2-rails"
 
 

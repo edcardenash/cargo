@@ -1,11 +1,19 @@
-<div class="container my-3 border border-3 w-50 ">
-  <div class="row p-4 mx-3 my-2">
-<%= simple_form_for @contact, data:{turbo: false} do |f| %>
-  <strong><%= f.input :name, label: 'Tu nombre', error: 'Tu nombre es obligatorio, especifique uno por favor' %></strong>
- <strong> <%= f.input :email %></strong>
- <strong> <%= f.input :message, label: 'Mensaje', as: :text %></strong>
- <strong> <%= f.input :phone, label: 'Telefono' %></strong>
-  <%= f.button :submit, "Enviar", class: "btn btn-success boton-login btn-sm" %>
-<% end %>
- </div>
+<div class="container col-6">
+  <div class="row carrier-show radius mt-4 p-4">
+    <header>¡Envíanos tus comentarios!</header>
+  </div>
+    <div class="container my-3 border border-3">
+      <div class="row p-4 m-4">
+        <%= simple_form_for @contact, data:{turbo: false} do |f| %>
+          <strong><%= f.input :name, label: 'Tu nombre', error: 'Tu nombre es obligatorio, especifique uno por favor' %></strong>
+          <strong> <%= f.input :email %></strong>
+          <strong> <%= f.input :message, label: 'Mensaje', as: :text %></strong>
+          <strong> <%= f.input :phone, label: 'Telefono' %></strong>
+          <div class="row m-0">
+            <%= f.button :submit, "Enviar", class: "btn btn-success boton-login btn-sm" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
