@@ -16,5 +16,8 @@ application.register("mapshow", MapshowController)
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 
+import SearchAddressController from "./search_address_controller"
+application.register("search-address", SearchAddressController)
+
 import SearchFreightsController from "./search_freights_controller"
 application.register("search-freights", SearchFreightsController)

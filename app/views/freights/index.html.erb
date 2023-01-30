@@ -6,24 +6,18 @@
   <%= link_to "Publicar solicitud de carga", new_freight_path, class: "btn btn-primary btn-lg" %>
   </div>
 </div>
-<div class="container">
-  <div class="row">
-  <% @freights.each do |freight| %>
-    <div class="card m-2 shadow-sm p-3 mb-5 bg-body rounded" style="width: 18rem;">
-      <div class="row">
-            <%
-            puts "freight"
-            puts freight.photos.first %>
-        <div class="card-body">
-          <h5 class="card-title"><%= freight.address%></h5>
-          <div><%= freight.start_date.strftime('%m/%d/%Y')  %></div>
-          <p class="card-text"><%= freight.description  %></p>
-        </div>
-      </div>
-      <div class="row text-center">
-        <%= link_to 'Ver detalles', freight, class: "btn btn-outline-success btn-sm mt-1"%>
-      </div>
-    </div>
+<div class="container" data-controller="search-freights">
+  <%= form_with url: freights_path, method: :get, html: {class:
+    "mb-4", data: {search_freights_target: "form"}} do |f| %>
+    <%= f.text_field :query,
+                     class: "form-control mt-3",
+                     placeholder: "Ingrese la ubicacion de la solicitud",
+                     value: params[:query],
+                     data: {search_freights_target: "input",
+                            action: "keyup->search-freights#update"
+                          }%>
   <% end %>
-  </div>
+
+    <!-- Busqueda de Freights --->
+    <%= render "shared/list_freigths", freights: @freights %>
 </div>

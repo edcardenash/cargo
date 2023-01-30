@@ -8,6 +8,15 @@ class FreightsController < ApplicationController
     else
       @freights = policy_scope(Freight)
     end
+
+    if params[:query].present?
+      @freights = @freights.where("address ILIKE ?", "%#{params[:query]}%")
+    end
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: "shared/list_freigths", locals: {freights: @freights}, formats: [:html] }
+    end
   end
 
   def show
@@ -22,7 +31,6 @@ class FreightsController < ApplicationController
         end_lat: @freight.end_latitude,
         end_lng: @freight.end_logitude,
         info_window: render_to_string(partial: "shared/mapinfo", locals: { freight: @freight })
-        # image_url: helpers.asset_url("logo.png")
       }
     ]
   end
@@ -74,5 +82,9 @@ class FreightsController < ApplicationController
 
   def set_freight
     @freight = Freight.find(params[:id])
+  end
+
+  def search_freight
+
   end
 end
