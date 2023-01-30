@@ -16,6 +16,9 @@ application.register("mapshow", MapshowController)
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 
+import SearchAddressController from "./search_address_controller"
+application.register("search-address", SearchAddressController)
+
 import RegionCitiesController from "./region_cities_controller"
 application.register("region-cities", RegionCitiesController)
 
