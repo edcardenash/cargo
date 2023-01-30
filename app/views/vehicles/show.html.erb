@@ -73,11 +73,11 @@
               <% freight.user_id %>
               <% if current_user.id == freight.user_id %>
                 <div class="row mx-0 p-2 carrier-show radius mt-2">
-                    <h4>Agregar comentarios</h4>
+                    <h4 class="py-2">Agregar comentarios</h4>
                     <%= simple_form_for([@vehicle, @review]) do |f| %>
-                      <%= f.input :rating, label: "Rating" %>
-                      <%= f.input :comment, label: "Comentario" %>
-                      <%= f.submit "Enviar reseña", class: "btn btn-success boton-login btn-sm my-2" %>
+                      <%= f.input :rating, collection: (1..5).to_a, label: "Califica tu experiencia", input_html: {data: {controller: "star-rating"}} %>
+                      <%= f.input :comment, label: "Comentarios" %>
+                      <%= f.submit "Envía tu reseña", class: "btn btn-success boton-login btn-sm my-2" %>
                     <% end %>
                 </div>
               <% end %>

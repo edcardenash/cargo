@@ -16,12 +16,11 @@ application.register("mapshow", MapshowController)
 import NavbarController from "./navbar_controller"
 application.register("navbar", NavbarController)
 
+import RegionCitiesController from "./region_cities_controller"
+application.register("region-cities", RegionCitiesController)
+
 import SearchFreightsController from "./search_freights_controller"
 application.register("search-freights", SearchFreightsController)
 
-import GalleryController from "./gallery_controller"
-application.register("gallery", GalleryController)
-
-import RegionCitiesController from "./region_cities_controller"
-application.register('region-cities', RegionCitiesController)
-
+import StarRatingController from "./star_rating_controller"
+application.register("star-rating", StarRatingController)

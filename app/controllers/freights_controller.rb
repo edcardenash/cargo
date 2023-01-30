@@ -41,7 +41,7 @@ class FreightsController < ApplicationController
     @freight.end_logitude = @destiny_coordenates.first.coordinates.last
     @freight.user_id = current_user.id
     if @freight.save
-      redirect_to @freight, notice: 'Freight was successfully created'
+      redirect_to @freight, notice: 'Tu solicitud fue creada exitosamente'
     else
       render :new, status: :unprocessable_entity
     end
@@ -54,7 +54,7 @@ class FreightsController < ApplicationController
   def update
     authorize @freight
     if @freight.update(freights_params)
-      redirect_to @freight, notice: 'Freight has been updated'
+      redirect_to @freight, notice: 'Tu solicitud ha sido actualizada'
     else
       render :new, status: :unprocessable_entity
     end
@@ -63,7 +63,7 @@ class FreightsController < ApplicationController
   def destroy
     authorize @freight
     @freight.destroy
-    redirect_to freight_url, notice: 'Freight has been deleted'
+    redirect_to freight_url, notice: 'Tu solicitud fue eliminada'
   end
 
   private

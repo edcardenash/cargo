@@ -16,7 +16,7 @@ class QuotesController < ApplicationController
     @quote.freight = @freight
     @quote.user_id = current_user.id
     if @quote.save
-      redirect_to freight_path(@freight), notice: 'Quote was successfully created'
+      redirect_to freight_path(@freight), notice: 'Tu cotización fue creada exitosamente'
     else
       render :new, status: :unprocessable_entity
     end
