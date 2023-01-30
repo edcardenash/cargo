@@ -1,4 +1,10 @@
 class CitiesController < ApplicationController
+  def index
+    cities = City.where(region_id: params[:region_id])
+    @cities = policy_scope(cities)
+    render json: @cities
+  end
+
   def new
     @city = City.new
   end

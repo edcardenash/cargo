@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
     @freight = Freight.find(@freights_ids.last)
     @review.quote_id = @freight.quotes.last.id
     if @review.save
-      redirect_to vehicle_path(@vehicle), notice: 'Review was successfully created.'
+      redirect_to vehicle_path(@vehicle), notice: 'Gracias por tus comentarios.'
     else
       redirect_to root_path, status: :unprocessable_entity
     end

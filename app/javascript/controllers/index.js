@@ -19,5 +19,11 @@ application.register("navbar", NavbarController)
 import SearchAddressController from "./search_address_controller"
 application.register("search-address", SearchAddressController)
 
+import RegionCitiesController from "./region_cities_controller"
+application.register("region-cities", RegionCitiesController)
+
 import SearchFreightsController from "./search_freights_controller"
 application.register("search-freights", SearchFreightsController)
+
+import StarRatingController from "./star_rating_controller"
+application.register("star-rating", StarRatingController)

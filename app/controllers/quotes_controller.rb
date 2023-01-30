@@ -1,5 +1,4 @@
 class QuotesController < ApplicationController
-  before_action :set_quote, only: [:edit, :update, :destroy]
   before_action :set_freight, only:[:new, :create]
 
   def index
@@ -17,30 +16,10 @@ class QuotesController < ApplicationController
     @quote.freight = @freight
     @quote.user_id = current_user.id
     if @quote.save
-      redirect_to freight_path(@freight), notice: 'Quote was successfully created'
+      redirect_to freight_path(@freight), notice: 'Tu cotización fue creada exitosamente'
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def edit
-    @quote.freight = @freight
-    authorize @quote
-  end
-
-  def update
-    authorize @quote
-    if @quote.update(quote_params)
-      redirect_to quotes_path, notice: 'Quote was successfully updated'
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
-  def destroy
-    authorize @quote
-    @quote.destroy
-    redirect_to freights_path, notice: 'Quote was successfully destroyed'
   end
 
   private

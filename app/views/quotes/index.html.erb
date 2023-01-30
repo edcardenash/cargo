@@ -11,7 +11,7 @@
           <%= cl_image_tag quote.vehicle.photo.key %>
         <% end %>
         <div class="card-product-infos">
-          <p>Monto ofertado: <strong>$<%= quote.amount.to_i %></strong></p>
+          <p>Monto ofertado: <strong>$<%= quote.amount %></strong></p>
           <p>Tipo de vehículo: <%= quote.vehicle.vehicle_type %></p>
           <p>Comentario: <%= quote.comment %></p>
         </div>
