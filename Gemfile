@@ -33,9 +33,6 @@ gem "pundit"
 gem "cloudinary"
 gem "pg_search"
 gem "mail_form"
-gem "stripe"
-# gem "select2-rails"
-
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

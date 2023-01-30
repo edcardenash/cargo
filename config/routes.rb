@@ -17,8 +17,4 @@ Rails.application.routes.draw do
   get '/contacts', to: 'contacts#new', as: 'contact'
   get 'contacts/sent'
   get '/cities', to: 'cities#index'
-  resources :orders, only: [:show, :create]
-  resources :orders, only: [:show, :create] do
-  resources :payments, only: :new
-end
 end

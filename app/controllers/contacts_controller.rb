@@ -12,7 +12,7 @@ require "mail_form"
       @contact.request = request
         authorize @contact
       if @contact.deliver
-         flash[:notice] = 'Gracias por tu mensaje. Te contactaremos pronto!'
+         flash[:notice] = 'Gracias por tu mensaje ¡Te contactaremos pronto!'
          redirect_to root_path
       else
         flash.now[:error] = 'No se pudo enviar el mensaje'
