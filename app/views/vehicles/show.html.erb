@@ -63,11 +63,11 @@
       <div class="d-flex justify-content-center align-items-center card-trip-1" id="secondDiv">
         <%= cl_image_tag @vehicle.photo.key, class: 'w-100 radius-top', height: 487, crop: :scale %>
       </div>
+      <div class="row m-0">
+        <%= link_to 'Solicitar cotización', new_vehicle_freight_path(@vehicle), class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
+      </div>
       <% if user_signed_in? %>
         <% if current_user.id != @vehicle.user_id %> <%# if user signed in and it's not the owner can ask for a quote %>
-          <div class="row m-0">
-            <%= link_to 'Solicitar cotización', new_vehicle_freight_path(@vehicle), class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
-          </div>
           <% if @vehicle.quotes.any? %> <%# if freight user have used the services of the vehicle can add a review %>
             <% @freights.each do |freight| %>
               <% freight.user_id %>
