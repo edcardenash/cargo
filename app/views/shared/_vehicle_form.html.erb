@@ -4,6 +4,7 @@
       <strong><%= f.input :vehicle_type, collection: [['automovil', 'Automovil'], ['camioneta', 'Camioneta'], ['mini camion', 'Mini camión'], ['camion liviano', 'Camión liviano'], ['camion', 'Camión']], label_method: :second, value_method: :first, label: "¿Que tipo de vehículo es?" %></strong>
       <strong><%= f.input :load_capacity, collection: [['500', '500 Kg'], ['1_000', '1.000 Kg'], ['1_500', '1.500 Kg'], ['2_500', '2.500 Kg'], ['3_500', '3.500 Kg'], ['5_000', '5.000 Kg']], label_method: :second, value_method: :first, label: "Capacidad de carga" %></strong>
       <strong><%= f.input :license_plate, label: "Patente" %></strong>
+      <strong><%= f.input :alias, label: "Alias" %></strong>
       <strong><%= f.input :covered, label: "¿Está cubierto?", as: :boolean  %></strong>
       <strong><%= f.input :description, label: "Descripción", as: :text  %></strong>
       <strong><%= f.input :regions, label: "Regiones", collection: @regions, label_method: :name, value_method: :id, prompt: "Regiones", input_html: {data: {action: "change->region-cities#changeRegion"} }%></strong>

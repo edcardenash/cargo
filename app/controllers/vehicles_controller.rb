@@ -37,10 +37,10 @@ class VehiclesController < ApplicationController
     @vehicle = Vehicle.new(vehicle_params)
     @vehicle.user = current_user
     @vehicle.user_id = current_user.id
+    @vehicle.rating = 5.0
     authorize @vehicle
-    @vehicle.city_id = params[:vehicle][:city_id][1]
     if @vehicle.save
-      redirect_to new_vehicle_zone_path(@vehicle), notice: "Por favor continúa al siguiente paso."
+      redirect_to vehicle_path(@vehicle), notice: "Vehículo agregado correctamente."
     else
       render :new, status: :unprocessable_entity
     end
@@ -53,7 +53,7 @@ class VehiclesController < ApplicationController
   def update
     authorize @vehicle
     if @vehicle.update(vehicle_params)
-      redirect_to @vehicle, notice: 'Vehicle was successfully updated.'
+      redirect_to @vehicle, notice: 'El vehículo se ha actualizado exitosamente.'
     else
       render :edit, status: :unprocessable_entity
     end
@@ -62,7 +62,7 @@ class VehiclesController < ApplicationController
   def destroy
     authorize @vehicle
     @vehicle.destroy
-    redirect_to vehicle_path, notice: 'Vehicle was successfully destroyed.'
+    redirect_to root_path, notice: 'El vehículo se ha eliminado exitosamente.'
   end
 
   def my_vehicles
@@ -77,6 +77,6 @@ class VehiclesController < ApplicationController
   end
 
   def vehicle_params
-    params.require(:vehicle).permit(:longitude, :latitude, :license_plate, :vehicle_type, :description, :covered, :load_capacity, :city_id, :other_regions, :other_cities, :user_id, :active, :photo)
+    params.require(:vehicle).permit(:longitude, :latitude, :license_plate, :vehicle_type, :description, :covered, :load_capacity, :city_id, :other_regions, :other_cities, :user_id, :alias, :photo)
   end
 end

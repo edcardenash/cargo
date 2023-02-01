@@ -13,7 +13,8 @@
                   <div>
                     <h4><%= vehicle.alias %></h4>
                     <div class="pt-2">
-                      <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg.</h6>
+                      <h6>Rating:  <strong><i class="<%= vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= vehicle.reviews.average(:rating) %></strong></h6>
+                      <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg</h6>
                       <h6>Ciudad base de operaciones: <%= vehicle.city.name %></strong> </h6>
                       <h6>Presta servicio en otras ciudades: <%= vehicle.other_cities ? "Si" : "No" %></h6>
                       <h6>Presta servicio en otras regiones: <%= vehicle.regions ? "Si" : "No" %></h6>
@@ -27,28 +28,6 @@
                 </div>
               </div>
             <% end %>
-          <% else %>
-            <div class="card-trip" id="card-show">
-              <% if vehicle.photo.attached? %>
-                <%= cl_image_tag vehicle.photo.key %>
-              <% end %>
-              <div class="card-trip-infos vehicles-info">
-                <div>
-                  <h4><%= vehicle.alias %></h4>
-                  <div class="pt-2">
-                    <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg.</h6>
-                    <h6>Ciudad base de operaciones: <%= vehicle.city.name %></strong> </h6>
-                    <h6>Presta servicio en otras ciudades: <%= vehicle.other_cities ? "Si" : "No" %></h6>
-                    <h6>Presta servicio en otras regiones: <%= vehicle.regions ? "Si" : "No" %></h6>
-                    <h6>Cerrado: <%= vehicle.covered ? "Si" : "No" %></h6>
-                    <p><%= vehicle.description.truncate(50) %></p>
-                  </div>
-                  <div class="pt-2">
-                    <%= link_to 'Contactar', vehicle, class: "btn btn-success boton-login btn-sm mt-1"%>
-                  </div>
-                </div>
-              </div>
-            </div>
           <% end %>
         <% end %>
       </div>
