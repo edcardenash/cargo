@@ -1,0 +1,25 @@
+<div data-search-freights-target="list" class="mb-3">
+  <div class="card-group">
+    <% @freights.each do |freight| %>
+      <div class="card m-1">
+          <% if freight.photos.length > 0 %>
+            <%= cl_image_tag freight.photos.first.key, width: 400, height: 200, crop: :fill, class: "card-img-top" %>
+          <% else %>
+            <%= cl_image_tag 'rjsmo54ojkmdtx82jspvpadempgo', width: 400, height: 200, crop: :fill, class: "card-img-top" %>
+          <%end%>
+      <%= puts freight.photos.first.inspect  %>
+        <div class="card-body">
+          <h5 class="card-title text-center"><%= freight.address%></h5>
+          <p class="card-title"><strong>Publicado el: <%= freight.start_date.strftime('%m/%d/%Y')%></strong></p>
+          <p class="card-text"><%= freight.description %></p>
+          <div class="d-grip gap-2 text-center">
+            <%= link_to 'Ver detalles', freight, class: "btn btn-outline-success"%>
+          </div>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Actualizado el <%= freight.updated_at.strftime('%d/%m/%Y') %></small>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

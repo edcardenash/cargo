@@ -8,6 +8,15 @@ class FreightsController < ApplicationController
     else
       @freights = policy_scope(Freight)
     end
+
+    if params[:query].present?
+      @freights = @freights.where("address ILIKE ?", "%#{params[:query]}%")
+    end
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: "shared/list_freigths", locals: {freights: @freights}, formats: [:html] }
+    end
   end
 
   def show
@@ -22,7 +31,6 @@ class FreightsController < ApplicationController
         end_lat: @freight.end_latitude,
         end_lng: @freight.end_logitude,
         info_window: render_to_string(partial: "shared/mapinfo", locals: { freight: @freight })
-        # image_url: helpers.asset_url("logo.png")
       }
     ]
   end
@@ -41,7 +49,7 @@ class FreightsController < ApplicationController
     @freight.end_logitude = @destiny_coordenates.first.coordinates.last
     @freight.user_id = current_user.id
     if @freight.save
-      redirect_to @freight, notice: 'Freight was successfully created'
+      redirect_to @freight, notice: 'Tu solicitud fue creada exitosamente'
     else
       render :new, status: :unprocessable_entity
     end
@@ -54,7 +62,7 @@ class FreightsController < ApplicationController
   def update
     authorize @freight
     if @freight.update(freights_params)
-      redirect_to @freight, notice: 'Freight has been updated'
+      redirect_to @freight, notice: 'Tu solicitud ha sido actualizada'
     else
       render :new, status: :unprocessable_entity
     end
@@ -63,7 +71,7 @@ class FreightsController < ApplicationController
   def destroy
     authorize @freight
     @freight.destroy
-    redirect_to freight_url, notice: 'Freight has been deleted'
+    redirect_to freight_url, notice: 'Tu solicitud fue eliminada'
   end
 
   private
@@ -74,5 +82,9 @@ class FreightsController < ApplicationController
 
   def set_freight
     @freight = Freight.find(params[:id])
+  end
+
+  def search_freight
+
   end
 end

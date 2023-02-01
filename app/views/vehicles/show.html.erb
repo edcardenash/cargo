@@ -1,43 +1,41 @@
 <div class="container">
   <div class="row mt-2">
     <div class="col-6 p-2">
-      <%# vehicle header %>
-      <div class="row align-items-center carrier-show radius-top mx-0 p-1">
-        <div class="col-6 p-3">
-          <h3 class="text-left">Estás viendo los detalles de <strong><%= @vehicle.alias %></strong></h3>
-        </div>
-        <div class="col-2"></div>
-        <div class="col-4 p-3">
-          <div class="row">
-            <p><i class="fa-regular fa-comment-dots"></i>&nbsp; <%= @vehicle.reviews.count %> reseñas</p>
-            <p><i class="<%= @vehicle.rating == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= @vehicle.rating %></p>
-            <p><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @vehicle.city.name %></p>
+      <div id="firstDiv">
+        <div class="row align-items-center carrier-show radius-top mx-0 p-1"> <%# vehicle header %>
+          <div class="col-6 p-3">
+            <h3 class="text-left">Estás viendo los detalles de <strong><%= @vehicle.alias %></strong></h3>
+          </div>
+          <div class="col-2"></div>
+          <div class="col-4 p-3">
+            <div class="row">
+              <p><i class="fa-regular fa-comment-dots"></i>&nbsp; <%= @vehicle.reviews.count %> reseñas</p>
+              <p><i class="<%= @vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= @vehicle.reviews.average(:rating) %></p>
+              <p><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @vehicle.city.name %></p>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row mx-0">
-        <%# edit and delte for vehicle owner %>
-        <% if policy(@vehicle).edit? %>
-            <%= link_to "Editar", edit_vehicle_path(@vehicle), class: "btn btn-outline-warning" %>
+        <div class="row mx-0"> <%# edit and delte for vehicle owner %>
+          <% if policy(@vehicle).edit? %>
+              <%= link_to "Editar", edit_vehicle_path(@vehicle), class: "btn btn-outline-warning" %>
+          </div>
+          <div class="row mx-0">
+            <% policy(@vehicle).destroy? %>
+              <%= link_to 'Eliminar', vehicle_path(@vehicle), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
+            <% end %>
         </div>
-        <div class="row mx-0">
-          <% policy(@vehicle).destroy? %>
-            <%= link_to 'Eliminar', vehicle_path(@vehicle), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
-          <% end %>
+        <ul class="list-group list-group-flush"> <%# vehicle details %>
+          <li class="list-group-item"><strong>Alias:</strong> <%= @vehicle.alias %></li>
+          <li class="list-group-item"><strong>Tipo de transporte:</strong> <%= @vehicle.vehicle_type %></li>
+          <li class="list-group-item"><strong>Capacidad de carga:</strong> <%= @vehicle.load_capacity.to_i %> Kg</li>
+          <li class="list-group-item"><strong>¿Está cubierto?:</strong> <%= @vehicle.covered ? "Si" : "No" %></li>
+          <li class="list-group-item"><strong>Descripción:</strong> <%= @vehicle.description %></li>
+          <li class="list-group-item"><strong>Ciudad base de operaciones:</strong> <%= @vehicle.city.name %></li>
+          <li class="list-group-item"><strong>Presta servicio en otras ciudades:</strong> <%= @vehicle.other_cities ? "Si" : "No"  %></li>
+          <li class="list-group-item"><strong>Presta servicio en otras regiones:</strong> <%= @vehicle.other_regions ? "Si" : "No"  %></li>
+        </ul>
       </div>
-      <%# vehicle details %>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"><strong>Alias:</strong> <%= @vehicle.alias %></li>
-        <li class="list-group-item"><strong>Tipo de transporte:</strong> <%= @vehicle.vehicle_type %></li>
-        <li class="list-group-item"><strong>Capacidad de carga:</strong> <%= @vehicle.load_capacity.to_i %> Kg</li>
-        <li class="list-group-item"><strong>¿Está cubierto?:</strong> <%= @vehicle.covered ? "Si" : "No" %></li>
-        <li class="list-group-item"><strong>Descripción:</strong> <%= @vehicle.description %></li>
-        <li class="list-group-item"><strong>Ciudad base de operaciones:</strong> <%= @vehicle.city.name %></li>
-        <li class="list-group-item"><strong>Presta servicio en otras ciudades:</strong> <%= @vehicle.other_cities ? "Si" : "No"  %></li>
-        <li class="list-group-item"><strong>Presta servicio en otras regiones:</strong> <%= @vehicle.other_regions ? "Si" : "No"  %></li>
-      </ul>
-      <%# reviews %>
-      <div class="row mx-0 p-2 carrier-show radius-bottom">
+      <div class="row mx-0 p-2 carrier-show radius-bottom"> <%# reviews %>
         <% unless @vehicle.reviews.count.zero? %>
           <h4 class="mt-4">Reseñas</h4>
           <% @vehicle.reviews.each do |review|%>
@@ -53,50 +51,52 @@
             </figure>
           <% end %>
         <% else %>
-          <h5>Se el primero en reseñar, contáctalo y contrata sus servicios.</h5>
+          <% if user_signed_in? %>
+            <% if current_user.id != @vehicle.user_id %>
+              <h6>Se el primero en reseñar, contáctalo y contrata sus servicios.</h6>
+            <% end %>
+          <% end %>
         <%end%>
       </div>
     </div>
     <div class="col-6 p-2">
-      <%# vehicle image %>
-      <%= cl_image_tag @vehicle.photo.key, class: 'w-100 card-trip', crop: :fill %>
+      <div class="d-flex justify-content-center align-items-center card-trip-1" id="secondDiv">
+        <%= cl_image_tag @vehicle.photo.key, class: 'w-100 radius-top', height: 487, crop: :scale %>
+      </div>
+      <div class="row m-0">
+        <%= link_to 'Solicitar cotización', new_vehicle_freight_path(@vehicle), class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
+      </div>
       <% if user_signed_in? %>
-        <%# if user signed in and it's not the owner can ask for a quote %>
-        <% if current_user.id != @vehicle.user_id %>
-          <div class="row pt-2 m-0">
-            <%= link_to 'Solicitar cotización', new_vehicle_freight_path(@vehicle), class: "btn btn-success boton-login btn-sm mt-1" %>
-          </div>
-          <%# if freight user have used the services of the vehicle can add a review %>
-          <% if @vehicle.quotes.any? %>
+        <% if current_user.id != @vehicle.user_id %> <%# if user signed in and it's not the owner can ask for a quote %>
+          <% if @vehicle.quotes.any? %> <%# if freight user have used the services of the vehicle can add a review %>
             <% @freights.each do |freight| %>
               <% freight.user_id %>
               <% if current_user.id == freight.user_id %>
                 <div class="row mx-0 p-2 carrier-show radius mt-2">
-                    <h4>Agregar comentarios</h4>
+                    <h4 class="py-2">Agregar comentarios</h4>
                     <%= simple_form_for([@vehicle, @review]) do |f| %>
-                      <%= f.input :rating, label: "Rating" %>
-                      <%= f.input :comment, label: "Comentario" %>
-                      <%= f.submit "Enviar reseña", class: "btn btn-success boton-login btn-sm my-2" %>
+                      <%= f.input :rating, collection: (1..5).to_a, label: "Califica tu experiencia", input_html: {data: {controller: "star-rating"}} %>
+                      <%= f.input :comment, label: "Comentarios" %>
+                      <%= f.submit "Envía tu reseña", class: "btn btn-success boton-login btn-sm my-2" %>
                     <% end %>
                 </div>
               <% end %>
             <% end %>
           <% end %>
         <% end %>
-        <%# list of vehicle quotes which status are pending %>
-        <% if current_user.id == @vehicle.user_id %>
-        <div class="carrier-show mx-0 p-1">
-          <h3 class="text-left p-3">Has enviado <strong><%= @vehicle.quotes.count %></strong> cotizaciones para <strong><%= @vehicle.alias %></strong></h3>
-        </div>
+        <% if current_user.id == @vehicle.user_id %> <%# list of vehicle quotes which status are pending %>
+          <div class="carrier-show mx-0 p-1">
+            <h3 class="text-left p-3">Has enviado <strong><%= @vehicle.quotes.count %></strong> cotizaciones para <strong><%= @vehicle.alias %></strong></h3>
+          </div>
           <% @vehicle.quotes.each do |quote| %>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
                 <div class="row">
                   <div class="col-9">
-                  Solicitud de servicio Nº<%= quote.freight.id %> por un monto de <%= quote.amount.to_i %>$
+                    Solicitud de servicio Nº<%= quote.freight.id %> por un monto de <%= quote.amount.to_i %>$
                   </div>
                   <div class="col-3">
-                  <%= link_to 'Ver solicitud', quote.freight, class: "btn btn-success boton-login btn-sm d-flex text-center" %>
+                    <%= link_to 'Ver solicitud', quote.freight, class: "btn btn-success boton-login btn-sm d-flex text-center" %>
                   </div>
                 </div>
               </li>
@@ -104,12 +104,12 @@
           <% end %>
           <div class="row mx-0 p-2 carrier-show radius-bottom">
           </div>
-
-      </div>
         <% end %>
       <% end %>
-
-
     </div>
   </div>
 </div>
+<script>$(document).ready(function(){
+   var firstDiv = $("#firstDiv").height();
+   $("#secondDiv").height(firstDiv);
+});</script>

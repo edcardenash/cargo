@@ -48,18 +48,14 @@
   </div>
 </div>
 <!-- Search-bar-->
-<div class="container">
-  <br>
-  <br>
+<div class="container my-5">
   <%= render "shared/search", class: "nav-link" %>
-  <br>
-  <br>
 </div>
 <!-- Services-->
 <div  class="service-card p-5" id="services">
   <div class="container">
     <div class="text-center">
-      <h2 class="section-heading text-uppercase">¿Cómo funciona?</h2>
+      <h2 class="section-heading text-uppercase my-4">¿Cómo funciona?</h2>
       <br>
     </div>
     <div class="row text-center">
@@ -85,7 +81,7 @@
 <div class="p-5 carriers">
   <div class="container">
     <div  class="row">
-      <h2 class="section-heading text-uppercase text-center">top de transportistas</h2>
+      <h2 class="section-heading text-uppercase text-center my-4">top de transportistas</h2>
         <div class="container p-2">
         <div class="cards">
           <% @vehicles.sort_by { |vehicle| [-vehicle.rating] }.take(6).each do |vehicle| %>
@@ -99,7 +95,7 @@
                   <div class="pt-2">
                     <h6>Tipo de trasnporte: <%= vehicle.vehicle_type %></h6>
                     <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg.</h6>
-                    <h6>Rating:  <strong><%= vehicle.rating %></strong></h6>
+                    <h6>Rating:  <strong><i class="<%= vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= vehicle.reviews.average(:rating) %></strong></h6>
                     <h6>Cerrado: <strong><%= vehicle.covered ? "Si" : "No" %></strong></h6>
                     <p><%= vehicle.description.truncate(50) %></p>
                   </div>
