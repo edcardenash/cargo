@@ -8,8 +8,8 @@
         <strong><%= f.input :description, label: "Descripción", as: :text  %></strong>
         <strong><%= f.input :receiver_name, label: "Nombre del receptor", as: :text %></strong>
         <strong><%= f.input :receiver_phone, label: "Telefono del receptor", as: :text %></strong>
-        <strong><%= f.input :address, label: "Direccion de origen", input_html: { :autocomplete => "street-address", id: "geocoder", class: "geocoder"}%></strong>
-        <strong><%= f.input :end_address, label: "Direccion de destino" ,input_html: { :autocomplete => "street-address"} %></strong>
+        <strong><%= f.input :address, label: "Dirección de origen", input_html: { :autocomplete => "street-address", id: "geocoder", class: "geocoder"}%></strong>
+        <strong><%= f.input :end_address, label: "Dirección de destino" ,input_html: { :autocomplete => "street-address"} %></strong>
         <strong><%= f.label :start_date, "Fecha"%></strong>
         <strong><%= f.date_field :start_date ,min_max: true, min: Date.today, required: true, style: "width: 100%" %></strong>
         <strong><%= f.input :round_trip, label: "¿Ida y vuelta?",  html: { class: "mt-3 mb-3"}%></strong>
