@@ -13,21 +13,21 @@
 
       <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <%= link_to "Transportes disponibles", vehicles_path, class: "nav-link" %>
+            <%= link_to "Transportes disponibles", vehicles_path, class: "nav-link me-2" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Solicita", new_freight_path, class: "nav-link" %>
+            <%= link_to "Solicita", new_freight_path, class: "nav-link me-2" %>
 
           </li>
           <li class="nav-item">
-            <%= link_to "Conduce", new_vehicle_path, class: "nav-link" %>
+            <%= link_to "Conduce", new_vehicle_path, class: "nav-link me-2" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Contáctanos", new_contact_path, class: "nav-link" %>
+            <%= link_to "Contáctanos", new_contact_path, class: "nav-link me-2" %>
           </li>
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "Solicitudes abiertas", freights_path, class: "nav-link" %>
+            <%= link_to "Solicitudes abiertas", freights_path, class: "nav-link me-4" %>
           </li>
           <li class="nav-item dropdown">
             <% if current_user.photo.attached? %>
@@ -40,12 +40,12 @@
               <%= link_to "¡Tus cotizaciones!", quotes_path, class: "dropdown-item" %>
               <%= link_to "¡Tus Vehiculos!", my_vehicles_vehicles_path, class: "dropdown-item" %>
               <%= link_to "Editar perfil", edit_user_registration_path, class: "dropdown-item" %>
-              <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+              <%= link_to "Cerrar sesión", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
           <% else %>
           <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-success boton-login" %>
+            <%= link_to "Inicia sesión", new_user_session_path, class: "nav-link btn btn-success boton-login ms-2" %>
           </li>
         <% end %>
       </ul>
