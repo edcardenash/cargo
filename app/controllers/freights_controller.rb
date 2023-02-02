@@ -19,6 +19,11 @@ class FreightsController < ApplicationController
     end
   end
 
+  def search_address
+    resultado = Geocoder.search(params[query])
+    puts resultado
+  end
+
   def show
     authorize @freight
     @quote = Quote.new
@@ -42,6 +47,7 @@ class FreightsController < ApplicationController
 
   def create
     @freight = Freight.new(freights_params)
+    puts freights_params
     @freight.user = current_user
     authorize @freight
     @destiny_coordenates = @freight.destiny_address(params[:freight][:end_address])
@@ -82,9 +88,5 @@ class FreightsController < ApplicationController
 
   def set_freight
     @freight = Freight.find(params[:id])
-  end
-
-  def search_freight
-
   end
 end

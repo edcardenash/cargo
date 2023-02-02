@@ -77,7 +77,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_30_002326) do
 
   create_table "quotes", force: :cascade do |t|
     t.integer "status"
-    t.float "amount"
+    t.integer "amount"
     t.text "comment"
     t.bigint "vehicle_id", null: false
     t.bigint "freight_id", null: false
