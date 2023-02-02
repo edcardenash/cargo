@@ -4,10 +4,12 @@ import MapboxGeocoder from "@mapbox/mapbox-gl-geocoder"
 // Connects to data-controller="search-address"
 export default class extends Controller {
 
+  static targets = ["formulario", "input", "list"]
+
   connect() {
 
-    const ACCESS_TOKEN = 'pk.eyJ1IjoiZWFsdGFtaXIiLCJhIjoiY2xkbjh4ZXRpMGgzdzNua2I2bGs1aGx0NiJ9.t3wEyM5y-oHLyCAtOJDSFw';
 
+    const ACCESS_TOKEN = 'pk.eyJ1IjoiZWFsdGFtaXIiLCJhIjoiY2xkbjh4ZXRpMGgzdzNua2I2bGs1aGx0NiJ9.t3wEyM5y-oHLyCAtOJDSFw';
     const script = document.getElementById('search-js');
     script.onload = () => {
         const collection = mapboxsearch.autofill({
@@ -46,12 +48,14 @@ export default class extends Controller {
     //   accessToken: mapboxgl.accessToken
     //   });
 
+
   // originAddress.addTo('#originAddress');
   // destinyAddress.addTo('#destinyAddress');
   // geocoder.addTo('#geocoder');
 
 
   }
+
 
   // update() {
   //   const url = `${this.formularioTarget.action}?query=${this.inputTarget.value}`
@@ -61,4 +65,5 @@ export default class extends Controller {
   //       console.log(data);
   //     })
   //   }
+
 }

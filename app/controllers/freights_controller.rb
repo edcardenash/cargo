@@ -19,6 +19,11 @@ class FreightsController < ApplicationController
     end
   end
 
+  def search_address
+    resultado = Geocoder.search(params[query])
+    puts resultado
+  end
+
   def show
     authorize @freight
     @quote = Quote.new
