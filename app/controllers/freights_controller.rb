@@ -19,6 +19,18 @@ class FreightsController < ApplicationController
     end
   end
 
+  def my_freights
+    @freights = current_user.freights
+    if params[:query].present?
+      @freights = @freights.where("address ILIKE ?", "%#{params[:query]}%")
+    end
+    authorize @freights
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: "shared/list_freigths", locals: {freights: @freights}, formats: [:html] }
+    end
+  end
+
   def show
     authorize @freight
     @quote = Quote.new

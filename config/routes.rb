@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   end
   resources :freights do
     resources :quotes
+    collection do
+      get "my_freights"
+    end
   end
   resources :reviews
   resources :quotes
