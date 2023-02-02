@@ -1,4 +1,4 @@
-<div class="container col-6">
+<div class="container col-6 mt-4">
   <div class="row carrier-show radius mt-4 p-4">
     <header>Nueva solicitud de transporte</header>
   </div>
@@ -9,14 +9,25 @@
         <strong><%= f.input :receiver_name, label: "Nombre del receptor", as: :text %></strong>
         <strong><%= f.input :receiver_phone, label: "Telefono del receptor", as: :text %></strong>
         <div data-controller="search-address">
+          <div class="row">
+            <div class="col-8">
+              <input class="input mb12" id="address" name="freight[address]" autocomplete="shipping address-line1" placeholder="Direccion de Origen">
+            </div>
+            <div class="col-4">
+              <input class="input mb12" id="address" name="freight[or_city]" autocomplete="shipping address-level2" placeholder="Ciudad Origen" disabled>
+            </div>
+          </div>
 
-          <mapbox-address-autofill>
-            <input class="input mb12" id="address" name="freight[address]" autocomplete="shipping address-line1" placeholder="Direccion de Origen">
-          </mapbox-address-autofill>
+          <div class="row">
+            <div class="col-8">
+              <input class="input mb12" id="end_address" name="freight[end_address]" autocomplete="billing address-line1" placeholder="Direccion de Destino">
+            </div>
+            <div class="col-4">
+              <input class="input mb12" id="end_city" name="end_city" autocomplete="billing address-level2" placeholder="Ciudad Destino" disabled>
+            </div>
+          </div>
 
-          <mapbox-address-autofill>
-            <input class="input mb12" id="end_address" name="freight[end_address]" autocomplete="billing address-line1" placeholder="Direccion de Destino">
-          </mapbox-address-autofill>
+
         </div>
 
         <strong><%= f.label :start_date, "Fecha"%></strong>

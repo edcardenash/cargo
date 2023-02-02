@@ -8,23 +8,33 @@ export default class extends Controller {
 
   connect() {
 
-    const ACCESS_TOKEN = 'pk.eyJ1IjoiZWFsdGFtaXIiLCJhIjoiY2w5cnN3N3prMGpzZjNwcW0yNTR4ZHl3bCJ9.A2gb3u3Tz6cgIDG4zLs7yw';
+
+    const ACCESS_TOKEN = 'pk.eyJ1IjoiZWFsdGFtaXIiLCJhIjoiY2xkbjh4ZXRpMGgzdzNua2I2bGs1aGx0NiJ9.t3wEyM5y-oHLyCAtOJDSFw';
     const script = document.getElementById('search-js');
     script.onload = () => {
-        const elements = document.querySelectorAll('mapbox-address-autofill');
-        for (const autofill of elements) {
-            autofill.accessToken = ACCESS_TOKEN;
-        }
+        const collection = mapboxsearch.autofill({
+            accessToken: ACCESS_TOKEN
+        });
     };
 
+    // mapboxgl.accessToken = 'pk.eyJ1IjoiZWFsdGFtaXIiLCJhIjoiY2xkbjh4ZXRpMGgzdzNua2I2bGs1aGx0NiJ9.t3wEyM5y-oHLyCAtOJDSFw';
+    // const script = document.getElementById('search-js');
+    // script.onload = () => {
+    //     const elements = document.querySelectorAll('mapbox-address-autofill');
+    //     for (const autofill of elements) {
+    //       console.log( mapboxgl.accessToken);
+    //         autofill.accessToken =  mapboxgl.accessToken;
+    //     }
+    // };
 
-    const scriptEndDirection = document.getElementById('search-js');
-    scriptEndDirection.onload = () => {
-        const elements = document.querySelectorAll('mapbox-endAddress-autofill');
-        for (const autofill of elements) {
-            autofill.accessToken = ACCESS_TOKEN;
-        }
-    };
+
+    // const scriptEndDirection = document.getElementById('search-js');
+    // scriptEndDirection.onload = () => {
+    //     const elements = document.querySelectorAll('mapbox-endAddress-autofill');
+    //     for (const autofill of elements) {
+    //         autofill.accessToken =  mapboxgl.accessToken;
+    //     }
+    // };
 
     // const originAddress = new MapboxGeocoder({
     //   accessToken: mapboxgl.accessToken

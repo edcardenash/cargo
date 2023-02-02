@@ -1,62 +1,23 @@
-<div class="p-5 carriers">
-  <div class="container">
-    <div class="row">
-      <div class="cards col-12">
-        <% @vehicles.each do |vehicle| %>
-          <% if user_signed_in? %>
-            <% if vehicle.user_id != current_user.id %>
-              <div class="card-trip" id="card-show">
-                <% if vehicle.photo.attached? %>
-                  <%= cl_image_tag vehicle.photo.key %>
-                <% end %>
-                <div class="card-trip-infos carriers-info">
-                  <div>
-                    <h4><%= vehicle.alias %></h4>
-                    <br>
-                    <div class="pt-2">
-                      <h6>Rating:  <strong><i class="<%= vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= vehicle.reviews.average(:rating) %></strong></h6>
-                      <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg</h6>
-                      <h6>Ciudad base de operaciones: <%= vehicle.city.name %></strong> </h6>
-                      <h6>Presta servicio en otras ciudades: <%= vehicle.other_cities ? "Si" : "No" %></h6>
-                      <h6>Presta servicio en otras regiones: <%= vehicle.regions ? "Si" : "No" %></h6>
-                      <h6>Cerrado: <%= vehicle.covered ? "Si" : "No" %></h6>
-                      <p><%= vehicle.description.truncate(50) %></p>
-                    </div>
-                    <br>
-                    <div class="pt-2">
-                      <%= link_to 'Contactar', vehicle, class: "btn btn-success boton-login btn-sm mt-1"%>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% else %>
-            <div class="card-trip" id="card-show">
-              <% if vehicle.photo.attached? %>
-                <%= cl_image_tag vehicle.photo.key %>
-              <% end %>
-              <div class="card-trip-infos carriers-info">
-                <div>
-                  <h4><%= vehicle.alias %></h4>
-                  <br>
-                  <div class="pt-2">
-                    <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg.</h6>
-                    <h6>Ciudad base de operaciones: <%= vehicle.city.name %></strong> </h6>
-                    <h6>Presta servicio en otras ciudades: <%= vehicle.other_cities ? "Si" : "No" %></h6>
-                    <h6>Presta servicio en otras regiones: <%= vehicle.regions ? "Si" : "No" %></h6>
-                    <h6>Cerrado: <%= vehicle.covered ? "Si" : "No" %></h6>
-                    <p><%= vehicle.description.truncate(50) %></p>
-                  </div>
-                  <br>
-                  <div class="pt-2">
-                    <%= link_to 'Contactar', vehicle, class: "btn btn-success boton-login btn-sm mt-1"%>
-                  </div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+<div class="row align-items-center mt-3">
+  <div class="col-6">
+    <h1 class="text-center" style="font-size: 30px">Listado de Vehiculos Disponibles</h1>
   </div>
+  <div class="col-6 text-center">
+  <%= link_to "Publica tu vehiculo", new_vehicle_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>
+<div class="container" data-controller="search-vehicles">
+  <%= form_with url: vehicles_path, method: :get, html: {class:
+    "mb-4", data: {search_vehicles_target: "form"}} do |f| %>
+    <%= f.text_field :query,
+                     class: "form-control mt-3",
+                     placeholder: "Ingrese el nombre del vehiculo",
+                     value: params[:query],
+                     data: {search_vehicles_target: "input",
+                            action: "keyup->search-vehicles#update"
+                          }%>
+  <% end %>
+
+    <!-- Busqueda de vehicles --->
+    <%= render "shared/list_vehicles", vehicles: @vehicles %>
 </div>
