@@ -24,7 +24,9 @@ export default class extends Controller {
       profile: 'mapbox/driving',
       alternatives: false,
       geometries: 'geojson',
-      controls: { instructions: true },
+      controls: {
+        inputs: false,
+        instructions: false },
       flyTo: false
     });
 
