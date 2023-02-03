@@ -1,63 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="container p-2 carriers">
-     <div class="row carrier-show radius mt-5 p-4">
-      <header>Estas son tus cotizaciones enviadas</header>
-    </div>
-      <div class="cards mt-4">
-        <% @quotes.each do |quote| %>
-          <% if user_signed_in?%>
-            <% if quote.user_id == current_user.id %>
-              <div class="card-trip" id="card-show" style="height: 450px">
-                <% if quote.vehicle.photo.attached? %>
-                  <%= cl_image_tag quote.vehicle.photo.key %>
-                <% end %>
-                <div class="card-trip-infos-2 carriers-info" style= "height: 250px">
-                  <div>
-                    <h4 >Cotización Nº - <%= quote.id %> </h4>
-                    <div class="pt-2">
-                      <h6>Rating:  <strong><i class="<%=quote.vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%=quote.vehicle.reviews.average(:rating) %></strong></h6>
-                      <h6>Monto ofertado: <strong>$<%= quote.amount.to_i %></strong></h6>
-                      <h6 maxlength="10">Tipo de vehículo: <%= quote.vehicle.vehicle_type %></h6>
-                      <p class="text-light">Comentario: <%= quote.comment %></p>
-                    </div>
-                    <div class="pt-5 justify-content-around d-flex">
-                      <%# if policy(@vehicle).edit? %>
-                        <%#= link_to "Editar", edit_quote_path(quote), class: "btn btn-outline-warning mt-3 col-6 mx-2" %>
-                      <%# policy(@vehicle).destroy? %>
-                        <%#= link_to 'Eliminar', quote_path(quote), class: "btn btn-outline-danger mt-3 col-6", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
-                      <%# end %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-          <% elsif current_user.id == quote.freight.user_id %>
-               <div class="card-trip" id="card-show" style="height: 450px">
-                  <% if quote.vehicle.photo.attached? %>
-                    <%= cl_image_tag quote.vehicle.photo.key %>
-                  <% end %>
-                  <div class="card-trip-infos-2 carriers-info" style= "height: 250px">
-                    <div>
-                      <h4 >Cotización Nº - <%= quote.id %> </h4>
-                    <div class="pt-2">
-                      <h6>Rating:  <strong><i class="<%=quote.vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%=quote.vehicle.reviews.average(:rating) %></strong></h6>
-                      <h6>Monto ofertado: <strong>$<%= quote.amount.to_i %></strong></h6>
-                      <h6 maxlength="10">Tipo de vehículo: <%= quote.vehicle.vehicle_type %></h6>
-                      <p class="text-light">Comentario: <%= quote.comment %></p>
-                    </div>
-                    <div class="pt-5 justify-content-around d-flex">
-                       <%# if policy(@vehicle).edit? %>
-                        <%#= link_to "Editar", edit_quote_path(quote), class: "btn btn-outline-warning mt-3 col-6 mx-2" %>
-                      <%# policy(@vehicle).destroy? %>
-                        <%#= link_to 'Eliminar', quote_path(quote), class: "btn btn-outline-danger mt-3 col-6", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
-          <%# <% end %> %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-          <% end %>
+      <div class="row carrier-show radius mt-5 p-4">
+        <header>Estas son tus cotizaciones enviadas</header>
+      </div>
+      <div class="container" data-controller="search-quotes">
+        <%= form_with url: quotes_path, method: :get, html: {class:
+          "mb-4", data: {search_quotes_target: "form"}} do |f| %>
+          <%= f.text_field :query,
+                          class: "form-control mt-3",
+                          placeholder: "Buscar un Quote",
+                          value: params[:query],
+                          data: {search_vehicles_target: "input",
+                                  action: "keyup->search-quotes#update"
+                                }%>
         <% end %>
+        <!-- Busqueda de quotes --->
+        <%= render "shared/list_quotes", quotes: @quotes %>
       </div>
     </div>
   </div>

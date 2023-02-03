@@ -19,6 +19,18 @@ class FreightsController < ApplicationController
     end
   end
 
+  def my_freights
+    @freights = current_user.freights
+    if params[:query].present?
+      @freights = @freights.where("address ILIKE ?", "%#{params[:query]}%")
+    end
+    authorize @freights
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: "shared/list_freigths", locals: {freights: @freights}, formats: [:html] }
+    end
+  end
+
   def show
     authorize @freight
     @quote = Quote.new
@@ -77,14 +89,10 @@ class FreightsController < ApplicationController
   private
 
   def freights_params
-    params.require(:freight).permit(:address, :description, :start_date, :receiver_name, :receiver_phone, :round_trip, :latitude, :longitude, :end_address, :end_latitude, :end_logitude,  photos: [])
+    params.require(:freight).permit(:or_city, :end_city, :address, :description, :start_date, :receiver_name, :receiver_phone, :round_trip, :latitude, :longitude, :end_address, :end_latitude, :end_logitude,  photos: [])
   end
 
   def set_freight
     @freight = Freight.find(params[:id])
-  end
-
-  def search_freight
-
   end
 end
