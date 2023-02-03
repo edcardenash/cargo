@@ -7,7 +7,7 @@
           <span aria-hidden="true"></span>
         </button>
       </div>
-      <div class="modal-body pt-3">
+      <div class="modal-body pt-3" id="form">
         <%= simple_form_for @payment do |f| %>
           <%= f.input :name, label: "Nombre completo" %>
           <%= f.input :card_number,label: "Número de la tarjeta", input_html: { type: :number } %>
@@ -19,5 +19,20 @@
         <% end %>
       </div>
     </div>
+    <div class="modal-confirmation carrier-show text-center">
+      <p>¡Tu pago se ha procesado exitosamente!</p>
+    </div>
   </div>
 </div>
+<script>
+  const form = document.getElementById("form");
+const modalConfirmation = document.querySelector(".modal-confirmation");
+
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  modalConfirmation.style.display = "block";
+  setTimeout(function () {
+  window.location.href = "<%= freights_path %>";
+}, 1000);
+});
+</script>
