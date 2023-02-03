@@ -3,7 +3,7 @@
     <div class="row carrier-show radius mt-4 p-4">
       <header>Listado de vehiculos disponibles</header>
     </div>
-    <div class="container" data-controller="search-vehicles">
+    <div data-controller="search-vehicles">
       <%= form_with url: vehicles_path, method: :get, html: {class:
         "mb-4", data: {search_vehicles_target: "form"}} do |f| %>
         <%= f.text_field :query,
