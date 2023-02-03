@@ -3,10 +3,6 @@
    <div class="row carrier-show radius mt-4 p-4">
       <header>Listado de vehiculos disponibles</header>
     </div>
-    <div class="col-6 text-center">
-      <%= link_to "Publica tu vehiculo", new_vehicle_path, class: "btn btn-alert btn-lg" %>
-      </div>
-    </div>
     <div class="container" data-controller="search-vehicles">
       <%= form_with url: vehicles_path, method: :get, html: {class:
         "mb-4", data: {search_vehicles_target: "form"}} do |f| %>
@@ -18,7 +14,6 @@
                                 action: "keyup->search-vehicles#update"
                               }%>
       <% end %>
-
         <!-- Busqueda de vehicles --->
         <%= render "shared/list_vehicles", vehicles: @vehicles %>
     </div>

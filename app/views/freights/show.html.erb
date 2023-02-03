@@ -1,38 +1,75 @@
-<div class="container mb-4">
-  <h1 class="mt-4 text-center">Detalle de transporte en <%=@freight.address%></h1>
-  <div class="row">
-    <div class="col-6">
-      <div class="mb-4">
-        <% if user_signed_in? %>
-          <% if @freight.user_id != current_user.id %>
-            <%= link_to "Cotizar", new_freight_quote_path(@freight), class: "btn btn-primary" %>
-          <% else %>
-            <%= link_to "Ver cotizaciones", freight_quotes_path(@freight), class: "btn btn-primary" %>
-            <% if policy(@freight).edit? %>
-              <%= link_to "Editar", edit_freight_path(@freight), class: "btn btn-warning" %>
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-6 p-2">
+      <div id="firstDiv">
+        <div class="row align-items-center carrier-show radius-top mx-0 p-1"> <%# freight header %>
+          <div class="col-6 p-3">
+            <h3 class="text-left">Detalle de transporte en <%=@freight.address%></strong></h3>
+          </div>
+          <div class="col-4 p-3">
+            <div class="row">
+              <p><i class="fa-regular fa-comment-dots"></i>&nbsp; <%= @freight.start_date.strftime('%d/%m/%Y') %></p>
+              <p><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @freight.end_address %></p>
+            </div>
+          </div>
+        </div>
+        <div class="row mx-0"> <%# edit and delte for freight owner %>
+          <% if policy(@freight).edit? %>
+              <%= link_to "Editar", edit_freight_path(@freight), class: "btn btn-outline-warning" %>
+          </div>
+          <div class="row mx-0">
+            <% policy(@freight).destroy? %>
+              <%= link_to 'Eliminar', freight_path(@freight), class: "btn btn-outline-danger", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
             <% end %>
-          <% end %>
-        <% end %>
+        </div>
+        <ul class="list-group list-group-flush"> <%# freight details %>
+          <strong><li class="list-group-item">Descripción:</strong> <%= @freight.description %></li>
+          <strong><li class="list-group-item">Person que recepciona:</strong> <%= @freight.receiver_name %></li>
+          <strong><li class="list-group-item">Telefono:</strong> <%= @freight.receiver_phone %></li>
+          <strong><li class="list-group-item">Origen:</strong> <%= @freight.address %></li>
+          <strong><li class="list-group-item">Destino:</strong> <%= @freight.end_address %></li>
+          <strong><li class="list-group-item">Fecha:</strong> <%= @freight.start_date.strftime('%d/%m/%Y') %></li>
+        </ul>
       </div>
-      <ul class="list-group list-group-flush my-3 border border-3">
-        <strong><li class="list-group-item">Descripción:</strong> <%= @freight.description %></li>
-        <strong><li class="list-group-item">Person que recepciona:</strong> <%= @freight.receiver_name %></li>
-        <strong><li class="list-group-item">Telefono:</strong> <%= @freight.receiver_phone %></li>
-        <strong><li class="list-group-item">Origen:</strong> <%= @freight.address %></li>
-        <strong><li class="list-group-item">Destino:</strong> <%= @freight.end_address %></li>
-        <strong><li class="list-group-item">Fecha:</strong> <%= @freight.start_date.strftime('%d/%m/%Y') %></li>
-      </ul>
     </div>
     <div class="col-6">
-      <div id="mapshow" class="mt-4" style="width: 100%; height: 400px;"
-        data-controller="mapshow"
-        data-mapshow-markers-value="<%= @markers.to_json %>"
-        data-mapshow-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      <div class="d-flex justify-content-center align-items-center card-trip-1 mt-4" id="secondDiv">
+        <div id="mapshow" style="width: 100%; height: 450px;"
+          data-controller="mapshow"
+          data-mapshow-markers-value="<%= @markers.to_json %>"
+          data-mapshow-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
       </div>
+      <div class="row m-0">
+        <%= link_to 'Solicitar cotización', vehicles_path, class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
+      </div>
+      <% if user_signed_in? %>
+        <% if current_user.id == @freight.user_id %> <%# list of freight quotes which status are pending %>
+          <div class="carrier-show mx-0 p-1">
+            <h3 class="text-left p-3">Tienes una Cotizacion <strong><%= @freight.quotes.count %></strong></h3>
+          </div>
+          <% @freight.quotes.each do |quote| %>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-9">
+                    Solicitud de servicio Nº<%= quote.vehicle.id %> por un monto de <%= quote.amount.to_i %>$
+                  </div>
+                  <div class="col-3">
+                    <%= link_to 'Ver cotizacion', quote.vehicle, class: "btn btn-success boton-login btn-sm d-flex text-center" %>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          <% end %>
+          <div class="row mx-0 p-2 carrier-show radius-bottom">
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
-
-  <h3 class="text-center">Galería de Imagenes</h3>
+  <hr class="border border-primary border-3 opacity-75">
+  <h3 class="text-center mb-5 mt-5">Galería de Imagenes</h3>
     <div data-controller="lightbox" style="max-width:80%">
       <% @freight.photos.each do |photo| %>
         <div class="mt-3">
@@ -41,3 +78,8 @@
       <% end %>
     </div>
 </div>
+
+<script>$(document).ready(function(){
+   var firstDiv = $("#firstDiv").height();
+   $("#secondDiv").height(firstDiv);
+});</script>

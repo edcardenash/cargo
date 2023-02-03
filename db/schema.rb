@@ -77,19 +77,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_014832) do
     t.index ["user_id"], name: "index_freights_on_user_id"
   end
 
-  create_table "orders", force: :cascade do |t|
-    t.string "state"
-    t.string "quote_sku"
-    t.integer "amount"
-    t.string "checkout_session_id"
-    t.bigint "user_id", null: false
-    t.bigint "quote_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["quote_id"], name: "index_orders_on_quote_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
-  end
-
   create_table "payments", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -108,15 +95,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_014832) do
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
   end
 
-  create_table "prices", force: :cascade do |t|
-    t.integer "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "quotes", force: :cascade do |t|
     t.integer "status"
-    t.float "amount"
+    t.integer "amount"
     t.text "comment"
     t.bigint "vehicle_id", null: false
     t.bigint "freight_id", null: false
@@ -190,8 +171,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_014832) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cities", "regions"
   add_foreign_key "freights", "users"
-  add_foreign_key "orders", "quotes"
-  add_foreign_key "orders", "users"
   add_foreign_key "quotes", "freights"
   add_foreign_key "quotes", "users"
   add_foreign_key "quotes", "vehicles"
