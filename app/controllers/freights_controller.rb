@@ -86,7 +86,7 @@ class FreightsController < ApplicationController
   def destroy
     authorize @freight
     @freight.destroy
-    redirect_to freight_url, notice: 'Tu solicitud fue eliminada'
+    redirect_to freights_path, notice: 'Tu solicitud fue eliminada'
   end
 
   private

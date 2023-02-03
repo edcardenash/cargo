@@ -6,8 +6,6 @@ class PaymentsController < ApplicationController
 
   def create
     @payment = Payment.new(payment_params)
-    raise
-
     if @payment.valid?
       # process the payment
       redirect_to freights_path
