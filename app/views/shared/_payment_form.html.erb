@@ -19,21 +19,20 @@
         <% end %>
       </div>
     </div>
-    <div class="modal-confirmation text-center">
+    <div class="modal-confirmation carrier-show text-center">
       <p>¡Tu pago se ha procesado exitosamente!</p>
     </div>
   </div>
 </div>
 <script>
   const form = document.getElementById("form");
-  const modalConfirmation = document.querySelector(".modal-confirmation");
+const modalConfirmation = document.querySelector(".modal-confirmation");
 
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    modalConfirmation.style.display = "block";
-  });
-
-  modalConfirmation.addEventListener("click", function (event) {
-    form.submit();
-  });
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+  modalConfirmation.style.display = "block";
+  setTimeout(function () {
+  window.location.href = "<%= freights_path %>";
+}, 1000);
+});
 </script>
