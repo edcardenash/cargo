@@ -33,3 +33,9 @@ application.register("search-vehicles", SearchVehiclesController)
 
 import StarRatingController from "./star_rating_controller"
 application.register("star-rating", StarRatingController)
+
+import { Application } from '@hotwired/stimulus'
+import Lightbox from 'stimulus-lightbox'
+
+const application = Application.start()
+application.register('lightbox', Lightbox)
