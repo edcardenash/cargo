@@ -1,0 +1,23 @@
+<div class="modal fade border border-3" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="paymentModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content carrier-show radius">
+      <div class="modal-header">
+        <header>Por favor ingresa tus datos para proceder con el pago</header>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="modal-body pt-3">
+        <%= simple_form_for @payment do |f| %>
+          <%= f.input :name, label: "Nombre completo" %>
+          <%= f.input :card_number,label: "Número de la tarjeta", input_html: { type: :number } %>
+          <%= f.input :expiration_date, as: :string, label: "Fecha de vencimiento (MM/AA)" %>
+          <%= f.input :ccv, label: "CCV", input_html: { type: :number, maxlength: 3 } %>
+          <div class="row modal-footer m-0 pb-3">
+            <%= f.button :submit, "Pagar", class: "btn btn-success boton-login ms-2 radius" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

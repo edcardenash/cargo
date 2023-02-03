@@ -4,7 +4,8 @@ class VehiclesController < ApplicationController
 
   def index
     if params[:query].present?
-      @vehicles = policy_scope(Vehicle.global_search(params[:query]))
+      @vehicles = Vehicle.all
+      @vehicles = policy_scope(@vehicles.where("alias ILIKE ?", "%#{params[:query]}%"))
     else
       @vehicles = policy_scope(Vehicle)
     end
