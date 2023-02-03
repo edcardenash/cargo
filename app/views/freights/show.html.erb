@@ -34,17 +34,17 @@
     </div>
     <div class="col-6">
       <div class="d-flex justify-content-center align-items-center card-trip-1 mt-2" id="secondDiv">
-        <div id="mapshow" style="width: 100%; height: 450px;"
+        <div id="mapshow" style="width: 100%; height: 350px;"
           data-controller="mapshow"
           data-mapshow-markers-value="<%= @markers.to_json %>"
           data-mapshow-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
-      <div class="row m-0">
-        <%= link_to 'Solicitar cotización', vehicles_path, class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
-      </div>
       <% if user_signed_in? %>
         <% if current_user.id == @freight.user_id %> <%# list of freight quotes which status are pending %>
+          <div class="row m-0">
+            <%= link_to 'Solicitar cotización', vehicles_path, class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
+          </div>
           <div class="carrier-show mx-0 p-1">
             <h3 class="text-left p-3">Tienes <strong><%= @freight.quotes.count %></strong> cotizacion/es </h3>
           </div>
@@ -62,7 +62,9 @@
               </li>
             </ul>
           <% end %>
-          <div class="row mx-0 p-2 carrier-show radius-bottom">
+        <%else%>
+          <div class="row">
+            <%= link_to 'Enviar cotización', new_freight_quote_path(@freight), class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
           </div>
         <% end %>
       <% end %>
