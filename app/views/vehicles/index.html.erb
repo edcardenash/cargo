@@ -1,3 +1,4 @@
+
 <div class="px-5 carriers">
   <div class="container">
    <div class="row carrier-show radius mt-4 p-4">
@@ -63,5 +64,24 @@
         <% end %>
       </div>
     </div>
+
   </div>
+  <div class="col-6 text-center">
+  <%= link_to "Publica tu vehiculo", new_vehicle_path, class: "btn btn-primary btn-lg" %>
+  </div>
+</div>
+<div class="container" data-controller="search-vehicles">
+  <%= form_with url: vehicles_path, method: :get, html: {class:
+    "mb-4", data: {search_vehicles_target: "form"}} do |f| %>
+    <%= f.text_field :query,
+                     class: "form-control mt-3",
+                     placeholder: "Ingrese el nombre del vehiculo",
+                     value: params[:query],
+                     data: {search_vehicles_target: "input",
+                            action: "keyup->search-vehicles#update"
+                          }%>
+  <% end %>
+
+    <!-- Busqueda de vehicles --->
+    <%= render "shared/list_vehicles", vehicles: @vehicles %>
 </div>

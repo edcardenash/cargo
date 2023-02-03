@@ -24,7 +24,9 @@ export default class extends Controller {
       profile: 'mapbox/driving',
       alternatives: false,
       geometries: 'geojson',
-      controls: { instructions: true },
+      controls: {
+        inputs: false,
+        instructions: false },
       flyTo: false
     });
 
@@ -50,7 +52,6 @@ export default class extends Controller {
       })
     };
 
-    console.log(this.markersValue[0]['end_lat'])
     ruta(this.markersValue[0]['lng'], this.markersValue[0]['lat'],  this.markersValue[0]['end_lng'],this.markersValue[0]['end_lat']);
     this.map.addControl(directions);
     this.map.addControl(geoLocate);
