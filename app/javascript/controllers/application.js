@@ -1,5 +1,4 @@
 import { Application } from "@hotwired/stimulus"
-import 'lightgallery/css/lightgallery.css'
 
 const application = Application.start()
 
