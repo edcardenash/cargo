@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_02_233544) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_03_003750) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -72,6 +72,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_02_233544) do
     t.string "address"
     t.string "end_address"
     t.string "status"
+    t.string "start_city"
+    t.string "end_city"
     t.index ["user_id"], name: "index_freights_on_user_id"
   end
 

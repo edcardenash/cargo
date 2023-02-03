@@ -53,7 +53,10 @@ class FreightsController < ApplicationController
   end
 
   def create
-    @freight = Freight.new(freights_params)
+    params_new = freights_params
+    params_new[:address] = "#{params_new[:address]}, #{params_new[:start_city]}"
+    params_new[:end_address] = "#{params_new[:end_address]}, #{params_new[:end_city]}"
+    @freight = Freight.new(params_new)
     @freight.user = current_user
     authorize @freight
     @destiny_coordenates = @freight.destiny_address(params[:freight][:end_address])
@@ -89,7 +92,7 @@ class FreightsController < ApplicationController
   private
 
   def freights_params
-    params.require(:freight).permit(:or_city, :end_city, :address, :description, :start_date, :receiver_name, :receiver_phone, :round_trip, :latitude, :longitude, :end_address, :end_latitude, :end_logitude,  photos: [])
+    params.require(:freight).permit(:start_city, :end_city, :address, :description, :start_date, :receiver_name, :receiver_phone, :round_trip, :latitude, :longitude, :end_address, :end_latitude, :end_logitude,  photos: [])
   end
 
   def set_freight
