@@ -1,12 +1,12 @@
-<div class="container">
+<div class="container mt-4">
   <div class="row mt-2">
     <div class="col-6 p-2">
       <div id="firstDiv">
         <div class="row align-items-center carrier-show radius-top mx-0 p-1"> <%# freight header %>
-          <div class="col-6 p-3">
+          <div class="col-7 p-3">
             <h3 class="text-left">Detalle de transporte en <%=@freight.address%></strong></h3>
           </div>
-          <div class="col-4 p-3">
+          <div class="col-5 p-3">
             <div class="row">
               <p><i class="fa-regular fa-comment-dots"></i>&nbsp; <%= @freight.start_date.strftime('%d/%m/%Y') %></p>
               <p><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @freight.end_address %></p>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="col-6">
-      <div class="d-flex justify-content-center align-items-center card-trip-1 mt-4" id="secondDiv">
+      <div class="d-flex justify-content-center align-items-center card-trip-1 mt-2" id="secondDiv">
         <div id="mapshow" style="width: 100%; height: 450px;"
           data-controller="mapshow"
           data-mapshow-markers-value="<%= @markers.to_json %>"
@@ -68,7 +68,7 @@
       <% end %>
     </div>
   </div>
-  <hr class="border border-primary border-3 opacity-75">
+  <hr class="border border-primary border-3 opacity-75 mt-5">
   <h3 class="text-center mb-5 mt-5">Galería de Imagenes</h3>
     <div data-controller="lightbox" style="max-width:80%">
       <% @freight.photos.each do |photo| %>
