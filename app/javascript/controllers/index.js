@@ -33,6 +33,3 @@ application.register("search-vehicles", SearchVehiclesController)
 
 import StarRatingController from "./star_rating_controller"
 application.register("star-rating", StarRatingController)
-
-import Lightbox from 'stimulus-lightbox'
-application.register('lightbox', Lightbox)
