@@ -1,12 +1,12 @@
-<div class="p-5 carriers">
+<div class="px-5 carriers">
   <div class="container">
+   <div class="row carrier-show radius mt-4 p-4">
+      <header>Listado de vehiculos disponibles</header>
+    </div>
   <div class=" container col-6">
-  <div class="row carrier-show radius mb-3 p-4 text-center">
-    <header>Listado de Solicitudes de Carga</header>
-  </div>
 </div>
     <div class="row">
-      <div class="cards col-12">
+      <div class="cards col-12 mt-3">
         <% @vehicles.each do |vehicle| %>
           <% if user_signed_in? %>
             <% if vehicle.user_id != current_user.id %>
