@@ -46,7 +46,7 @@
       <% if user_signed_in? %>
         <% if current_user.id == @freight.user_id %> <%# list of freight quotes which status are pending %>
           <div class="carrier-show mx-0 p-1">
-            <h3 class="text-left p-3">Tienes una Cotizacion <strong><%= @freight.quotes.count %></strong></h3>
+            <h3 class="text-left p-3">Tienes <strong><%= @freight.quotes.count %></strong> cotizacion/es </h3>
           </div>
           <% @freight.quotes.each do |quote| %>
             <ul class="list-group list-group-flush">
@@ -70,13 +70,13 @@
   </div>
   <hr class="border border-primary border-3 opacity-75 mt-5">
   <h3 class="text-center mb-5 mt-5">Galería de Imagenes</h3>
-    <div data-controller="lightbox" style="max-width:80%">
-      <% @freight.photos.each do |photo| %>
-        <div class="mt-3">
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, input_html:{data_toggle: "lightbox"}%>
-        </div>
-      <% end %>
-    </div>
+      <div class="row justify-content-center">
+        <% @freight.photos.each do |photo| %>
+          <div class="col-3 m-1">
+            <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill, class: "img-fluid shadow-sm p-3 mb-5 bg-body rounded" %>
+          </div>
+        <% end %>
+      </div>
 </div>
 
 <script>$(document).ready(function(){
