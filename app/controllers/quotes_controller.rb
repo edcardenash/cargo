@@ -2,6 +2,7 @@ class QuotesController < ApplicationController
   before_action :set_freight, only:[:new, :create]
 
   def index
+    @payment = Payment.new
     @quotes = policy_scope(Quote)
   end
 

@@ -21,13 +21,15 @@
                     <p class="text-light">Comentario: <%= quote.comment %></p>
                   </div>
                 </div>
-                <%# <div class="pt-5 justify-content-around d-flex"> %>
+                <div class="pt-5 justify-content-around d-flex">
                   <%# if policy(@vehicle).edit? %>
-                    <%#= link_to "Editar", edit_quote_path(quote), class: "btn btn-outline-warning mt-3 col-6 mx-2" %>
+                    <%#= link_to "Pagar", new_freight_quote_payment_path(quote), class: "btn btn-outline-warning mt-3 col-6 mx-2" %>
                   <%# policy(@vehicle).destroy? %>
-                    <%#= link_to 'Eliminar', quote_path(quote), class: "btn btn-outline-danger mt-3 col-6", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paymentModal">
+                      Contratar
+                    </button>
                   <%# end %>
-                <%# </div> %>
+                </div>
               </div>
             </div>
           <% elsif current_user.id == quote.freight.user_id %>
@@ -39,7 +41,7 @@
                 <% if quote.vehicle.photo.attached? %>
                   <%= cl_image_tag quote.vehicle.photo.key %>
                 <% end %>
-                <div class="card-trip-infos-2 carriers-info" style= "height: 250px">
+                <div class="card-trip-infos-2 carriers-info">
                   <h4 >Cotización Nº - <%= quote.id %> </h4>
                   <div class="pt-2">
                     <h6>Rating:  <strong><i class="<%=quote.vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%=quote.vehicle.reviews.average(:rating) %></strong></h6>
@@ -47,14 +49,16 @@
                     <h6 maxlength="10">Tipo de vehículo: <%= quote.vehicle.vehicle_type %></h6>
                     <p class="text-light">Comentario: <%= quote.comment %></p>
                   </div>
-                </div>
-                <%# <div class="pt-5 justify-content-around d-flex"> %>
+                  <div class="pt-2 justify-content-around d-flex">
                   <%# if policy(@vehicle).edit? %>
-                    <%#= link_to "Editar", edit_quote_path(quote), class: "btn btn-outline-warning mt-3 col-6 mx-2" %>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#paymentModal">
+                      Contratar
+                    </button>
                   <%# policy(@vehicle).destroy? %>
                     <%#= link_to 'Eliminar', quote_path(quote), class: "btn btn-outline-danger mt-3 col-6", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
                   <%# end %>
-                <%# </div> %>
+                </div>
+                </div>
               </div>
             </div>
           <% end %>
@@ -63,3 +67,4 @@
     </div>
   </div>
 </div>
+<%= render "shared/payment_form" %>
