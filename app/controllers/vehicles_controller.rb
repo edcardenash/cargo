@@ -10,8 +10,8 @@ class VehiclesController < ApplicationController
       @vehicles = policy_scope(Vehicle)
     end
 
-    respond_to do |format|
-      format.html # Follow regular flow of Rails
+    respond_to do |format
+      format.html
       format.text { render partial: "shared/list_vehicles", locals: {vehicles: @vehicles}, formats: [:html] }
     end
   end

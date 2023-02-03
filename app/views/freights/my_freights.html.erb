@@ -1,17 +1,13 @@
-
-<div class=" container ">
-  <div class="row carrier-show radius mt-4 p-4 text-left">
-    <header>Listado de Solicitudes de Carga</header>
-
+<div class="row align-items-center mt-3">
+  <div class="col-6">
+    <h1 class="text-center" style="font-size: 30px">Mis Solicitudes de Carga</h1>
   </div>
-</div>
-
-  <div class="col-6 text-center mt-3">
+  <div class="col-6 text-center">
   <%= link_to "Publicar solicitud de carga", new_freight_path, class: "btn btn-primary btn-lg" %>
   </div>
 </div>
 <div class="container" data-controller="search-freights">
-  <%= form_with url: freights_path, method: :get, html: {class:
+  <%= form_with url: my_freights_freights_path, method: :get, html: {class:
     "mb-4", data: {search_freights_target: "form"}} do |f| %>
     <%= f.text_field :query,
                      class: "form-control mt-3",

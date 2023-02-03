@@ -25,6 +25,9 @@ application.register("search-address", SearchAddressController)
 import SearchFreightsController from "./search_freights_controller"
 application.register("search-freights", SearchFreightsController)
 
+import SearchQuotesController from "./search_quotes_controller"
+application.register("search-quotes", SearchQuotesController)
+
 import SearchVehiclesController from "./search_vehicles_controller"
 application.register("search-vehicles", SearchVehiclesController)
 

@@ -19,9 +19,16 @@ class FreightsController < ApplicationController
     end
   end
 
-  def search_address
-    resultado = Geocoder.search(params[query])
-    puts resultado
+  def my_freights
+    @freights = current_user.freights
+    if params[:query].present?
+      @freights = @freights.where("address ILIKE ?", "%#{params[:query]}%")
+    end
+    authorize @freights
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: "shared/list_freigths", locals: {freights: @freights}, formats: [:html] }
+    end
   end
 
   def show

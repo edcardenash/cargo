@@ -9,6 +9,10 @@ class FreightPolicy < ApplicationPolicy
     true
   end
 
+  def my_freights?
+    true
+  end
+
   def create?
     true
   end
