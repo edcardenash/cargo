@@ -34,19 +34,19 @@
     </div>
     <div class="col-6">
       <div class="d-flex justify-content-center align-items-center card-trip-1 mt-2" id="secondDiv">
-        <div id="mapshow" style="width: 100%; height: 450px;"
+        <div id="mapshow" style="width: 100%; height: 350px;"
           data-controller="mapshow"
           data-mapshow-markers-value="<%= @markers.to_json %>"
           data-mapshow-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
         </div>
       </div>
-      <div class="row m-0">
-        <%= link_to 'Solicitar cotización', vehicles_path, class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
-      </div>
       <% if user_signed_in? %>
         <% if current_user.id == @freight.user_id %> <%# list of freight quotes which status are pending %>
+          <div class="row m-0">
+            <%= link_to 'Solicitar cotización', vehicles_path, class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
+          </div>
           <div class="carrier-show mx-0 p-1">
-            <h3 class="text-left p-3">Tienes una Cotizacion <strong><%= @freight.quotes.count %></strong></h3>
+            <h3 class="text-left p-3">Tienes <strong><%= @freight.quotes.count %></strong> cotizacion/es </h3>
           </div>
           <% @freight.quotes.each do |quote| %>
             <ul class="list-group list-group-flush">
@@ -62,7 +62,9 @@
               </li>
             </ul>
           <% end %>
-          <div class="row mx-0 p-2 carrier-show radius-bottom">
+        <%else%>
+          <div class="row">
+            <%= link_to 'Enviar cotización', new_freight_quote_path(@freight), class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
           </div>
         <% end %>
       <% end %>
@@ -70,13 +72,13 @@
   </div>
   <hr class="border border-primary border-3 opacity-75 mt-5">
   <h3 class="text-center mb-5 mt-5">Galería de Imagenes</h3>
-    <div data-controller="lightbox" style="max-width:80%">
-      <% @freight.photos.each do |photo| %>
-        <div class="mt-3">
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, input_html:{data_toggle: "lightbox"}%>
-        </div>
-      <% end %>
-    </div>
+      <div class="row justify-content-center">
+        <% @freight.photos.each do |photo| %>
+          <div class="col-3 m-1">
+            <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill, class: "img-fluid shadow-sm p-3 mb-5 bg-body rounded" %>
+          </div>
+        <% end %>
+      </div>
 </div>
 
 <script>$(document).ready(function(){
