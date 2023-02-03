@@ -32,6 +32,13 @@ class QuotesController < ApplicationController
     end
   end
 
+  def destroy
+    set_quote
+    authorize @quote
+    @quote.destroy
+    redirect_to freights_path, notice: 'Tu cotización fue eliminada'
+  end
+
   private
 
   def quote_params
