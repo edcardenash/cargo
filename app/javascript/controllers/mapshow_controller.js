@@ -14,7 +14,8 @@ export default class extends Controller {
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v12",
       center: [0, 0],
-      zoom: 15
+      zoom: 15,
+      interactive: false
 
     });
 
