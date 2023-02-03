@@ -3,6 +3,9 @@ class QuotesController < ApplicationController
 
   def index
 
+    @payment = Payment.new
+
+
     if params[:query].present?
       @quotes = Quotes.all
       @quotes = policy_scope(@quotes.where("comment ILIKE ?", "%#{params[:query]}%"))
@@ -14,6 +17,7 @@ class QuotesController < ApplicationController
       format.html
       format.text { render partial: "shared/list_quotes", locals: {quotes: @quotes}, formats: [:html] }
     end
+
 
   end
 

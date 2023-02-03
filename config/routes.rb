@@ -9,9 +9,13 @@ Rails.application.routes.draw do
     end
   end
   resources :freights do
-    resources :quotes
+
+    resources :quotes do
+      resources :payments
+
     collection do
       get "my_freights"
+
     end
   end
   resources :reviews
@@ -20,4 +24,5 @@ Rails.application.routes.draw do
   get '/contacts', to: 'contacts#new', as: 'contact'
   get 'contacts/sent'
   get '/cities', to: 'cities#index'
+  resources :payments
 end
