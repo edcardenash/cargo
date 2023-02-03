@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema[7.0].define(version: 2023_02_03_014832) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,7 +75,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_014832) do
     t.index ["user_id"], name: "index_freights_on_user_id"
   end
 
-
   create_table "orders", force: :cascade do |t|
     t.string "state"
     t.string "quote_sku"
@@ -100,11 +97,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_014832) do
     t.integer "ccv"
   end
 
-  create_table "prices", force: :cascade do |t|
-    t.integer "amount"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-
   create_table "pg_search_documents", force: :cascade do |t|
     t.text "content"
     t.string "searchable_type"
@@ -112,7 +104,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_03_014832) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["searchable_type", "searchable_id"], name: "index_pg_search_documents_on_searchable"
+  end
 
+  create_table "prices", force: :cascade do |t|
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "quotes", force: :cascade do |t|

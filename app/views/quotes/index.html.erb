@@ -1,7 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="container p-2 carriers">
-
       <% @quotes.each do |quote| %>
         <% if user_signed_in?%>
           <% if quote.user_id == current_user.id %>
@@ -63,25 +62,26 @@
               </div>
             </div>
           <% end %>
-
-      <div class="row carrier-show radius mt-5 p-4">
+        <% end %>
+      <% end %>
+      <%# <div class="row carrier-show radius mt-5 p-4">
         <header>Estas son tus cotizaciones enviadas</header>
-      </div>
-      <div class="container" data-controller="search-quotes">
+      </div> %>
+      <%# <div class="container" data-controller="search-quotes">
         <%= form_with url: quotes_path, method: :get, html: {class:
           "mb-4", data: {search_quotes_target: "form"}} do |f| %>
-          <%= f.text_field :query,
-                          class: "form-control mt-3",
+          <%# <%= f.text_field :query, %>
+                          <%# class: "form-control mt-3",
                           placeholder: "Buscar un Quote",
                           value: params[:query],
                           data: {search_vehicles_target: "input",
                                   action: "keyup->search-quotes#update"
                                 }%>
 
-        <% end %>
+        <%# <% end %>
         <!-- Busqueda de quotes --->
-        <%= render "shared/list_quotes", quotes: @quotes %>
-      </div>
+        <%# <%= render "shared/list_quotes", quotes: @quotes %>
+      <%# </div> %>
     </div>
   </div>
 </div>
