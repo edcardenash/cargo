@@ -7,7 +7,7 @@
       <%= simple_form_for @freight do |f| %>
         <strong><%= f.input :description, label: "Descripción y detalle de la carga", as: :text  %></strong>
         <strong><%= f.input :receiver_name, label: "Nombre del receptor", as: :string %></strong>
-        <strong><%= f.input :receiver_phone, label: "Telefono del receptor", as: :string %></strong>
+        <strong><%= f.input :receiver_phone, label: "Teléfono del receptor", as: :string %></strong>
         <div data-controller="search-address">
           <div class="row mb-3">
             <div class="col-8">
@@ -29,7 +29,7 @@
         <strong><%= f.label :start_date, "Fecha"%></strong>
         <strong><%= f.date_field :start_date ,min_max: true, min: Date.today, required: true, style: "width: 100%", input_html: { class: "p-2"} %></strong>
         <strong><%= f.input :round_trip, label: "¿Ida y vuelta?"%></strong>
-        <strong><%= f.input :photos, as: :file, input_html: { multiple: true } %></strong>
+        <strong><%= f.input :photos, label: "Fotos",as: :file, input_html: { multiple: true } %></strong>
         <div class="row m-0">
           <%= f.button :submit,"Publicar", class: "btn btn-success boton-login btn-sm"%>
         </div>
