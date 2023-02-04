@@ -1,6 +1,6 @@
 <div class="container mt-4">
-  <div class="row mt-2">
-    <div class="col-6 p-2">
+  <div class="row">
+    <div class="col-6">
       <div id="firstDiv">
         <div class="row align-items-center carrier-show radius-top mx-0 p-1"> <%# freight header %>
           <div class="col-7 p-3">
@@ -24,8 +24,8 @@
         </div>
         <ul class="list-group list-group-flush"> <%# freight details %>
           <strong><li class="list-group-item">Descripción:</strong> <%= @freight.description %></li>
-          <strong><li class="list-group-item">Person que recepciona:</strong> <%= @freight.receiver_name %></li>
-          <strong><li class="list-group-item">Telefono:</strong> <%= @freight.receiver_phone %></li>
+          <strong><li class="list-group-item">Person que recepciona:</strong> <%= @freight.receiver_name.truncate(10) %></li>
+          <strong><li class="list-group-item">Telefono:</strong> <%= @freight.receiver_phone.truncate(8) %></li>
           <strong><li class="list-group-item">Origen:</strong> <%= @freight.address %></li>
           <strong><li class="list-group-item">Destino:</strong> <%= @freight.end_address %></li>
           <strong><li class="list-group-item">Fecha:</strong> <%= @freight.start_date.strftime('%d/%m/%Y') %></li>
@@ -33,8 +33,8 @@
       </div>
     </div>
     <div class="col-6">
-      <div class="d-flex justify-content-center align-items-center card-trip-1 mt-2" id="secondDiv">
-        <div id="mapshow" style="width: 100%; height: 350px;"
+      <div class="d-flex justify-content-center align-items-center">
+        <div id="mapshow" style="width: 100%; height: 400px;"
           data-controller="mapshow"
           data-mapshow-markers-value="<%= @markers.to_json %>"
           data-mapshow-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -42,21 +42,26 @@
       </div>
       <% if user_signed_in? %>
         <% if current_user.id == @freight.user_id %> <%# list of freight quotes which status are pending %>
-          <div class="row m-0">
-            <%= link_to 'Solicitar cotización', vehicles_path, class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
-          </div>
           <div class="carrier-show mx-0 p-1">
             <h3 class="text-left p-3">Tienes <strong><%= @freight.quotes.count %></strong> cotizacion/es </h3>
           </div>
           <% @freight.quotes.each do |quote| %>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
-                <div class="row">
-                  <div class="col-9">
+                <div class="row border-bottom">
+                  <div class="col-8">
                     Solicitud de servicio Nº<%= quote.vehicle.id %> por un monto de <%= quote.amount.to_i %>$
                   </div>
-                  <div class="col-3">
-                    <%= link_to 'Ver cotizacion', quote.vehicle, class: "btn btn-success boton-login btn-sm d-flex text-center" %>
+                  <div class="col-4">
+                    <div class="row mb-1">
+                      <div class="col-6">
+                        <%= link_to 'Detalles', quote.vehicle, class: "btn btn-info boton-login btn-sm d-flex text-center" %>
+                      </div>
+                      <div class="col-6">
+                        <button type="button" class="btn btn-success boton-login btn-sm" data-toggle="modal" data-target="#paymentModal">Contratar</button>
+                        <%= render "shared/payment_form" %>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </li>
