@@ -8,7 +8,7 @@
         "mb-4", data: {search_vehicles_target: "form"}} do |f| %>
         <%= f.text_field :query,
                         class: "form-control mt-3",
-                        placeholder: "Ingrese el nombre del vehiculo",
+                        placeholder: "Ingrese el nombre del vehiculo o ubicacion",
                         value: params[:query],
                         data: {search_vehicles_target: "input",
                                 action: "keyup->search-vehicles#update"
