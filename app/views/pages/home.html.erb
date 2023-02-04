@@ -13,7 +13,7 @@
         <div class="carousel-caption logobanner d-none d-md-block">
           <%= image_tag "logo.png", class: 'w-25'  %>
           <br>
-          <h5 class="mt-4">Encontrá a tu transportista ideal</h5>
+          <h5 class="mt-4">Encuentra tu servicio de transporte ideal</h5>
         </div>
       </div>
       <div class="carousel-item">
@@ -21,8 +21,8 @@
           <%= image_tag "banner/repartidor-ganando-dinero-porque-trabaja-con-cargo.jpg", class: "image_banner" %>
         </div>
         <div class="carousel-caption d-none d-md-block">
-          <h2>El flete ideal para tu negocio</h2>
-          <p>Hacé crecer tu empresa ofreciendo envíos de calidad</p>
+          <h2>Ofrece el servicio que todos buscan</h2>
+          <p>Haz crecer tu empresa ofreciendo transportes de carga de calidad</p>
             <%=link_to "Agrega tu transporte", new_vehicle_path, class:" btn btn-success boton-login" %>
         </div>
       </div>
@@ -31,8 +31,8 @@
           <%= image_tag "banner/pareja-empacando-feliz-porque-usan-cargo.jpg", class: "image_banner" %>
         </div>
         <div class="carousel-caption d-none d-md-block">
-          <h2>Encontrá un CarGO para tu mudanza</h2>
-          <p>Contamos con un transportista a la medida de tus necesidades</p>
+          <h2>Despreocúpate</h2>
+          <p>Contamos con transportistas para todas las necesidades</p>
            <%=link_to "Busca tu flete", new_freight_path, class:" btn btn-success boton-login" %>
         </div>
       </div>
@@ -92,8 +92,8 @@
                 <div>
                   <h4><%= vehicle.alias %></h4>
                   <div class="pt-2">
-                    <h6>Tipo de trasnporte: <%= vehicle.vehicle_type %></h6>
-                    <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg.</h6>
+                    <h6>Tipo de transporte: <%= vehicle.vehicle_type %></h6>
+                    <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg</h6>
                     <h6>Rating:  <strong><i class="<%= vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= vehicle.reviews.average(:rating) %></strong></h6>
                     <h6>Cerrado: <strong><%= vehicle.covered ? "Si" : "No" %></strong></h6>
                     <p><%= vehicle.description.truncate(50) %></p>

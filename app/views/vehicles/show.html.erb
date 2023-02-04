@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container margin-bottom">
   <div class="row mt-2">
     <div class="col-6 p-2">
       <div id="firstDiv">
@@ -60,8 +60,8 @@
       </div>
     </div>
     <div class="col-6 p-2">
-      <div class="d-flex justify-content-center align-items-center card-trip-1" id="secondDiv">
-        <%= cl_image_tag @vehicle.photo.key, class: 'w-100 radius-top', height: 487, crop: :scale %>
+      <div class="d-flex justify-content-center align-items-center card-trip-1 radius-top" id="secondDiv">
+        <%= cl_image_tag @vehicle.photo.key, class: 'w-75' %>
       </div>
       <div class="row m-0">
         <%= link_to 'Solicitar cotización', new_vehicle_freight_path(@vehicle), class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
