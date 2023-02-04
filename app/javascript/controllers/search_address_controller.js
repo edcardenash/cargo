@@ -7,9 +7,7 @@ export default class extends Controller {
   static targets = ["formulario", "input", "list"]
 
   connect() {
-
     const ACCESS_TOKEN = 'pk.eyJ1IjoiZWFsdGFtaXIiLCJhIjoiY2xkbjh4ZXRpMGgzdzNua2I2bGs1aGx0NiJ9.t3wEyM5y-oHLyCAtOJDSFw';
-
     const script = document.getElementById('search-js');
     script.onload = () => {
         const collection = mapboxsearch.autofill({
