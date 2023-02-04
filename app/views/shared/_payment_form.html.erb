@@ -26,13 +26,14 @@
 </div>
 <script>
   const form = document.getElementById("form");
-const modalConfirmation = document.querySelector(".modal-confirmation");
-
-form.addEventListener("submit", function (event) {
-  event.preventDefault();
-  modalConfirmation.style.display = "block";
-  setTimeout(function () {
-  window.location.href = "<%= freights_path %>";
-}, 1000);
-});
+  const modalConfirmation = document.querySelector(".modal-confirmation");
+  console.log(modalConfirmation)
+  console.log(form)
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    modalConfirmation.style.display = "block";
+    setTimeout(function () {
+    window.location.href = "<%= freights_path %>";
+  }, 1000);
+  });
 </script>

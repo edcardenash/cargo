@@ -3,8 +3,8 @@
     <div class="col-9">
       <header>Mis solicitudes de transporte</header>
     </div>
-    <div class="col-3 mt-3">
-      <%= link_to "Publicar nueva solicitud", new_freight_path, class: "btn btn-success" %>
+    <div class="col-3">
+      <%= link_to "Publicar nueva solicitud", new_freight_path, class: "btn btn-success boton-login btn-sm" %>
     </div>
   </div>
 </div>
@@ -23,5 +23,34 @@
   </div>
 
     <!-- Busqueda de Freights --->
-    <%= render "shared/list_freigths", freights: @freights %>
+  <div data-search-freights-target="list" class="mb-3">
+    <div class="card-group row">
+      <% @freights.each do |freight| %>
+        <% if user_signed_in? %>
+          <% if freight.user_id == current_user.id %>
+            <div class="col-4">
+              <div class="card m-2 shadow-sm rounded">
+                  <% if freight.photos.length > 0 %>
+                    <%= cl_image_tag freight.photos.first.key, width: 400, height: 200, crop: :fill, class: "card-img-top" %>
+                  <% else %>
+                    <%= cl_image_tag 'rjsmo54ojkmdtx82jspvpadempgo', width: 400, height: 200, crop: :fill, class: "card-img-top" %>
+                  <%end%>
+                <div class="card-body">
+                  <h5 class="card-title text-center"><%= freight.address%></h5>
+                  <p class="card-title"><strong>Publicado el: <%= freight.start_date.strftime('%m/%d/%Y')%></strong></p>
+                  <p class="card-text"><%= freight.description %></p>
+                  <div class="d-grip gap-2 text-center">
+                    <%= link_to 'Ver detalles', freight, class: "btn btn-outline-success"%>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">Actualizado el <%= freight.updated_at.strftime('%d/%m/%Y') %></small>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>
