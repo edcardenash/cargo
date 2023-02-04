@@ -1,62 +1,49 @@
 
-<div class="row">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link color-dark active" data-toggle="tab" href="#quotesSent">Cotizaciones enviadas</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link color-dark" data-toggle="tab" href="#quotesReceived">Cotizaciones recibidas</a>
-    </li>
-  </ul>
+<div class="container">
+  <div class="row">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link color-dark active" data-toggle="tab" href="#quotesSent">Cotizaciones enviadas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link color-dark" data-toggle="tab" href="#quotesReceived">Cotizaciones recibidas</a>
+      </li>
+    </ul>
+  </div>
 </div>
-<div class="px-5 carriers">
-  <div class="container">
-    <div class="tab-content">
-      <div id="quotesSent" class="tab-pane container active">
-        <div class="row carrier-show radius mt-4 p-4">
-          <header>Estas son tus cotizaciones enviadas</header>
-        </div>
-        <div class="row">
-          <div class="cards col-12">
+
+<div class="tab-content">
+  <div class="tab-pane container active" id="quotesSent">
+    <div>
+      <div class="row carrier-show radius mt-4 p-4">
+        <header>Estas son tus cotizaciones enviadas</header>
+      </div>
+    </div>
+    <div class="mt-4 carriers">
+      <%# <div class="container"> %>
+        <div  class="row">
+          <div class="cards">
             <% @quotes.each do |quote| %>
-              <% if user_signed_in? %>
+              <% if user_signed_in?%>
                 <% if quote.user_id == current_user.id %>
                   <div class="card-trip" id="card-show">
                     <% if quote.vehicle.photo.attached? %>
                       <%= cl_image_tag quote.vehicle.photo.key %>
                     <% end %>
                     <div class="card-trip-infos carriers-info">
-                      <h4 >Cotización Nº - <%= quote.id %> </h4>
-                      <div class="pt-2">
-                        <h6>Rating:  <strong><i class="<%=quote.vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%=quote.vehicle.reviews.average(:rating) %></strong></h6>
-                        <h6>Monto ofertado: <strong>$<%= quote.amount.to_i %></strong></h6>
-                        <h6 maxlength="10">Tipo de vehículo: <%= quote.vehicle.vehicle_type %></h6>
-                        <p class="text-light">Comentario: <%= quote.comment %></p>
-                      </div>
-                      <div class="pt-5">
-                        <% if policy(quote).destroy? %>
-                          <%= link_to 'Eliminar', quote_path(quote), class: "btn btn-outline-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
-                        <% end %>
-                      </div>
-                    </div>
-                  </div>
-                <% elsif quote.freight.user_id == current_user.id %>
-                  <div class="card-trip" id="card-show">
-                    <% if quote.vehicle.photo.attached? %>
-                      <%= cl_image_tag quote.vehicle.photo.key %>
-                    <% end %>
-                    <div class="card-trip-infos carriers-info">
-                      <h4 >Cotización Nº - <%= quote.id %> </h4>
-                      <div class="pt-2">
-                        <h6>Rating:  <strong><i class="<%=quote.vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%=quote.vehicle.reviews.average(:rating) %></strong></h6>
-                        <h6>Monto ofertado: <strong>$<%= quote.amount.to_i %></strong></h6>
-                        <h6 maxlength="10">Tipo de vehículo: <%= quote.vehicle.vehicle_type %></h6>
-                        <p class="text-light">Comentario: <%= quote.comment %></p>
-                      </div>
-                      <div class="pt-5">
-                        <button type="button" class="btn btn-success boton-login btn-sm" data-toggle="modal" data-target="#paymentModal">
-                          Contratar
-                        </button>
+                      <div>
+                        <h4 >Cotización Nº - <%= quote.id %> </h4>
+                        <div class="pt-2">
+                          <h6>Rating:  <strong><i class="<%=quote.vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%=quote.vehicle.reviews.average(:rating) %></strong></h6>
+                          <h6>Monto ofertado: <strong>$<%= quote.amount.to_i %></strong></h6>
+                          <h6 maxlength="10">Tipo de vehículo: <%= quote.vehicle.vehicle_type %></h6>
+                          <p class="text-light">Comentario: <%= quote.comment %></p>
+                        </div>
+                        <div class="pt-5">
+                          <% if policy(quote).destroy? %>
+                            <%= link_to 'Eliminar', quote_path(quote), class: "btn btn-outline-danger btn-sm", data: { turbo_method: :delete, turbo_confirm: '¿Estás seguro?' } %>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -65,14 +52,51 @@
             <% end %>
           </div>
         </div>
+      <%# </div> %>
+    </div>
+  </div>
+
+  <div class="tab-pane fade container" id="quotesReceived" role="tabpanel" aria-labelledby="quotesReceived-tab">
+    <div>
+      <div class="row carrier-show radius mt-4 p-4">
+        <header>Estas son tus cotizaciones recibidas</header>
       </div>
+    </div>
+    <div class="mt-4 carriers">
+      <%# <div class="container"> %>
+        <div  class="row">
+          <div class="cards">
+            <% @quotes.each do |quote| %>
+              <% if user_signed_in?%>
+                <% if current_user.id == quote.freight.user_id %>
+                  <div class="card-trip" id="card-show">
+                    <% if quote.vehicle.photo.attached? %>
+                      <%= cl_image_tag quote.vehicle.photo.key %>
+                    <% end %>
+                    <div class="card-trip-infos carriers-info">
+                      <div>
+                        <h4 >Cotización Nº - <%= quote.id %> </h4>
+                        <div class="pt-2">
+                          <h6>Rating:  <strong><i class="<%=quote.vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%=quote.vehicle.reviews.average(:rating) %></strong></h6>
+                          <h6>Monto ofertado: <strong>$<%= quote.amount.to_i %></strong></h6>
+                          <h6 maxlength="10">Tipo de vehículo: <%= quote.vehicle.vehicle_type %></h6>
+                          <p class="text-light">Comentario: <%= quote.comment %></p>
+                        </div>
+                        <div class="pt-5">
+                          <button type="button" class="btn btn-success boton-login btn-sm" data-toggle="modal" data-target="#paymentModal">
+                            Contratar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      <%# </div> %>
     </div>
   </div>
 </div>
-
 <%= render "shared/payment_form" %>
-<div class="tab-pane fade container" id="quotesReceived" role="tabpanel" aria-labelledby="quotesReceived-tab">
-        <div class="row carrier-show radius mt-3 p-4">
-          <header>Estas son tus cotizaciones recibidas</header>
-        </div>
-      </div>
