@@ -33,7 +33,7 @@
                   <% if freight.photos.length > 0 %>
                     <%= cl_image_tag freight.photos.first.key, width: 400, height: 200, crop: :fill, class: "card-img-top" %>
                   <% else %>
-                    <%= cl_image_tag 'rjsmo54ojkmdtx82jspvpadempgo', width: 400, height: 200, crop: :fill, class: "card-img-top" %>
+                    <%= image_tag "CargoDefaultFreight.png", width: 400, height: 200, crop: :fill, class: "card-img-top" %>
                   <%end%>
                 <div class="card-body">
                   <h5 class="card-title text-center"><%= freight.address%></h5>
@@ -44,7 +44,11 @@
                   </div>
                 </div>
                 <div class="card-footer">
+
+
                   <small class="text-muted">Actualizado el <%= freight.updated_at.strftime('%d/%m/%Y') %></small>
+
+
                 </div>
               </div>
             </div>
