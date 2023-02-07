@@ -9,8 +9,10 @@ class Vehicle < ApplicationRecord
   belongs_to :user
   belongs_to :city
 
-  has_many :reviews
-  has_many :quotes
+  validates :license_plate, :vehicle_type, :description, :load_capacity, presence: true
+
+  has_many :reviews, dependent: :destroy
+  has_many :quotes, dependent: :destroy
 
   has_one_attached :photo
 end
