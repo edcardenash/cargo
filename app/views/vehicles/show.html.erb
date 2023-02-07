@@ -10,7 +10,7 @@
           <div class="col-4 p-3">
             <div class="row">
               <p><i class="fa-regular fa-comment-dots"></i>&nbsp; <%= @vehicle.reviews.count %> reseñas</p>
-              <p><i class="<%= @vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= @vehicle.reviews.average(:rating) %></p>
+              <p><i class="<%= @vehicle.average_rating.nil? ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= @vehicle.average_rating %></p>
               <p><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @vehicle.city.name %></p>
             </div>
           </div>
