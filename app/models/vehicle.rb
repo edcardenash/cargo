@@ -10,6 +10,7 @@ class Vehicle < ApplicationRecord
   belongs_to :city
 
   validates :license_plate, :vehicle_type, :description, :load_capacity, presence: true
+  validates :alias, presence: true, uniqueness: true
 
   has_many :reviews, dependent: :destroy
   has_many :quotes, dependent: :destroy
