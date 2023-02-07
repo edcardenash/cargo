@@ -16,4 +16,8 @@ class Vehicle < ApplicationRecord
   has_many :quotes, dependent: :destroy
 
   has_one_attached :photo
+
+  def average_rating
+    reviews.average(:rating).to_f
+  end
 end
