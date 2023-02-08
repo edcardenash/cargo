@@ -21,4 +21,9 @@ class Vehicle < ApplicationRecord
   def average_rating
     reviews.average(:rating).to_f
   end
+
+  def average_rating_rounded
+    average_rating.round(1)
+  end
+
 end
