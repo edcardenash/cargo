@@ -61,7 +61,7 @@
     </div>
     <div class="col-6 p-2">
       <div class="d-flex justify-content-center align-items-center card-trip-1 radius-top" id="secondDiv">
-        <%= cl_image_tag @vehicle.photo.key, class: 'w-75' %>
+        <%= cl_image_tag @vehicle.photo.key, class: 'image-tag' %>
       </div>
       <div class="row m-0">
         <%= link_to 'Solicitar cotización', new_vehicle_freight_path(@vehicle), class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
