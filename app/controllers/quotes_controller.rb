@@ -32,15 +32,6 @@ class QuotesController < ApplicationController
     end
   end
 
-  def update
-    authorize @quote
-    if @quote.update(quote_params)
-      redirect_to @quote, notice: 'La cotización se ha actualizado exitosamente.'
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
-
   def destroy
     set_quote
     authorize @quote
