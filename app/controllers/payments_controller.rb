@@ -7,6 +7,8 @@ class PaymentsController < ApplicationController
   def create
     @payment = Payment.new(payment_params)
     if @payment.valid?
+      @quote = Quote.find(params[:quote_id])
+      @quote.update(status: 1)
       redirect_to freights_path
     else
       render :new

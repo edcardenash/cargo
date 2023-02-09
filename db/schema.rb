@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_05_174038) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_09_002429) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -152,14 +152,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_174038) do
     t.text "license_plate"
     t.text "vehicle_type"
     t.text "description"
-    t.boolean "covered"
+    t.boolean "covered", default: false
     t.float "load_capacity"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "city_id", null: false
-    t.boolean "other_regions"
-    t.boolean "other_cities"
+    t.boolean "other_regions", default: false
+    t.boolean "other_cities", default: false
     t.boolean "active"
     t.float "rating"
     t.string "alias"
