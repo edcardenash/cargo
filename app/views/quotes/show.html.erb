@@ -1,0 +1,38 @@
+<div class="card-trip" id="card-show">
+  <% if @quote.vehicle.photo.attached? %>
+    <%= cl_image_tag @quote.vehicle.photo.key %>
+  <% end %>
+  <div class="card-trip-infos carriers-info">
+    <div>
+      <h4 >Cotización Nº - <%= @quote.id %> </h4>
+      <div class="pt-2">
+        <h6>Tu solicitud en: <%= @quote.freight.address %></h6>
+        <h6>Rating:  <strong><i class="<%=@quote.vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%=@quote.vehicle.reviews.average(:rating) %></strong></h6>
+        <h6>Monto ofertado: <strong>$<%= @quote.amount.to_i %></strong></h6>
+        <h6 maxlength="10">Tipo de vehículo: <%= @quote.vehicle.vehicle_type %></h6>
+        <p class="text-light">Comentario: <%= @quote.comment %></p>
+      </div>
+      <div class="pt-5">
+        <button type="button" class="btn btn-success boton-login btn-sm" data-toggle="modal" data-target="#paymentModal">
+          Contratar
+        </button>
+        <div class="cho-container"></div>
+        <script>
+          const mp = new MercadoPago('APP_USR-4535df4c-13d0-4c6c-a922-7f5446eab768', {
+            locale: 'es-CL'
+          });
+
+          mp.checkout({
+            preference: {
+              id: "<%= @preference_id %>"
+            },
+            render: {
+              container: '.cho-container',
+              label: 'Pagar',
+            }
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
