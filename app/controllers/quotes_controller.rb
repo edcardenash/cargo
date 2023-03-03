@@ -13,6 +13,7 @@ class QuotesController < ApplicationController
       format.html
       format.text { render partial: "shared/list_quotes", locals: { quotes: @quotes }, formats: [:html] }
     end
+    @quotes = policy_scope(Quote)
   end
 
   def show

@@ -34,6 +34,7 @@ gem "cloudinary"
 gem "pg_search"
 gem "mail_form"
 gem "mercadopago-sdk"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
