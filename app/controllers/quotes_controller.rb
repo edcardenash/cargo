@@ -18,15 +18,19 @@ class QuotesController < ApplicationController
 
   def show
     @quote = Quote.find(params[:id])
-    sdk = Mercadopago::SDK.new('APP_USR-5736802988968384-030220-a87e0c1562dec3f87250688dae500582-1299022241')
+    sdk = Mercadopago::SDK.new('TEST-5736802988968384-030220-ccf0ae0c9b225c5b313d600723b302d2-1299022241')
     preference_data = {
+      back_urls: {
+        success: 'http://cargoapp.me'
+      },
       items: [
         {
           title: @quote.id,
           unit_price: @quote.amount,
           quantity: 1
         }
-      ]
+      ],
+      notification_url: 'http://cargoapp.me'
     }
     preference_response = sdk.preference.create(preference_data)
     preference = preference_response[:response]
