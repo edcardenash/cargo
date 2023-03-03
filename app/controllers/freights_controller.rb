@@ -35,7 +35,6 @@ class FreightsController < ApplicationController
     authorize @freight
     @quote = Quote.new
     @freight = Freight.find(params[:id])
-    @payment = Payment.new
     @markers = [
       {
         lat: @freight.latitude,

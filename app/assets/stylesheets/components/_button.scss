@@ -1,53 +1,3 @@
-.btn-ghost {
-  color: #ffffff;
-  border: 1px solid #ffffff;
-  padding: 8px 24px;
-  border-radius: 50px;
-  font-weight: lighter;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
-}
-
-.btn-ghost:hover {
-  opacity: 1;
-  background-color: #198754;
-  color: rgb(255, 255, 255);
-}
-
-.btn-flat {
-  color: rgb(255, 255, 255);
-  padding: 8px 24px;
-  border-radius: 4px;
-  background: #670BFF;
-  transition: background 0.3s ease;
-}
-
-.btn-flat:hover {
-  background: #4D04C4;
-  color: white;
-}
-
-.btn-gradient {
-  color: white;
-  padding: 8px 24px;
-  border-radius: 4px;
-  font-weight: bold;
-  background: linear-gradient(#167FFB, #0F60C4);
-  transition: background 0.3s ease;
-  border: 1px solid #0F60C4;
-}
-
-.btn-gradient:hover {
-  background: linear-gradient(#147EFF, #0F67DA);
-  color: white;
-}
-
-.btn-options {
-  background-color: #92D300;
-  color: white;
-  margin: 4px;
-}
-
 .btn-primary{
   background-color: rgb(0, 192, 246);
   color: white;
@@ -55,16 +5,25 @@
   border-color: rgb(0, 192, 246);
 }
 
+.btn-success{
+  background-color: rgb(0, 176, 89);
+  color: white;
+  border-radius: 5px;
+  border-color: rgb(0, 176, 89);
+}
+
 .btn-warning{
   background-color: rgb(255, 190, 70);
   color: white;
   border-radius: 5px;
+  border-color: rgb(255, 190, 70);
 }
 
 .btn-danger{
   background-color: rgb(249, 87, 50);
   color: white;
   border-radius: 5px;
+  border-color: rgb(249, 87, 50);
 }
 
 .btn-outline-warning{
@@ -87,4 +46,21 @@
   background-color: rgb(249, 87, 50);
   border-color: rgb(249, 87, 50);
   color: white;
+}
+
+.mercadopago-button {
+    padding: 0 1.7142857142857142em;
+    font-family: "Quicksand" !important;
+    font-size: 0.875em;
+    line-height: 2.7142857142857144;
+    cursor: pointer;
+    background-color: rgb(0, 176, 89) !important;
+    color: white !important;
+    border-radius: 0px !important;
+}
+
+.mercadopago-button:hover {
+  color: white;
+  font-weight: bold;
+  background-color: #146c43 !important;
 }

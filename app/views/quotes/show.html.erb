@@ -1,38 +1,93 @@
-<div class="card-trip" id="card-show">
-  <% if @quote.vehicle.photo.attached? %>
-    <%= cl_image_tag @quote.vehicle.photo.key %>
-  <% end %>
-  <div class="card-trip-infos carriers-info">
-    <div>
-      <h4 >Cotización Nº - <%= @quote.id %> </h4>
-      <div class="pt-2">
-        <h6>Tu solicitud en: <%= @quote.freight.address %></h6>
-        <h6>Rating:  <strong><i class="<%=@quote.vehicle.reviews.average(:rating) == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%=@quote.vehicle.reviews.average(:rating) %></strong></h6>
-        <h6>Monto ofertado: <strong>$<%= @quote.amount.to_i %></strong></h6>
-        <h6 maxlength="10">Tipo de vehículo: <%= @quote.vehicle.vehicle_type %></h6>
-        <p class="text-light">Comentario: <%= @quote.comment %></p>
+<div class="container margin-bottom">
+  <div class="row mt-2">
+    <div class="col-6 p-2">
+      <div id="firstDiv">
+        <div class="row align-items-center carrier-show radius-top mx-0 p-1"> <%# vehicle header %>
+          <div class="col-6 p-3">
+            <h3 class="text-left">Estás viendo los detalles de la <strong>Cotización Nº - <%= @quote.id %></strong></h3>
+          </div>
+          <div class="col-4 p-3">
+            <div class="row">
+              <p><i class="fa-regular fa-comment-dots"></i>&nbsp; <%= @quote.vehicle.reviews.count %> reseñas</p>
+              <p><i class="<%= @quote.vehicle.average_rating_rounded.nil? ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= @quote.vehicle.average_rating_rounded %></p>
+              <p><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @quote.vehicle.city.name %></p>
+            </div>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Número de solicitud:</strong> <%= @quote.freight.id %></li>
+          <li class="list-group-item"><strong>Dirección origen:</strong> <%= @quote.freight.address %></li>
+          <li class="list-group-item"><strong>Dirección destino:</strong> <%= @quote.freight.end_address %></li>
+          <li class="list-group-item"><strong>Monto ofertado:</strong> $<%= @quote.amount.to_i %></li>
+          <li class="list-group-item"><strong>Comentario:</strong> <%= @quote.comment %></li>
+        </ul>
+        <div class="row cho-container rounded-0 m-0"></div>
       </div>
-      <div class="pt-5">
-        <button type="button" class="btn btn-success boton-login btn-sm" data-toggle="modal" data-target="#paymentModal">
-          Contratar
-        </button>
-        <div class="cho-container"></div>
-        <script>
-          const mp = new MercadoPago('APP_USR-4535df4c-13d0-4c6c-a922-7f5446eab768', {
-            locale: 'es-CL'
-          });
-
-          mp.checkout({
-            preference: {
-              id: "<%= @preference_id %>"
-            },
-            render: {
-              container: '.cho-container',
-              label: 'Pagar',
-            }
-          });
-        </script>
+      <div class="row mx-0 p-2 carrier-show radius-bottom"> <%# reviews %>
+        <% unless @quote.vehicle.reviews.count.zero? %>
+          <h4 class="pt-4">Reseñas</h4>
+          <% @quote.vehicle.reviews.each do |review|%>
+            <figure>
+              <blockquote class="blockquote pt-4">
+                <p><%= review.comment %></p>
+              </blockquote>
+              <figcaption class="blockquote-footer">
+                <%= review.user.first_name%> <cite title="rating white">
+                <p><i class="<%= review.rating == nil ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>
+                <%= review.rating %></p></cite>
+              </figcaption>
+            </figure>
+          <% end %>
+        <% else %>
+          <% if user_signed_in? %>
+            <% if current_user.id != @quote.vehicle.user_id %>
+              <h6>Este vehículo aún no cuenta con reseñas.</h6>
+            <% end %>
+          <% end %>
+        <%end%>
+      </div>
+    </div>
+    <div class="col-6 p-2">
+      <div class="d-flex justify-content-center align-items-center card-trip-1 radius-top" id="secondDiv">
+        <%= cl_image_tag @quote.vehicle.photo.key, class: 'image-tag' %>
+      </div>
+      <div class="carrier-show radius-bottom pb-3"> <%# vehicle details %>
+        <h4 class="pt-4 px-3">Datos del vehículo</h4>
+        <h6 class="px-3 pt-4"><b>Alias:</b> <%= @quote.vehicle.alias %></h6>
+        <hr>
+        <h6 class="px-3"><b>Tipo de transporte:</b> <%= @quote.vehicle.vehicle_type %></h6>
+        <hr>
+        <h6 class="px-3"><b>Capacidad de carga:</b> <%= @quote.vehicle.load_capacity.to_i %> Kg</h6>
+        <hr>
+        <h6 class="px-3"><b>¿Está cubierto?:</b> <%= @quote.vehicle.covered ? "Si" : "No" %></h6>
+        <hr>
+        <h6 class="px-3"><b>Descripción:</b> <%= @quote.vehicle.description %></h6>
+        <hr>
+        <h6 class="px-3"><b>Ciudad base de operaciones:</b> <%= @quote.vehicle.city.name %></h6>
+        <hr>
+        <h6 class="px-3"><b>Presta servicio en otras ciudades:</b> <%= @quote.vehicle.other_cities ? "Si" : "No"  %></h6>
+        <hr>
+        <h6 class="px-3"><b>Presta servicio en otras regiones:</b> <%= @quote.vehicle.other_regions ? "Si" : "No"  %></h6>
       </div>
     </div>
   </div>
 </div>
+<script>$(document).ready(function(){
+   var firstDiv = $("#firstDiv").height();
+   $("#secondDiv").height(firstDiv);
+});</script>
+<script>
+  const mp = new MercadoPago('TEST-77379a95-79ad-4183-b4bb-64693a6c8ff9', {
+    locale: 'es-CL'
+  });
+
+  mp.checkout({
+    preference: {
+      id: "<%= @preference_id %>"
+    },
+    render: {
+      container: '.cho-container',
+      label: 'Contratar',
+    }
+  });
+</script>
