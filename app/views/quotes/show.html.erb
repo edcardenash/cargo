@@ -18,7 +18,7 @@
           <li class="list-group-item"><strong>Número de solicitud:</strong> <%= @quote.freight.id %></li>
           <li class="list-group-item"><strong>Dirección origen:</strong> <%= @quote.freight.address %></li>
           <li class="list-group-item"><strong>Dirección destino:</strong> <%= @quote.freight.end_address %></li>
-          <li class="list-group-item"><strong>Monto ofertado:</strong> $<%= @quote.amount.to_i %></li>
+          <li class="list-group-item"><strong>Monto ofertado:</strong> $<%= number_with_delimiter(@quote.amount.to_i, delimiter: ".") %></li>
           <li class="list-group-item"><strong>Comentario:</strong> <%= @quote.comment %></li>
         </ul>
         <div class="row cho-container rounded-0 m-0"></div>
