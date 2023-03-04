@@ -50,18 +50,10 @@
               <li class="list-group-item">
                 <div class="row border-bottom">
                   <div class="col-8">
-                    Solicitud de servicio Nº<%= quote.vehicle.id %> por un monto de <%= quote.amount.to_i %>$
+                    Cotización Nº - <%= quote.vehicle.id %> por un monto de <%= number_with_delimiter(quote.amount.to_i, delimiter: ".") %>
                   </div>
                   <div class="col-4">
-                    <div class="row mb-1">
-                      <div class="col-6">
-                        <%= link_to 'Detalles', quote.vehicle, class: "btn btn-info boton-login btn-sm d-flex text-center" %>
-                      </div>
-                      <div class="col-6">
-                        <button type="button" class="btn btn-success boton-login btn-sm" data-toggle="modal" data-target="#paymentModal">Contratar</button>
-                        <%= render "shared/payment_form" %>
-                      </div>
-                    </div>
+                    <%= link_to 'Revisar cotización', quote, class: "btn btn-success boton-login btn-sm" %>
                   </div>
                 </div>
               </li>
