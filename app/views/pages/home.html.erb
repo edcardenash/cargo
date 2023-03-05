@@ -97,7 +97,7 @@
                     <% if vehicle.reviews.any?%>
                       <h6><strong>Rating:</strong> <i class="<%= vehicle.average_rating_rounded.nil? ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= format('%.1f', vehicle.average_rating_rounded).gsub('.', ',') %></h6>
                     <% else %>
-                      <h6><strong>Rating:</strong> <strong><i class="<%= vehicle.average_rating ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= vehicle.average_rating %></strong></h6>
+                      <h6><strong>Rating:</strong> <strong><i class="<%= vehicle.average_rating ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= format('%.1f', vehicle.average_rating_rounded).gsub('.', ',') %></strong></h6>
                     <% end %>
                     <h6><strong>Cerrado:</strong> <%= vehicle.covered ? "Si" : "No" %></h6>
                     <p><%= vehicle.description.truncate(50) %></p>
