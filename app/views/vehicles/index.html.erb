@@ -1,7 +1,12 @@
 <div class="px-5 carriers">
   <div class="container">
-    <div class="row carrier-show radius-10 mt-4 p-4">
-      <header>Listado de transportes disponibles</header>
+    <div class="row align-items-center justify-content-center carrier-show radius-10 mt-4 p-4">
+      <div class="col-9">
+        <header>Listado de transportes disponibles</header>
+      </div>
+      <div class="col-3">
+        <%= link_to "Publicar solicitud de transporte", new_freight_path, class: "btn btn-success boton-login btn-sm" %>
+      </div>
     </div>
     <div data-controller="search-vehicles">
       <%= form_with url: vehicles_path, method: :get, html: {class:
