@@ -92,14 +92,14 @@
                 <div>
                   <h4><%= vehicle.alias %></h4>
                   <div class="pt-2">
-                    <h6>Tipo de transporte: <%= vehicle.vehicle_type %></h6>
-                    <h6>Capacidad de carga: <strong><%= vehicle.load_capacity.to_i %></strong>Kg</h6>
+                    <h6><strong>Tipo de transporte:</strong> <%= vehicle.vehicle_type %></h6>
+                    <h6><strong>Capacidad de carga:</strong> <%= number_with_delimiter(vehicle.load_capacity.to_i , delimiter: ".") %> Kg</h6>
                     <% if vehicle.reviews.any?%>
-                      <h6>Rating:  <strong><i class="<%= vehicle.average_rating_rounded.nil? ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= vehicle.average_rating_rounded %></strong></h6>
+                      <h6><strong>Rating:</strong> <i class="<%= vehicle.average_rating_rounded.nil? ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= format('%.1f', vehicle.average_rating_rounded).gsub('.', ',') %></h6>
                     <% else %>
-                      <h6>Rating:  <strong><i class="<%= vehicle.average_rating ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= vehicle.average_rating %></strong></h6>
+                      <h6><strong>Rating:</strong> <strong><i class="<%= vehicle.average_rating ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= vehicle.average_rating %></strong></h6>
                     <% end %>
-                    <h6>Cerrado: <strong><%= vehicle.covered ? "Si" : "No" %></strong></h6>
+                    <h6><strong>Cerrado:</strong> <%= vehicle.covered ? "Si" : "No" %></h6>
                     <p><%= vehicle.description.truncate(50) %></p>
                   </div>
                   <div class="pt-2">
