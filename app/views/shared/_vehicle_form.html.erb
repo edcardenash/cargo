@@ -11,7 +11,10 @@
       <strong><%= f.input :city_id, label: "Ciudades", collection: City.all, label_method: :name, value_method: :id, prompt: "Ciudades", input_html: {data: {region_cities_target: "city"}} %></strong>
       <strong><%= f.input :other_cities, label: "¿Quieres trabajar en otras ciudades?", as: :boolean  %></strong>
       <strong><%= f.input :other_regions, label: "¿Quieres trabajar en otras regiones?", as: :boolean  %></strong>
-      <strong><%= f.input :photo, as: :file, label: "Sube una imágen" %></strong>
+      <strong><%= f.input :photo, as: :file, label: "Sube una imágen del vehículo" %></strong>
+      <strong><%= f.input :image, accept: :*, label: "Sube una imagen al anverso y al revés de tu RUT",as: :file, class: "pt-2" %></strong>
+      <strong><%= f.input :image, accept: :*, label: "Sube una imagen del permiso de circulación vigente",as: :file, class: "pt-2" %></strong>
+      <strong><%= f.input :image, accept: :*, label: "Sube una imagen del SOAP vigente",as: :file, class: "pt-2" %></strong>
       <div class="row m-0">
       <%= f.button :submit,"Guardar", class: "btn btn-success boton-login btn-sm" %>
       </div>
