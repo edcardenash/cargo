@@ -7,7 +7,7 @@
       <%= simple_form_for @freight do |f| %>
         <strong><%= f.input :description, label: "Descripción y detalle de la carga", as: :text  %></strong>
         <strong><%= f.input :receiver_name, label: "Nombre de la persona que recibirá la carga", as: :string %></strong>
-        <strong><%= f.input :receiver_phone, label: "Número de teléfono dde la persona que recibirá la carga", as: :string %></strong>
+        <strong><%= f.input :receiver_phone, label: "Número de teléfono de la persona que recibirá la carga", as: :string %></strong>
         <strong><%= f.label :start_date, "Dirección de origen y destino de la carga", class: "mb-2"%></strong>
         <div data-controller="search-address">
           <div class="row mb-3">

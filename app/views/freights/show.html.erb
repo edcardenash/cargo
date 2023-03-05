@@ -24,8 +24,8 @@
         </div>
         <ul class="list-group list-group-flush"> <%# freight details %>
           <strong><li class="list-group-item">Descripción:</strong> <%= @freight.description %></li>
-          <strong><li class="list-group-item">Person que recepciona:</strong> <%= @freight.receiver_name.truncate(10) %></li>
-          <strong><li class="list-group-item">Telefono:</strong> <%= @freight.receiver_phone.truncate(8) %></li>
+          <strong><li class="list-group-item">Person que recepciona:</strong> <%= @freight.receiver_name.truncate(5) %></li>
+          <strong><li class="list-group-item">Teléfono:</strong> <%= @freight.receiver_phone.truncate(5) %></li>
           <strong><li class="list-group-item">Origen:</strong> <%= @freight.address %></li>
           <strong><li class="list-group-item">Destino:</strong> <%= @freight.end_address %></li>
           <strong><li class="list-group-item">Fecha:</strong> <%= @freight.start_date.strftime('%d/%m/%Y') %></li>
