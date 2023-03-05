@@ -77,10 +77,9 @@
    $("#secondDiv").height(firstDiv);
 });</script>
 <script>
-  const mp = new MercadoPago('TEST-77379a95-79ad-4183-b4bb-64693a6c8ff9', {
+  const mp = new MercadoPago('<%= ENV.fetch("MERCADOPAGO_PUBLIC_KEY") %>', {
     locale: 'es-CL'
   });
-
   mp.checkout({
     preference: {
       id: "<%= @preference_id %>"

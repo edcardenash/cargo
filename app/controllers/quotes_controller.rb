@@ -18,23 +18,12 @@ class QuotesController < ApplicationController
 
   def show
     @quote = Quote.find(params[:id])
-    sdk = Mercadopago::SDK.new('TEST-5736802988968384-030220-ccf0ae0c9b225c5b313d600723b302d2-1299022241')
     preference_data = {
-      back_urls: {
-        success: 'http://cargoapp.me'
-      },
-      items: [
-        {
-          title: @quote.id,
-          unit_price: @quote.amount,
-          quantity: 1
-        }
-      ],
+      back_urls: { success: 'http://cargoapp.me' },
+      items: [{ title: @quote.id, unit_price: @quote.amount, quantity: 1 }],
       notification_url: 'http://cargoapp.me'
     }
-    preference_response = sdk.preference.create(preference_data)
-    preference = preference_response[:response]
-    @preference_id = preference['id']
+    @preference_id = create_mercadopago_preference(preference_data)['id']
     authorize @quote
   end
 
@@ -48,6 +37,7 @@ class QuotesController < ApplicationController
     authorize @quote
     @quote.freight = @freight
     @quote.user_id = current_user.id
+    @quote.status = 0
     if @quote.save
       redirect_to freight_path(@freight), notice: 'Tu cotización fue creada exitosamente'
     else
@@ -65,7 +55,7 @@ class QuotesController < ApplicationController
   private
 
   def quote_params
-    params.require(:quote).permit(:amount, :comment, :vehicle_id, :freight_id, :user_id)
+    params.require(:quote).permit(:status, :amount, :comment, :vehicle_id, :freight_id, :user_id)
   end
 
   def set_quote
@@ -74,5 +64,10 @@ class QuotesController < ApplicationController
 
   def set_freight
     @freight = Freight.find(params[:freight_id])
+  end
+
+  def create_mercadopago_preference(data)
+    sdk = Mercadopago::SDK.new(ENV.fetch('MERCADOPAGO_ACCESS_TOKEN'))
+    sdk.preference.create(data)[:response]
   end
 end
