@@ -1,35 +1,39 @@
 <div class="container col-6 mt-4">
-  <div class="row carrier-show radius mt-4 p-4">
+  <div class="row carrier-show radius-10 mt-4 p-4">
     <header>Nueva solicitud de transporte</header>
   </div>
   <div class="container my-3 border border-3">
     <div class="row p-4 m-4">
       <%= simple_form_for @freight do |f| %>
         <strong><%= f.input :description, label: "Descripción y detalle de la carga", as: :text  %></strong>
-        <strong><%= f.input :receiver_name, label: "Nombre del receptor", as: :string %></strong>
-        <strong><%= f.input :receiver_phone, label: "Teléfono del receptor", as: :string %></strong>
+        <strong><%= f.input :receiver_name, label: "Nombre de la persona que recibirá la carga", as: :string %></strong>
+        <strong><%= f.input :receiver_phone, label: "Número de teléfono dde la persona que recibirá la carga", as: :string %></strong>
+        <strong><%= f.label :start_date, "Dirección de origen y destino de la carga", class: "mb-2"%></strong>
         <div data-controller="search-address">
           <div class="row mb-3">
             <div class="col-8">
-              <input class="input w-100" id="address" name="freight[address]" autocomplete="shipping address-line1" placeholder="Direccion de Origen">
+              <input class="input w-100" id="address" name="freight[address]" autocomplete="shipping address-line1" placeholder="Dirección de origen">
             </div>
             <div class="col-4">
-              <input class="input w-100" id="address" name="freight[start_city]" autocomplete="shipping address-level2" placeholder="Ciudad Origen">
+              <input class="input w-100" id="address" name="freight[start_city]" autocomplete="shipping address-level2" placeholder="Ciudad de origen">
             </div>
           </div>
           <div class="row mb-3">
             <div class="col-8">
-              <input class="input w-100" id="end_address" name="freight[end_address]" autocomplete="billing address-line1" placeholder="Direccion de Destino">
+              <input class="input w-100" id="end_address" name="freight[end_address]" autocomplete="billing address-line1" placeholder="Dirección de destino">
             </div>
             <div class="col-4">
-              <input class="input w-100" id="end_city" name="freight[end_city]" autocomplete="billing address-level2" placeholder="Ciudad Destino">
+              <input class="input w-100" id="end_city" name="freight[end_city]" autocomplete="billing address-level2" placeholder="Ciudad de destino">
             </div>
           </div>
+          <strong><%= f.input :round_trip, label: "¿Ida y vuelta?"%></strong>
         </div>
-        <strong><%= f.label :start_date, "Fecha"%></strong>
-        <strong><%= f.date_field :start_date ,min_max: true, min: Date.today, required: true, style: "width: 100%", input_html: { class: "p-2"} %></strong>
-        <strong><%= f.input :round_trip, label: "¿Ida y vuelta?"%></strong>
-        <strong><%= f.input :photos, label: "Fotos",as: :file, input_html: { multiple: true } %></strong>
+        <div class="row mb-3">
+          <strong><%= f.label :start_date, "Fecha", class: "mb-2"%></strong>
+          <strong><%= f.date_field :start_date ,min_max: true, min: Date.today, required: true, style: "width: 100%", input_html: { class: "p-2"} %></strong>
+        </div>
+        <strong><%= f.input :image, accept: :*, label: "Boleta o factura de la carga",as: :file, class: "pt-2" %></strong>
+        <strong><%= f.input :photos, label: "Fotos de la carga",as: :file, input_html: { multiple: true } %></strong>
         <div class="row m-0">
           <%= f.button :submit,"Publicar", class: "btn btn-success boton-login btn-sm"%>
         </div>
