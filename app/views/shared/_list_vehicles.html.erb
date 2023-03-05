@@ -1,5 +1,5 @@
 <div data-search-vehicles-target="list" class="mb-3">
-  <div class="row">
+  <div class="row carriers">
     <div class="cards col-12">
       <% @vehicles.each do |vehicle| %>
         <% if user_signed_in? %>
@@ -39,24 +39,24 @@
             <% if vehicle.photo.attached? %>
               <%= cl_image_tag vehicle.photo.key %>
             <% end %>
-            <div class="card-trip-infos carriers-info">
+            <div class="card-trip-infos carriers-info p-2">
               <div>
                 <h4><%= vehicle.alias %></h4>
                 <br>
                 <div class="pt-2">
-                    <% if vehicle.reviews.any?%>
-                      <h6><strong>Rating:</strong> <i class="<%= vehicle.average_rating_rounded.nil? ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= format('%.1f', vehicle.average_rating_rounded).gsub('.', ',') %></h6>
-                    <% else %>
-                      <h6><strong>Rating:</strong> <strong><i class="<%= vehicle.average_rating ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= format('%.1f', vehicle.average_rating_rounded).gsub('.', ',') %></strong></h6>
-                    <% end %>
-                    <h6><strong>Tipo de transporte:</strong> <%= vehicle.vehicle_type %></h6>
-                    <h6><strong>Capacidad de carga:</strong> <%= number_with_delimiter(vehicle.load_capacity.to_i , delimiter: ".") %> Kg</h6>
-                    <h6><strong>Ciudad base de operaciones:</strong> <%= vehicle.city.name %></strong> </h6>
-                    <h6><strong>Presta servicio en otras ciudades:</strong> <%= vehicle.other_cities ? "Si" : "No" %></h6>
-                    <h6><strong>Presta servicio en otras regiones:</strong> <%= vehicle.regions ? "Si" : "No" %></h6>
-                    <h6><strong>Cerrado:</strong> <%= vehicle.covered ? "Si" : "No" %></h6>
-                    <p><%= vehicle.description.truncate(50) %></p>
-                  </div>
+                  <% if vehicle.reviews.any?%>
+                    <h6><strong>Rating:</strong> <i class="<%= vehicle.average_rating_rounded.nil? ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= format('%.1f', vehicle.average_rating_rounded).gsub('.', ',') %></h6>
+                  <% else %>
+                    <h6><strong>Rating:</strong> <strong><i class="<%= vehicle.average_rating ? "fa-regular fa-star" : "fa-solid fa-star" %>"></i>&nbsp; <%= format('%.1f', vehicle.average_rating_rounded).gsub('.', ',') %></strong></h6>
+                  <% end %>
+                  <h6><strong>Tipo de transporte:</strong> <%= vehicle.vehicle_type %></h6>
+                  <h6><strong>Capacidad de carga:</strong> <%= number_with_delimiter(vehicle.load_capacity.to_i , delimiter: ".") %> Kg</h6>
+                  <h6><strong>Ciudad base de operaciones:</strong> <%= vehicle.city.name %></strong> </h6>
+                  <h6><strong>Presta servicio en otras ciudades:</strong> <%= vehicle.other_cities ? "Si" : "No" %></h6>
+                  <h6><strong>Presta servicio en otras regiones:</strong> <%= vehicle.regions ? "Si" : "No" %></h6>
+                  <h6><strong>Cerrado:</strong> <%= vehicle.covered ? "Si" : "No" %></h6>
+                  <p><%= vehicle.description.truncate(50) %></p>
+                </div>
                 <br>
                 <div class="pt-2">
                   <%= link_to 'Contactar', vehicle, class: "btn btn-success boton-login btn-sm mt-1"%>
