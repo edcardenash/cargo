@@ -1,14 +1,14 @@
 <div class="px-5 carriers">
   <div class="container">
-    <div class="row carrier-show radius mt-4 p-4">
+    <div class="row carrier-show radius-10 mt-4 p-4">
       <header>Listado de transportes disponibles</header>
     </div>
     <div data-controller="search-vehicles">
       <%= form_with url: vehicles_path, method: :get, html: {class:
-        "mb-4", data: {search_vehicles_target: "form"}} do |f| %>
+        "mt-3", data: {search_vehicles_target: "form"}} do |f| %>
         <%= f.text_field :query,
-                        class: "form-control mt-3",
-                        placeholder: "Ingrese el nombre del vehiculo o ubicacion",
+                        class: "form-control radius-10",
+                        placeholder: "Introduce tu ciudad o alias del vehículo",
                         value: params[:query],
                         data: {search_vehicles_target: "input",
                                 action: "keyup->search-vehicles#update"
