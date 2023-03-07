@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container my-4">
   <div class="row">
     <div class="col-6">
       <div id="firstDiv">
@@ -69,16 +69,18 @@
       <% end %>
     </div>
   </div>
-  <div class="row align-items-center carrier-show radius-10 mx-0 mt-4 p-1">
-    <div class="col-7 p-3">
-      <h3 class="text-left">Imágenes de la <strong>carga</strong></h3>
-    </div>
-  </div>
-      <div class="row justify-content-center">
-        <% @freight.photos.each do |photo| %>
-          <div class="col-3 m-1">
-            <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill, class: "img-fluid shadow-sm p-3 mb-5 bg-body rounded" %>
-          </div>
-        <% end %>
+  <% if @freight.photos.any? %>
+    <div class="row align-items-center carrier-show radius-10 mx-0 mt-4 p-1">
+      <div class="col-7 p-3">
+        <h3 class="text-left">Imágenes de la <strong>carga</strong></h3>
       </div>
+    </div>
+    <div class="row justify-content-center">
+      <% @freight.photos.each do |photo| %>
+        <div class="col-3 m-1">
+          <%= cl_image_tag photo.key, height: 300, width: 300, crop: :fill, class: "img-fluid shadow-sm p-3 mb-5 bg-body rounded" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
