@@ -8,7 +8,7 @@
           </div>
           <div class="col-5 p-3">
             <div class="row">
-              <p><i class="fa-regular fa-comment-dots"></i>&nbsp; <%= @freight.start_date.strftime('%d/%m/%Y') %></p>
+              <p><i class="fa-solid fa-calendar-days"></i>&nbsp; <%= @freight.start_date.strftime('%d/%m/%Y') %></p>
               <p><i class="fa-solid fa-location-dot"></i>&nbsp; <%= @freight.end_address %></p>
             </div>
           </div>
@@ -31,10 +31,12 @@
           <strong><li class="list-group-item">Fecha:</strong> <%= @freight.start_date.strftime('%d/%m/%Y') %></li>
         </ul>
       </div>
+      <div class="row mx-0 p-3 carrier-show radius-bottom">
+      </div>
     </div>
-    <div class="col-6">
-      <div class="d-flex justify-content-center align-items-center">
-        <div id="mapshow" style="width: 100%; height: 400px;"
+    <div class="col-6 px-2">
+      <div class="d-flex justify-content-center align-items-center card-trip-1 ">
+        <div id="mapshow" class="radius-top" style="width: 100%; height: 435px;"
           data-controller="mapshow"
           data-mapshow-markers-value="<%= @markers.to_json %>"
           data-mapshow-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -60,15 +62,18 @@
             </ul>
           <% end %>
         <%else%>
-          <div class="row">
+          <div class="row m-0">
             <%= link_to 'Enviar cotización', new_freight_quote_path(@freight), class: "btn btn-success boton-login btn-sm radius-bottom py-1" %>
           </div>
         <% end %>
       <% end %>
     </div>
   </div>
-  <hr class="border border-primary border-3 opacity-75 mt-5">
-  <h3 class="text-center mb-5 mt-5">Galería de Imagenes</h3>
+  <div class="row align-items-center carrier-show radius-10 mx-0 mt-4 p-1">
+    <div class="col-7 p-3">
+      <h3 class="text-left">Imágenes de la <strong>carga</strong></h3>
+    </div>
+  </div>
       <div class="row justify-content-center">
         <% @freight.photos.each do |photo| %>
           <div class="col-3 m-1">
@@ -77,8 +82,3 @@
         <% end %>
       </div>
 </div>
-
-<script>$(document).ready(function(){
-   var firstDiv = $("#firstDiv").height();
-   $("#secondDiv").height(firstDiv);
-});</script>
