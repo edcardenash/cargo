@@ -8,21 +8,21 @@
 .btn-success{
   background-color: rgb(0, 176, 89);
   color: white;
-  border-radius: 5px;
+  border-radius: 25px;
   border-color: rgb(0, 176, 89);
 }
 
 .btn-warning{
   background-color: rgb(255, 190, 70);
   color: white;
-  border-radius: 5px;
+  border-radius: 25px;
   border-color: rgb(255, 190, 70);
 }
 
 .btn-danger{
   background-color: rgb(249, 87, 50);
   color: white;
-  border-radius: 5px;
+  border-radius: 25px;
   border-color: rgb(249, 87, 50);
 }
 
@@ -64,3 +64,13 @@
   font-weight: bold;
   background-color: #146c43 !important;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: white;
+    background-color: rgb(47, 49, 49) !important;
+    border-radius: 10px;
+}
+
+.nav-pills:hover .nav-link.active, .nav-pills .show > .nav-link {
+    color: rgb(249, 87, 50) !important;
+    }

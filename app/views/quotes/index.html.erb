@@ -1,7 +1,7 @@
 
 <div class="container mt-4">
   <div class="row">
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-pills">
       <li class="nav-item">
         <a class="nav-link color-dark active" data-toggle="tab" href="#quotesSent">Cotizaciones enviadas</a>
       </li>
@@ -15,7 +15,7 @@
   <div class="tab-pane container active" id="quotesSent">
     <div class="container mt-4">
       <div class="row">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-pills">
           <li class="nav-item">
             <a class="nav-link color-dark active" data-toggle="tab" href="#quotesSentPending">Pendientes</a>
           </li>
@@ -31,7 +31,7 @@
     <% if user_signed_in? %>
       <div class="tab-content mb-4">
         <div class="tab-pane container active" id="quotesSentPending">
-          <div class="row carrier-show radius mt-4 p-4">
+          <div class="row carrier-show radius-10 mt-4 p-4">
             <header>Cotizaciones enviadas pendientes</header>
           </div>
           <div class="mt-4 carriers">
@@ -67,7 +67,7 @@
           </div>
         </div>
         <div class="tab-pane fade container" id="quotesSentApproved" role="tabpanel" aria-labelledby="quotesSentApproved-tab">
-          <div class="row carrier-show radius mt-4 p-4">
+          <div class="row carrier-show radius-10 mt-4 p-4">
             <header>Cotizaciones enviadas aprobadas</header>
           </div>
           <div class="mt-4 carriers">
@@ -103,7 +103,7 @@
           </div>
         </div>
         <div class="tab-pane fade container" id="quotesSentRejected" role="tabpanel" aria-labelledby="quotesSentRejected-tab">
-          <div class="row carrier-show radius mt-4 p-4">
+          <div class="row carrier-show radius-10 mt-4 p-4">
             <header>Cotizaciones enviadas rechazadas</header>
           </div>
           <div class="mt-4 carriers">
@@ -144,7 +144,7 @@
   <div class="tab-pane container active" id="quotesReceived">
     <div class="container mt-4">
       <div class="row">
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-pills">
           <li class="nav-item">
             <a class="nav-link color-dark active" data-toggle="tab" href="#quotesReceivedPending">Pendientes</a>
           </li>
@@ -160,7 +160,7 @@
     <% if user_signed_in? %>
       <div class="tab-content mb-4">
         <div class="tab-pane container active" id="quotesReceivedPending">
-          <div class="row carrier-show radius mt-4 p-4">
+          <div class="row carrier-show radius-10 mt-4 p-4">
             <header>Cotizaciones recibidas pendientes</header>
           </div>
           <div class="mt-4 carriers">
@@ -193,7 +193,7 @@
           </div>
         </div>
         <div class="tab-pane fade container" id="quotesReceivedApproved" role="tabpanel" aria-labelledby="quotesReceivedApproved-tab">
-          <div class="row carrier-show radius mt-4 p-4">
+          <div class="row carrier-show radius-10 mt-4 p-4">
             <header>Cotizaciones recibidas aprobadas</header>
           </div>
           <div class="mt-4 carriers">
@@ -226,7 +226,7 @@
           </div>
         </div>
         <div class="tab-pane fade container" id="quotesReceivedRejected" role="tabpanel" aria-labelledby="quotesReceivedRejected-tab">
-          <div class="row carrier-show radius mt-4 p-4">
+          <div class="row carrier-show radius-10 mt-4 p-4">
             <header>Cotizaciones recibidas rechazadas</header>
           </div>
           <div class="mt-4 carriers">
