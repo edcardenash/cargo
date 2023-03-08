@@ -13,7 +13,7 @@
   <div class="mb-3 mt-3">
     <%= form_with url: my_freights_freights_path, method: :get, html: {data: {search_freights_target: "form"}} do |f| %>
       <%= f.text_field :query,
-                      class: "form-control",
+                      class: "form-control mt-4 radius-10",
                       placeholder: "Ingrese la ubicacion de la solicitud",
                       value: params[:query],
                       data: {search_freights_target: "input",
@@ -22,39 +22,40 @@
     <% end %>
   </div>
 
+
     <!-- Busqueda de Freights --->
   <div data-search-freights-target="list" class="mb-3">
-    <div class="card-group row">
-      <% @freights.each do |freight| %>
-        <% if user_signed_in? %>
-          <% if freight.user_id == current_user.id %>
-            <div class="col-4">
-              <div class="card m-2 shadow-sm rounded">
-                  <% if freight.photos.length > 0 %>
-                    <%= cl_image_tag freight.photos.first.key, width: 400, height: 200, crop: :fill, class: "card-img-top" %>
-                  <% else %>
-                    <%= image_tag "CargoDefaultFreight.png", width: 400, height: 200, crop: :fill, class: "card-img-top" %>
-                  <%end%>
-                <div class="card-body">
-                  <h5 class="card-title text-center"><%= freight.address%></h5>
-                  <p class="card-title"><strong>Programado para el: <%= freight.start_date.strftime('%m/%d/%Y')%></strong></p>
-                  <p class="card-text"><%= freight.description %></p>
-                  <div class="d-grip gap-2 text-center">
-                    <%= link_to 'Ver detalles', freight, class: "btn btn-outline-success"%>
+    <div class="carriers">
+    <div  class="row">
+      <div class="cards">
+        <% @freights.each do |freight| %>
+          <% if current_user.id == freight.user_id %>
+            <div class="card-trip" id="card-show">
+              <% if freight.photos.length > 0 %>
+                <%= cl_image_tag freight.photos.first.key, width: 400, height: 200, crop: :fill %>
+              <% else %>
+                <%= image_tag "CargoDefaultFreight.png", width: 400, height: 200, crop: :fill %>
+              <%end%>
+              <div class="card-trip-infos carriers-info p-2">
+                <div>
+                  <h4 style="height: 50px"><%= freight.address%></h4>
+                  <div class="pt-2">
+                    <h6><strong>Publicado el:</strong> <%= freight.start_date.strftime('%m/%d/%Y')%></h6>
+                    <h6><strong>Descripción:</strong> <%= freight.description %></h6>
                   </div>
-                </div>
-                <div class="card-footer">
-
-
-                  <small class="text-muted">Actualizado el <%= freight.updated_at.strftime('%d/%m/%Y') %></small>
-
-
+                  <div class="pt-2">
+                    <%= link_to 'Ver detalles', freight, class: "btn btn-success boton-login btn-sm mt-1"%>
+                  </div>
+                  <div class="card-footer pt-2">
+                    <small class="text-muted">Actualizado el <%= freight.updated_at.strftime('%d/%m/%Y') %></small>
+                  </div>
                 </div>
               </div>
             </div>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
+  </div>
   </div>
 </div>
