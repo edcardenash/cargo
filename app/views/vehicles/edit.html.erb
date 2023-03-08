@@ -1,2 +1,6 @@
-<h1 class="mt-4">Editar vehiculo <%= @vehicle.vehicle_type  %> </h1>
-<%= render "shared/vehicle_form" %>
+<div class="container col-6">
+  <div class="row carrier-show radius-10 mt-4 p-4">
+    <header>Editar vehículo <%= @vehicle.alias  %></header>
+  </div>
+    <%= render "shared/vehicle_form" %>
+</div>
