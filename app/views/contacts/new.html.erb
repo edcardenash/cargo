@@ -5,7 +5,7 @@
     <div class="container my-3 border border-3">
       <div class="row p-4 m-4">
         <%= simple_form_for @contact, data:{turbo: false} do |f| %>
-          <strong><%= f.input :name, label: 'Tu nombre', error: 'Tu nombre es obligatorio, especifique uno por favor' %></strong>
+          <strong><%= f.input :name, label: 'Nombre', error: 'Tu nombre es obligatorio, especifique uno por favor' %></strong>
           <strong> <%= f.input :email %></strong>
           <strong> <%= f.input :phone, label: 'Teléfono' %></strong>
           <strong> <%= f.input :message, label: 'Mensaje', as: :text %></strong>
