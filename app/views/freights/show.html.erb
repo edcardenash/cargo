@@ -35,8 +35,8 @@
       </div>
     </div>
     <div class="col-6 px-2">
-      <div class="d-flex justify-content-center align-items-center card-trip-1 ">
-        <div id="mapshow" class="radius-top" style="width: 100%; height: 435px;"
+      <div class="d-flex justify-content-center align-items-center card-trip-1" id="secondDiv">
+        <div id="mapshow" style="width: 100%; height: 400px"
           data-controller="mapshow"
           data-mapshow-markers-value="<%= @markers.to_json %>"
           data-mapshow-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
@@ -70,7 +70,7 @@
     </div>
   </div>
   <% if @freight.photos.any? %>
-    <div class="row align-items-center carrier-show radius-10 mx-0 mt-4 p-1">
+    <div class="row align-items-center carrier-show radius-10 mx-0 mt-5 p-1">
       <div class="col-7 p-3">
         <h3 class="text-left">Imágenes de la <strong>carga</strong></h3>
       </div>
@@ -84,3 +84,8 @@
     </div>
   <% end %>
 </div>
+
+<script>$(document).ready(function(){
+   var firstDiv = $("#firstDiv").height();
+   $("#secondDiv").height(firstDiv);
+});</script>
