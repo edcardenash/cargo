@@ -1,6 +1,6 @@
 <div class="container col-6">
   <div class="row carrier-show radius mt-4 p-4">
-    <header>Edita tu perfil <%= resource_name.to_s.humanize %></header>
+    <header>Edita tu perfil</header>
   </div>
   <div class="container my-3 border border-3">
     <div class="row p-4 m-4">
@@ -32,17 +32,15 @@
                       input_html: { autocomplete: "current-password" } %>
         </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Actualizar", class: "btn btn-success boton-login btn-sm" %>
+        <div class="row form-actions m-0">
+          <%= f.button :submit, "Actualizar cuenta", class: "btn btn-success boton-login btn-sm" %>
         </div>
       <% end %>
-      <div>
-        <h6>Eliminar mi cuenta</h6>
-        <div class="d-flex align-items-center">
-          <div>¿Insatisfecho?</div>
-          <%= button_to "Eliminar mi cuenta", registration_path(resource_name), data: { confirm: "¿Estás seguro?" }, method: :delete, class: "btn btn-danger boton-login btn-sm" %>
-        </div>
-        <%= link_to "Regresar", :back %>
+      <div class="row form-actions mx-0 mt-3">
+        <%= link_to "Eliminar cuenta", registration_path(resource_name), data: { confirm: "¿Estás seguro?" }, method: :delete, class: "btn btn-danger boton-login btn-sm" %>
+      </div>
+      <div class="row mx-0 mt-3">
+        <%= link_to "Regresar", :back, class: "btn btn-warning boton-login btn-sm" %>
       </div>
     </div>
   </div>
